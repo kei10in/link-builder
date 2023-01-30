@@ -13,6 +13,15 @@ export default defineConfig({
           "Build a link and copy to the clipboard in various markup languages",
         version: "1.0",
 
+        icons: {
+          "16": "icon.svg",
+          "32": "icon.svg",
+          "48": "icon.svg",
+          "64": "icon.svg",
+          "96": "icon.svg",
+          "128": "icon.svg",
+        },
+
         background: {
           scripts: ["src/background.ts"],
         },
