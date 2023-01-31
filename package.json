@@ -4,10 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open src/options.html",
     "build": "tsc && vite build",
+    "watch": "vite build --watch",
     "preview": "vite preview",
-    "lint": "eslint --fix ./src"
+    "lint": "eslint --fix ./src",
+    "serve:firefox": "web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./dist/",
+    "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/"
   },
   "dependencies": {
     "react": "^18.2.0",
