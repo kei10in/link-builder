@@ -13,6 +13,7 @@
     "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/"
   },
   "dependencies": {
+    "mustache": "^4.2.0",
     "nanoid": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@samrum/vite-plugin-web-extension": "^3.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/mustache": "^4.2.2",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
