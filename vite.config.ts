@@ -16,8 +16,8 @@ export default defineConfig({
         version: "1.0",
 
         icons: {
-          "16": "icon.svg",
-          "32": "icon.svg",
+          "16": "icon-16.png",
+          "32": "icon-32.png",
           "48": "icon.svg",
           "64": "icon.svg",
           "96": "icon.svg",
@@ -44,7 +44,7 @@ export default defineConfig({
           open_in_tab: true,
         },
 
-        permissions: ["activeTab", "contextMenus", "clipboardWrite"],
+        permissions: ["activeTab", "clipboardWrite", "contextMenus", "storage"],
       },
     }),
   ],

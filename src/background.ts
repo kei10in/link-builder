@@ -1,29 +1,57 @@
+import { LinkFormat } from "./LinkFormat";
+import Mustache from "mustache";
 import browser from "webextension-polyfill";
 
-browser.contextMenus.create({
-  id: "link-builder--build-markdown-link",
-  title: "Build Markdown Link",
-  contexts: ["page"],
-});
+const buildContextMenu = async () => {
+  const linkFormats = await LinkFormat.load();
 
-browser.contextMenus.onClicked.addListener(
-  async (
-    info: browser.Menus.OnClickData,
-    tab: browser.Tabs.Tab | undefined
-  ) => {
-    if (tab == undefined) {
-      return;
-    }
-    if (tab.id == undefined) {
-      return;
-    }
+  browser.contextMenus.create({
+    id: "link-builder",
+    title: "Build Link",
+    contexts: ["page"],
+  });
 
-    if (info.menuItemId === "link-builder--build-markdown-link") {
-      const url = tab.url;
-      const title = tab.title;
-      const linkText = `[${title}](${url})`;
+  for (const linkFormat of linkFormats) {
+    browser.contextMenus.create({
+      id: `link-builder--item--${linkFormat.key}`,
+      parentId: "link-builder",
+      title: linkFormat.name,
+      contexts: ["page"],
+      onclick: async (info, tab) => {
+        if (tab == undefined || tab.id == undefined) {
+          return;
+        }
 
-      await browser.tabs.sendMessage(tab.id, { linkText });
-    }
+        const url = tab.url;
+        const title = tab.title;
+        const data = { url, title };
+
+        const linkText = Mustache.render(
+          linkFormat.format,
+          data,
+          {},
+          { escape: (s) => s } // disable escaping to render url without escaping
+        );
+
+        await browser.tabs.sendMessage(tab.id, { linkText });
+      },
+    });
   }
-);
+
+  browser.contextMenus.create({
+    id: "link-builder--separator",
+    type: "separator",
+    parentId: "link-builder",
+  });
+
+  browser.contextMenus.create({
+    id: "link-builder--configure",
+    parentId: "link-builder",
+    title: "Configure...",
+    onclick: async () => {
+      await browser.runtime.openOptionsPage();
+    },
+  });
+};
+
+buildContextMenu();
