@@ -1,29 +1,17 @@
 import { ReactComponent as Logo } from "../../public/icon.svg";
+import { LinkFormatItem } from "../LinkFormat";
 import { EditFormat } from "./EditFormat";
 import { MdAdd, MdMoreHoriz } from "react-icons/md";
 
-const formats = [
-  {
-    key: "markdown",
-    name: "Markdown",
-    format: "[{{title}}]({{url}})",
-    example: "[Page Title](https://example.com/)",
-  },
-  {
-    key: "textile",
-    name: "Textile",
-    format: '"{{title}}":{{url}}',
-    example: '"Page Title":https://example.com/',
-  },
-  {
-    key: "html",
-    name: "HTML",
-    format: '<a href="{{url}}">{{title}}</a>',
-    example: '<a href="https://example.com">Page Title</a>',
-  },
-];
+export type LinkFormatItemWithExample = LinkFormatItem & { example: string };
 
-export const OptionsApp = () => {
+interface Props {
+  formats: LinkFormatItemWithExample[];
+}
+
+export const OptionsApp: React.FC<Props> = (props: Props) => {
+  const { formats } = props;
+
   return (
     <div className="h-screen max-w-7xl px-12 py-6">
       <div className="flex items-center gap-8">
@@ -57,7 +45,7 @@ export const OptionsApp = () => {
           </div>
         </div>
 
-        <table className="table w-full mt-4">
+        <table className="table w-full mt-4 drop-shadow">
           <thead>
             <tr>
               <th className="normal-case">Name</th>
@@ -75,7 +63,7 @@ export const OptionsApp = () => {
                   <td className="font-mono">{format}</td>
                   <td className="font-mono">{example}</td>
                   <td className="text-right">
-                    <div className="dropdown">
+                    <div className="dropdown dropdown-end">
                       <label
                         tabIndex={0}
                         className="btn btn-ghost btn-sm btn-square"
@@ -96,31 +84,31 @@ export const OptionsApp = () => {
                         </li>
                       </ul>
                     </div>
-                  </td>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id={`edit-${key}`}
-                      className="modal-toggle"
-                    />
-                    <div className="modal">
-                      <div className="modal-box">
-                        <EditFormat
-                          title="Edit Format"
-                          name={name}
-                          format={format}
-                        />
-                        <div className="modal-action">
-                          <label htmlFor={`edit-${key}`} className="btn">
-                            Cancel
-                          </label>
-                          <label htmlFor={`edit-${key}`} className="btn">
-                            Save
-                          </label>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id={`edit-${key}`}
+                        className="modal-toggle"
+                      />
+                      <div className="modal">
+                        <div className="modal-box">
+                          <EditFormat
+                            title="Edit Format"
+                            name={name}
+                            format={format}
+                          />
+                          <div className="modal-action">
+                            <label htmlFor={`edit-${key}`} className="btn">
+                              Cancel
+                            </label>
+                            <label htmlFor={`edit-${key}`} className="btn">
+                              Save
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </td>
                 </tr>
               );
             })}

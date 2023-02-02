@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import browser from "webextension-polyfill";
 
-interface LinkFormatItem {
+export interface LinkFormatItem {
   key: string;
   name: string;
   format: string;
