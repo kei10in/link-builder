@@ -1,5 +1,4 @@
-import { LinkFormat } from "./LinkFormat";
-import Mustache from "mustache";
+import { formatLink, LinkFormat } from "./LinkFormat";
 import browser from "webextension-polyfill";
 
 const buildContextMenu = async () => {
@@ -18,7 +17,12 @@ const buildContextMenu = async () => {
       title: linkFormat.name,
       contexts: ["page"],
       onclick: async (info, tab) => {
-        if (tab == undefined || tab.id == undefined) {
+        if (
+          tab == undefined ||
+          tab.id == undefined ||
+          tab.title == undefined ||
+          tab.url == undefined
+        ) {
           return;
         }
 
@@ -26,12 +30,7 @@ const buildContextMenu = async () => {
         const title = tab.title;
         const data = { url, title };
 
-        const linkText = Mustache.render(
-          linkFormat.format,
-          data,
-          {},
-          { escape: (s) => s } // disable escaping to render url without escaping
-        );
+        const linkText = formatLink(linkFormat, data);
 
         await browser.tabs.sendMessage(tab.id, { linkText });
       },

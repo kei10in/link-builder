@@ -1,3 +1,4 @@
+import Mustache from "mustache";
 import { nanoid } from "nanoid";
 import browser from "webextension-polyfill";
 
@@ -44,3 +45,10 @@ export const LinkFormat = {
     await storage.set({ linkFormats });
   },
 } as const;
+
+export const formatLink = (
+  item: LinkFormatItem,
+  data: { title: string; url: string }
+): string => {
+  return Mustache.render(item.format, data, {}, { escape: (s) => s });
+};

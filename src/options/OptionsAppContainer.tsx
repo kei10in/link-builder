@@ -1,6 +1,5 @@
-import { LinkFormat } from "../LinkFormat";
+import { formatLink, LinkFormat } from "../LinkFormat";
 import { LinkFormatItemWithExample, OptionsApp } from "./OptionsApp";
-import Mustache from "mustache";
 import { useEffect, useState } from "react";
 
 export const OptionsAppContainer: React.FC = () => {
@@ -11,15 +10,10 @@ export const OptionsAppContainer: React.FC = () => {
       setFormats(
         loaded.map((v) => ({
           ...v,
-          example: Mustache.render(
-            v.format,
-            {
-              title: "Page Title",
-              url: "https://example.com",
-            },
-            {},
-            { escape: (s) => s }
-          ),
+          example: formatLink(v, {
+            title: "Page Title",
+            url: "https://example.com",
+          }),
         }))
       );
     });
