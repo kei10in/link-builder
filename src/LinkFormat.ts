@@ -44,6 +44,8 @@ export const LinkFormat = {
   save: async (linkFormats: LinkFormatItem[]) => {
     await storage.set({ linkFormats });
   },
+
+  onChanged: storage.onChanged,
 } as const;
 
 export const formatLink = (

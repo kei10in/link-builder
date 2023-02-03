@@ -1,6 +1,7 @@
 import { LinkFormat, LinkFormatItem } from "../LinkFormat";
 import { OptionsApp } from "./OptionsApp";
 import { useEffect, useState } from "react";
+import browser from "webextension-polyfill";
 
 export const OptionsAppContainer: React.FC = () => {
   const [formats, setFormats] = useState<LinkFormatItem[]>([]);
@@ -14,6 +15,7 @@ export const OptionsAppContainer: React.FC = () => {
   const handleChangeFormat = (formats: LinkFormatItem[]) => {
     LinkFormat.save(formats);
     setFormats(formats);
+    browser.runtime.sendMessage({ type: "linkFormatUpdated" });
   };
 
   return <OptionsApp formats={formats} onChangeFormats={handleChangeFormat} />;
