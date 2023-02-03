@@ -1,11 +1,13 @@
 interface Props {
   title: string;
   name?: string;
+  onChangeName?: (name: string) => void;
   format?: string;
+  onChangeFormat?: (format: string) => void;
 }
 
 export const EditFormat: React.FC<Props> = (props: Props) => {
-  const { title, name, format } = props;
+  const { title, name, onChangeName, format, onChangeFormat } = props;
 
   return (
     <div className="w-full">
@@ -20,6 +22,7 @@ export const EditFormat: React.FC<Props> = (props: Props) => {
           type="text"
           className="input input-bordered w-full"
           defaultValue={name}
+          onChange={(e) => onChangeName?.(e.currentTarget.value)}
         />
 
         <label htmlFor="format" className="label mt-4">
@@ -29,6 +32,7 @@ export const EditFormat: React.FC<Props> = (props: Props) => {
           id="format"
           className="textarea textarea-bordered w-full h-36 text-base font-mono"
           defaultValue={format}
+          onChange={(e) => onChangeFormat?.(e.currentTarget.value)}
         />
       </div>
 

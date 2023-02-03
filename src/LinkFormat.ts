@@ -52,3 +52,8 @@ export const formatLink = (
 ): string => {
   return Mustache.render(item.format, data, {}, { escape: (s) => s });
 };
+
+export const EXAMPLE_DATA = {
+  title: "Page Title",
+  url: "https://example.com",
+};

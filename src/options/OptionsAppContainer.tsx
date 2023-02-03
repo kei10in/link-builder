@@ -1,23 +1,20 @@
-import { formatLink, LinkFormat } from "../LinkFormat";
-import { LinkFormatItemWithExample, OptionsApp } from "./OptionsApp";
+import { LinkFormat, LinkFormatItem } from "../LinkFormat";
+import { OptionsApp } from "./OptionsApp";
 import { useEffect, useState } from "react";
 
 export const OptionsAppContainer: React.FC = () => {
-  const [formats, setFormats] = useState<LinkFormatItemWithExample[]>([]);
+  const [formats, setFormats] = useState<LinkFormatItem[]>([]);
 
   useEffect(() => {
     LinkFormat.load().then((loaded) => {
-      setFormats(
-        loaded.map((v) => ({
-          ...v,
-          example: formatLink(v, {
-            title: "Page Title",
-            url: "https://example.com",
-          }),
-        }))
-      );
+      setFormats(loaded);
     });
-  });
+  }, []);
 
-  return <OptionsApp formats={formats} />;
+  const handleChangeFormat = (formats: LinkFormatItem[]) => {
+    LinkFormat.save(formats);
+    setFormats(formats);
+  };
+
+  return <OptionsApp formats={formats} onChangeFormats={handleChangeFormat} />;
 };

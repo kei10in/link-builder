@@ -1,16 +1,67 @@
 import { ReactComponent as Logo } from "../../public/icon.svg";
-import { LinkFormatItem } from "../LinkFormat";
-import { EditFormat } from "./EditFormat";
+import {
+  EXAMPLE_DATA,
+  formatLink,
+  LinkFormatItem,
+  newLinkFormatItem,
+} from "../LinkFormat";
+import { EditFormatDialog } from "./EditFormatDialog";
+import { useState } from "react";
 import { MdAdd, MdMoreHoriz } from "react-icons/md";
 
-export type LinkFormatItemWithExample = LinkFormatItem & { example: string };
-
 interface Props {
-  formats: LinkFormatItemWithExample[];
+  formats: LinkFormatItem[];
+  onChangeFormats?: (formats: LinkFormatItem[]) => void;
 }
 
 export const OptionsApp: React.FC<Props> = (props: Props) => {
-  const { formats } = props;
+  const { formats, onChangeFormats } = props;
+
+  const [isEditingNewFormat, setIsEditingNewFormat] = useState(false);
+
+  const handleClickNewLinkFormat = () => {
+    setIsEditingNewFormat(true);
+  };
+
+  const handleCancelNewLinkFormat = () => {
+    setIsEditingNewFormat(false);
+  };
+
+  const handleSaveNewLinkFormat = (name: string, format: string) => {
+    const newFormat = newLinkFormatItem({ name, format });
+    const newFormats = [...formats, newFormat];
+    onChangeFormats?.(newFormats);
+    setIsEditingNewFormat(false);
+  };
+
+  const [editingLinkFormat, setEditingLinkFormat] = useState<
+    LinkFormatItem | undefined
+  >(undefined);
+
+  const handleClickEditMenuItem = (linkFormat: LinkFormatItem) => {
+    setEditingLinkFormat(linkFormat);
+  };
+
+  const handleCancelEditingLinkFormat = () => {
+    setEditingLinkFormat(undefined);
+  };
+
+  const handleSaveEditingLinkFormat = (name: string, format: string) => {
+    const newFormats = formats.map((v) => {
+      if (v.key != editingLinkFormat?.key) {
+        return v;
+      }
+
+      return { ...v, name, format };
+    });
+    onChangeFormats?.(newFormats);
+    setEditingLinkFormat(undefined);
+  };
+
+  const handleDeleteLinkFormat = (linkFormat: LinkFormatItem) => {
+    const newFormats = formats.filter((x) => x.key != linkFormat.key);
+    onChangeFormats?.(newFormats);
+  };
 
   return (
     <div className="h-screen max-w-7xl px-12 py-6">
@@ -25,24 +76,13 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
 
       <div className="w-full">
         <div className="w-full flex justify-end">
-          <label htmlFor="add-new-format" className="btn normal-case gap-2">
+          <button
+            className="btn normal-case gap-2"
+            onClick={handleClickNewLinkFormat}
+          >
             <MdAdd className="h-6 w-6" />
             Add New Format
-          </label>
-          <input type="checkbox" id="add-new-format" className="modal-toggle" />
-          <div className="modal">
-            <div className="modal-box">
-              <EditFormat title="New Format" />
-              <div className="modal-action">
-                <label htmlFor="add-new-format" className="btn">
-                  Cancel
-                </label>
-                <label htmlFor="add-new-format" className="btn">
-                  Save
-                </label>
-              </div>
-            </div>
-          </div>
+          </button>
         </div>
 
         <table className="table w-full mt-4 drop-shadow">
@@ -56,7 +96,8 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           </thead>
           <tbody>
             {formats.map((item) => {
-              const { key, name, format, example } = item;
+              const { key, name, format } = item;
+              const example = formatLink(item, EXAMPLE_DATA);
               return (
                 <tr key={key}>
                   <td>{name}</td>
@@ -75,38 +116,16 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
                         className="dropdown-content menu shadow bg-base-100 rounded-box w-52"
                       >
                         <li>
-                          <div>
-                            <label htmlFor={`edit-${key}`}>Edit Format</label>
-                          </div>
+                          <button onClick={() => handleClickEditMenuItem(item)}>
+                            Edit Format
+                          </button>
                         </li>
                         <li>
-                          <a>Delete</a>
+                          <button onClick={() => handleDeleteLinkFormat(item)}>
+                            Delete
+                          </button>
                         </li>
                       </ul>
-                    </div>
-                    <div>
-                      <input
-                        type="checkbox"
-                        id={`edit-${key}`}
-                        className="modal-toggle"
-                      />
-                      <div className="modal">
-                        <div className="modal-box">
-                          <EditFormat
-                            title="Edit Format"
-                            name={name}
-                            format={format}
-                          />
-                          <div className="modal-action">
-                            <label htmlFor={`edit-${key}`} className="btn">
-                              Cancel
-                            </label>
-                            <label htmlFor={`edit-${key}`} className="btn">
-                              Save
-                            </label>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </td>
                 </tr>
@@ -115,6 +134,26 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           </tbody>
         </table>
       </div>
+
+      {isEditingNewFormat && (
+        <EditFormatDialog
+          title={"New Link Format"}
+          name=""
+          format=""
+          onCancel={handleCancelNewLinkFormat}
+          onSave={handleSaveNewLinkFormat}
+        />
+      )}
+
+      {editingLinkFormat != undefined && (
+        <EditFormatDialog
+          title={"Edit Link Format"}
+          name={editingLinkFormat?.name ?? ""}
+          format={editingLinkFormat?.format ?? ""}
+          onCancel={handleCancelEditingLinkFormat}
+          onSave={handleSaveEditingLinkFormat}
+        />
+      )}
     </div>
   );
 };
