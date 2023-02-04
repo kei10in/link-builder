@@ -1,14 +1,10 @@
+import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
-import {
-  EXAMPLE_DATA,
-  formatLink,
-  LinkFormatItem,
-  newLinkFormatItem,
-} from "../LinkFormat";
+import { LinkFormatItem, newLinkFormatItem } from "../LinkFormat";
 import { EditFormatDialog } from "./EditFormatDialog";
 import { LinkFormatView } from "./LinkFormatView";
 import { useState } from "react";
-import { MdAdd, MdMoreHoriz } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 
 interface Props {
   formats: LinkFormatItem[];
@@ -64,17 +60,30 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <div className="h-screen max-w-5xl px-12 py-6">
-      <div className="flex items-center gap-8">
+    <div className="h-screen max-w-4xl px-12 py-6 mx-auto">
+      <div className="flex items-center gap-8 my-8">
         <div>
           <Logo className="w-32 mx-auto" />
         </div>
-        <h1 className="text-6xl">Link Builder</h1>
+        <div>
+          <h1 className="text-5xl">Link Builder</h1>
+          <div className="mt-2">
+            <a
+              href="https://github.com/kei10in/link-builder"
+              className="block w-8 h-8"
+            >
+              <Invertocat width={24} height={24} viewBox="0 0 96 96" />
+            </a>
+          </div>
+          <p className="text-base text-slate-600">
+            Copy page title and/or url to clipboard in various format.
+          </p>
+        </div>
       </div>
 
-      <div className="mt-16 h-40">descriptions</div>
-
       <div className="w-full">
+        <h2 className="text-3xl text-slate-800">Link Formats</h2>
+
         <div className="w-full flex justify-end">
           <button
             className="btn normal-case gap-2"
