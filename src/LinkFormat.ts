@@ -6,34 +6,42 @@ export interface LinkFormatItem {
   id: string;
   name: string;
   format: string;
+  readonly: boolean;
+  enabled: boolean;
 }
 
 export const newLinkFormatItem = (args: {
   name: string;
   format: string;
 }): LinkFormatItem => {
-  return { id: nanoid(), ...args };
+  return { id: nanoid(), ...args, readonly: false, enabled: true };
 };
-
-const storage = browser.storage.local;
 
 export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
   {
     id: "markdown",
     name: "Markdown",
     format: "[{{title}}]({{url}})",
+    readonly: true,
+    enabled: true,
   },
   {
     id: "textile",
     name: "Textile",
     format: '"{{title}}":{{url}}',
+    readonly: true,
+    enabled: true,
   },
   {
     id: "html",
     name: "HTML",
     format: '<a href="{{url}}">{{title}}</a>',
+    readonly: true,
+    enabled: true,
   },
 ];
+
+const storage = browser.storage.local;
 
 export const LinkFormat = {
   load: async (): Promise<LinkFormatItem[]> => {
@@ -47,8 +55,6 @@ export const LinkFormat = {
   save: async (linkFormats: LinkFormatItem[]) => {
     await storage.set({ linkFormats });
   },
-
-  onChanged: storage.onChanged,
 } as const;
 
 export const formatLink = (

@@ -11,6 +11,10 @@ const buildContextMenu = async () => {
   });
 
   for (const linkFormat of linkFormats) {
+    if (!linkFormat.enabled) {
+      continue;
+    }
+
     browser.contextMenus.create({
       id: `link-builder--item--${linkFormat.id}`,
       parentId: "link-builder",

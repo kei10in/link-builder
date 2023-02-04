@@ -35,12 +35,22 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
     setIsEditingNewFormat(false);
   };
 
+  const handleChangeEnabled = (id: string, enabled: boolean) => {
+    const newFormats = formats.map((v) => {
+      if (v.id != id) {
+        return v;
+      }
+      return { ...v, enabled };
+    });
+    onChangeFormats?.(newFormats);
+  };
+
   const handleSave = (
     id: string,
     update: { name?: string; format?: string }
   ) => {
     const newFormats = formats.map((v) => {
-      if (v.id != id) {
+      if (v.readonly || v.id != id) {
         return v;
       }
       return { ...v, ...update };
@@ -49,7 +59,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   const handleDelete = (id: string) => {
-    const newFormats = formats.filter((x) => x.id != id);
+    const newFormats = formats.filter((x) => x.readonly || x.id != id);
     onChangeFormats?.(newFormats);
   };
 
@@ -81,7 +91,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
               <li key={item.id}>
                 <LinkFormatView
                   {...item}
-                  isEnabled={true}
+                  onChangeEnabled={handleChangeEnabled}
                   onSave={handleSave}
                   onDelete={handleDelete}
                 />
