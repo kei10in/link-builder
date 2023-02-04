@@ -14,7 +14,7 @@ export const newLinkFormatItem = (args: { name: string; format: string }) => {
 
 const storage = browser.storage.local;
 
-const defaultLinkFormats: LinkFormatItem[] = [
+export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
   {
     key: "markdown",
     name: "Markdown",
@@ -36,7 +36,7 @@ export const LinkFormat = {
   load: async (): Promise<LinkFormatItem[]> => {
     return (
       await storage.get({
-        linkFormats: defaultLinkFormats,
+        linkFormats: DEFAULT_LINK_FORMATS,
       })
     ).linkFormats as LinkFormatItem[];
   },
