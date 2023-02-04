@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof LinkFormatView> = (args) => (
 );
 
 const format = {
-  key: "key-1",
+  id: "key-1",
   name: "Markdown",
   format: "[{{title}}]({{url}})",
   isEnabled: true,

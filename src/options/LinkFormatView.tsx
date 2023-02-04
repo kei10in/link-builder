@@ -10,31 +10,31 @@ import {
 } from "react-icons/md";
 
 interface Props {
-  key: string;
+  id: string;
   name: string;
   format: string;
   isEnabled: boolean;
-  onChangeEnabled?: (key: string, isEnabled: boolean) => void;
-  onSave?: (key: string, update: { name?: string; format?: string }) => void;
-  onDelete?: (key: string) => void;
+  onChangeEnabled?: (id: string, isEnabled: boolean) => void;
+  onSave?: (id: string, update: { name?: string; format?: string }) => void;
+  onDelete?: (id: string) => void;
 }
 
 export const LinkFormatView: React.FC<Props> = (props) => {
-  const { key, name, format, isEnabled, onChangeEnabled, onSave, onDelete } =
+  const { id, name, format, isEnabled, onChangeEnabled, onSave, onDelete } =
     props;
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClickCheck = () => {
-    onChangeEnabled?.(key, !isEnabled);
+    onChangeEnabled?.(id, !isEnabled);
   };
 
   const handleClickEdit = () => setIsOpen(true);
-  const handleClickDelete = () => onDelete?.(key);
+  const handleClickDelete = () => onDelete?.(id);
 
   const handleSave = (name: string, format: string) => {
     setIsOpen(false);
-    onSave?.(key, { name, format });
+    onSave?.(id, { name, format });
   };
 
   return (

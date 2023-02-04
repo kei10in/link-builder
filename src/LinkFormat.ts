@@ -3,30 +3,33 @@ import { nanoid } from "nanoid";
 import browser from "webextension-polyfill";
 
 export interface LinkFormatItem {
-  key: string;
+  id: string;
   name: string;
   format: string;
 }
 
-export const newLinkFormatItem = (args: { name: string; format: string }) => {
-  return { key: nanoid(), ...args };
+export const newLinkFormatItem = (args: {
+  name: string;
+  format: string;
+}): LinkFormatItem => {
+  return { id: nanoid(), ...args };
 };
 
 const storage = browser.storage.local;
 
 export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
   {
-    key: "markdown",
+    id: "markdown",
     name: "Markdown",
     format: "[{{title}}]({{url}})",
   },
   {
-    key: "textile",
+    id: "textile",
     name: "Textile",
     format: '"{{title}}":{{url}}',
   },
   {
-    key: "html",
+    id: "html",
     name: "HTML",
     format: '<a href="{{url}}">{{title}}</a>',
   },

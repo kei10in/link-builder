@@ -12,7 +12,7 @@ const buildContextMenu = async () => {
 
   for (const linkFormat of linkFormats) {
     browser.contextMenus.create({
-      id: `link-builder--item--${linkFormat.key}`,
+      id: `link-builder--item--${linkFormat.id}`,
       parentId: "link-builder",
       title: linkFormat.name,
       contexts: ["page"],

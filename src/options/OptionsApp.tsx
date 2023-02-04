@@ -6,6 +6,7 @@ import {
   newLinkFormatItem,
 } from "../LinkFormat";
 import { EditFormatDialog } from "./EditFormatDialog";
+import { LinkFormatView } from "./LinkFormatView";
 import { useState } from "react";
 import { MdAdd, MdMoreHoriz } from "react-icons/md";
 
@@ -34,37 +35,26 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
     setIsEditingNewFormat(false);
   };
 
-  const [editingLinkFormat, setEditingLinkFormat] = useState<
-    LinkFormatItem | undefined
-  >(undefined);
-
-  const handleClickEditMenuItem = (linkFormat: LinkFormatItem) => {
-    setEditingLinkFormat(linkFormat);
-  };
-
-  const handleCancelEditingLinkFormat = () => {
-    setEditingLinkFormat(undefined);
-  };
-
-  const handleSaveEditingLinkFormat = (name: string, format: string) => {
+  const handleSave = (
+    id: string,
+    update: { name?: string; format?: string }
+  ) => {
     const newFormats = formats.map((v) => {
-      if (v.key != editingLinkFormat?.key) {
+      if (v.id != id) {
         return v;
       }
-
-      return { ...v, name, format };
+      return { ...v, ...update };
     });
     onChangeFormats?.(newFormats);
-    setEditingLinkFormat(undefined);
   };
 
-  const handleDeleteLinkFormat = (linkFormat: LinkFormatItem) => {
-    const newFormats = formats.filter((x) => x.key != linkFormat.key);
+  const handleDelete = (id: string) => {
+    const newFormats = formats.filter((x) => x.id != id);
     onChangeFormats?.(newFormats);
   };
 
   return (
-    <div className="h-screen max-w-7xl px-12 py-6">
+    <div className="h-screen max-w-5xl px-12 py-6">
       <div className="flex items-center gap-8">
         <div>
           <Logo className="w-32 mx-auto" />
@@ -85,54 +75,20 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           </button>
         </div>
 
-        <table className="table w-full mt-4 drop-shadow">
-          <thead>
-            <tr>
-              <th className="normal-case">Name</th>
-              <th className="normal-case">Format</th>
-              <th className="normal-case">Example</th>
-              <th className="normal-case"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {formats.map((item) => {
-              const { key, name, format } = item;
-              const example = formatLink(item, EXAMPLE_DATA);
-              return (
-                <tr key={key}>
-                  <td>{name}</td>
-                  <td className="font-mono">{format}</td>
-                  <td className="font-mono">{example}</td>
-                  <td className="text-right">
-                    <div className="dropdown dropdown-end">
-                      <label
-                        tabIndex={0}
-                        className="btn btn-ghost btn-sm btn-square"
-                      >
-                        <MdMoreHoriz className="h-6 w-6" />
-                      </label>
-                      <ul
-                        tabIndex={0}
-                        className="dropdown-content menu shadow bg-base-100 rounded-box w-52"
-                      >
-                        <li>
-                          <button onClick={() => handleClickEditMenuItem(item)}>
-                            Edit Format
-                          </button>
-                        </li>
-                        <li>
-                          <button onClick={() => handleDeleteLinkFormat(item)}>
-                            Delete
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <ul className="mt-4">
+          {formats.map((item) => {
+            return (
+              <li key={item.id}>
+                <LinkFormatView
+                  {...item}
+                  isEnabled={true}
+                  onSave={handleSave}
+                  onDelete={handleDelete}
+                />
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
       {isEditingNewFormat && (
@@ -142,16 +98,6 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           format=""
           onCancel={handleCancelNewLinkFormat}
           onSave={handleSaveNewLinkFormat}
-        />
-      )}
-
-      {editingLinkFormat != undefined && (
-        <EditFormatDialog
-          title={"Edit Link Format"}
-          name={editingLinkFormat?.name ?? ""}
-          format={editingLinkFormat?.format ?? ""}
-          onCancel={handleCancelEditingLinkFormat}
-          onSave={handleSaveEditingLinkFormat}
         />
       )}
     </div>
