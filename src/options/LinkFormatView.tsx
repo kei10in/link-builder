@@ -20,7 +20,7 @@ interface Props {
   onDelete?: (id: string) => void;
 }
 
-export const LinkFormatView: React.FC<Props> = (props) => {
+export const LinkFormatView: React.FC<Props> = (props: Props) => {
   const {
     id,
     name,
