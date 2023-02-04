@@ -76,7 +76,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
             </a>
           </div>
           <p className="text-base text-slate-600">
-            Copy page title and/or url to clipboard in various format.
+            Build a link and copy to the clipboard in various markup languages.
           </p>
         </div>
       </div>
