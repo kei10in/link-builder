@@ -21,6 +21,7 @@ export const EditFormat: React.FC<Props> = (props: Props) => {
           id="name"
           type="text"
           className="input input-bordered w-full"
+          autoFocus
           defaultValue={name}
           onChange={(e) => onChangeName?.(e.currentTarget.value)}
         />
@@ -30,7 +31,7 @@ export const EditFormat: React.FC<Props> = (props: Props) => {
         </label>
         <textarea
           id="format"
-          className="textarea textarea-bordered w-full h-36 text-base font-mono"
+          className="textarea textarea-bordered w-full h-36 text-base font-mono resize-none"
           defaultValue={format}
           onChange={(e) => onChangeFormat?.(e.currentTarget.value)}
         />

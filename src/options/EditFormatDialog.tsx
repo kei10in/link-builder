@@ -1,5 +1,10 @@
 import { EditFormat } from "./EditFormat";
-import { MouseEventHandler, useState } from "react";
+import {
+  FormEventHandler,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  useState,
+} from "react";
 
 interface Props {
   title: string;
@@ -22,27 +27,40 @@ export const EditFormatDialog: React.FC<Props> = (props: Props) => {
     }
   };
 
+  const handleSubmit: FormEventHandler = (event) => {
+    event.preventDefault();
+    onSave?.(innerName, innerFormat);
+  };
+
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    switch (event.key) {
+      case "Esc":
+      case "Escape":
+        onCancel?.();
+        break;
+    }
+  };
+
   return (
     <div className={"modal modal-open"} onClick={handleClickOverlay}>
-      <div className="modal-box">
-        <EditFormat
-          title={title}
-          name={name}
-          onChangeName={setInnerName}
-          format={format}
-          onChangeFormat={setInnerFormat}
-        />
-        <div className="modal-action">
-          <button className="btn" onClick={onCancel}>
-            Cancel
-          </button>
-          <button
-            className="btn"
-            onClick={() => onSave?.(innerName, innerFormat)}
-          >
-            Save
-          </button>
-        </div>
+      <div className="modal-box" onKeyDown={handleKeyDown} tabIndex={-1}>
+        <form onSubmit={handleSubmit}>
+          <EditFormat
+            title={title}
+            name={name}
+            onChangeName={setInnerName}
+            format={format}
+            onChangeFormat={setInnerFormat}
+          />
+          <div className="modal-action">
+            <button className="btn" onClick={onCancel}>
+              Cancel
+            </button>
+            <button className="btn" type="submit">
+              Save
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
