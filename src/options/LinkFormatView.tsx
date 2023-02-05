@@ -125,7 +125,7 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
               <div className="py-4">
                 <div className="text-xl text-slate-700">{name}</div>
                 <div className="mt-1 flex items-center gap-1">
-                  <div className="font-mono text-slate-500">{format}</div>
+                  <pre className="font-mono text-slate-400">{format}</pre>
                 </div>
               </div>
             </div>
