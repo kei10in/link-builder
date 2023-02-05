@@ -59,6 +59,28 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
     onChangeFormats?.(newFormats);
   };
 
+  const [movingFormats, setMovingFormats] = useState<
+    LinkFormatItem[] | undefined
+  >();
+
+  const handleMoving = (movingId: string, hoveringId: string) => {
+    const xs = [...(movingFormats ?? formats)];
+    const movingIndex = xs.findIndex((x) => x.id === movingId);
+    const hoveringIndex = xs.findIndex((x) => x.id === hoveringId);
+    xs.splice(hoveringIndex, 0, xs.splice(movingIndex, 1)[0]);
+    setMovingFormats(xs);
+  };
+
+  const handleMoveEnd = () => {
+    setMovingFormats(undefined);
+  };
+
+  const handleChangeOrder = () => {
+    onChangeFormats?.(currentFormats);
+  };
+
+  const currentFormats = movingFormats ?? formats;
+
   return (
     <div className="h-screen max-w-4xl px-12 py-6 mx-auto">
       <div className="flex items-center gap-8 my-8">
@@ -95,7 +117,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
         </div>
 
         <ul className="mt-4">
-          {formats.map((item) => {
+          {currentFormats.map((item) => {
             return (
               <li key={item.id}>
                 <LinkFormatView
@@ -103,6 +125,9 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
                   onChangeEnabled={handleChangeEnabled}
                   onSave={handleSave}
                   onDelete={handleDelete}
+                  onMoving={handleMoving}
+                  onMoveEnd={handleMoveEnd}
+                  onChangeOrder={handleChangeOrder}
                 />
               </li>
             );
