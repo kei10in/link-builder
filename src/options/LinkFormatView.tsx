@@ -139,11 +139,11 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
               >
                 <li>
                   <button
-                    className="
-                  group w-full p-4 flex items-center gap-2
-                  hover:bg-slate-100 active:bg-blue-200
-                  text-slate-800 disabled:text-slate-300
-                "
+                    className={
+                      "group w-full p-4 flex items-center gap-2" +
+                      "hover:bg-slate-100 active:bg-blue-200" +
+                      "text-slate-800 disabled:text-slate-300"
+                    }
                     onClick={handleClickEdit}
                     disabled={readonly}
                   >
@@ -153,11 +153,11 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
                 </li>
                 <li className="hover:bg-slate-100 flex items-center">
                   <button
-                    className="
-                  group w-full p-4 flex items-center gap-2
-                  hover:bg-slate-100 active:bg-blue-200
-                  text-slate-800 disabled:text-slate-300
-                "
+                    className={
+                      "group w-full p-4 flex items-center gap-2" +
+                      "hover:bg-slate-100 active:bg-blue-200" +
+                      "text-slate-800 disabled:text-slate-300"
+                    }
                     onClick={handleClickDelete}
                     disabled={readonly}
                   >
