@@ -129,44 +129,51 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
                 </div>
               </div>
             </div>
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle">
-                <MdMoreHoriz className="h-8 w-8" />
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu shadow w-52 bg-white"
-              >
-                <li>
-                  <button
-                    className={
-                      "group w-full p-4 flex items-center gap-2" +
-                      "hover:bg-slate-100 active:bg-blue-200" +
-                      "text-slate-800 disabled:text-slate-300"
-                    }
-                    onClick={handleClickEdit}
-                    disabled={readonly}
-                  >
-                    <MdEdit className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
-                    <div>Edit Format</div>
-                  </button>
-                </li>
-                <li className="hover:bg-slate-100 flex items-center">
-                  <button
-                    className={
-                      "group w-full p-4 flex items-center gap-2" +
-                      "hover:bg-slate-100 active:bg-blue-200" +
-                      "text-slate-800 disabled:text-slate-300"
-                    }
-                    onClick={handleClickDelete}
-                    disabled={readonly}
-                  >
-                    <MdDelete className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
-                    <div>Delete</div>
-                  </button>
-                </li>
-              </ul>
-            </div>
+
+            {readonly ? (
+              <div className={clsx("badge badge-primary badge-outline")}>
+                Predefined
+              </div>
+            ) : (
+              <div className={clsx("dropdown dropdown-end")}>
+                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                  <MdMoreHoriz className="h-8 w-8" />
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu shadow w-52 bg-white"
+                >
+                  <li>
+                    <button
+                      className={
+                        "group w-full p-4 flex items-center gap-2" +
+                        "hover:bg-slate-100 active:bg-blue-200" +
+                        "text-slate-800 disabled:text-slate-300"
+                      }
+                      onClick={handleClickEdit}
+                      disabled={readonly}
+                    >
+                      <MdEdit className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
+                      <div>Edit Format</div>
+                    </button>
+                  </li>
+                  <li className="hover:bg-slate-100 flex items-center">
+                    <button
+                      className={
+                        "group w-full p-4 flex items-center gap-2" +
+                        "hover:bg-slate-100 active:bg-blue-200" +
+                        "text-slate-800 disabled:text-slate-300"
+                      }
+                      onClick={handleClickDelete}
+                      disabled={readonly}
+                    >
+                      <MdDelete className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
+                      <div>Delete</div>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
           <div className="flex-none px-4">
             <div className="cursor-grab" draggable>
