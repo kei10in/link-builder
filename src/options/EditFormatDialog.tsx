@@ -21,6 +21,9 @@ export const EditFormatDialog: React.FC<Props> = (props: Props) => {
   const [innerName, setInnerName] = useState<string>(name);
   const [innerFormat, setInnerFormat] = useState<string>(format);
 
+  const canSave =
+    innerName.trim().length != 0 && innerFormat.trim().length != 0;
+
   const handleClickOverlay: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.currentTarget === e.target) {
       onCancel?.();
@@ -29,7 +32,7 @@ export const EditFormatDialog: React.FC<Props> = (props: Props) => {
 
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
-    onSave?.(innerName, innerFormat);
+    onSave?.(innerName.trim(), innerFormat.trim());
   };
 
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
@@ -56,7 +59,7 @@ export const EditFormatDialog: React.FC<Props> = (props: Props) => {
             <button className="btn" onClick={onCancel}>
               Cancel
             </button>
-            <button className="btn" type="submit">
+            <button className="btn" type="submit" disabled={!canSave}>
               Save
             </button>
           </div>
