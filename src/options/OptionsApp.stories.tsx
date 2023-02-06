@@ -15,11 +15,32 @@ const Template: ComponentStory<typeof OptionsApp> = (args) => (
 const format: ComponentProps<typeof OptionsApp> = {
   formats: [
     {
-      id: "key-1",
+      id: "markdown",
       name: "Markdown",
       format: "[{{title}}]({{url}})",
-      enabled: true,
       readonly: true,
+      enabled: true,
+    },
+    {
+      id: "textile",
+      name: "Textile",
+      format: '"{{title}}":{{url}}',
+      readonly: true,
+      enabled: false,
+    },
+    {
+      id: "html",
+      name: "HTML",
+      format: '<a href="{{url}}">{{title}}</a>',
+      readonly: true,
+      enabled: true,
+    },
+    {
+      id: "custom",
+      name: "User Defined",
+      format: '<a href="{{url}}">{{title}}</a>',
+      readonly: false,
+      enabled: true,
     },
   ],
 };

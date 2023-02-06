@@ -2,12 +2,12 @@ import { EditFormatDialog } from "./EditFormatDialog";
 import clsx from "clsx";
 import { DragEventHandler, useState } from "react";
 import {
-  MdCheckCircle,
+  MdBookmark,
+  MdBookmarkBorder,
   MdDelete,
   MdDragHandle,
   MdEdit,
   MdMoreHoriz,
-  MdOutlineCircle,
 } from "react-icons/md";
 
 interface Props {
@@ -111,18 +111,18 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
         <div className="flex items-center justify-between text-slate-800">
           <div className="group flex items-center justify-between flex-1">
             <div
-              className="flex items-center px-2 aria-disabled:opacity-50"
+              className="flex items-start px-6 py-4 aria-disabled:opacity-50 gap-4"
               aria-disabled={!enabled}
             >
-              <button onClick={handleClickCheck} className="flex-none p-2 mx-2">
+              <button onClick={handleClickCheck} className="flex-none my-1">
                 {enabled ? (
-                  <MdCheckCircle className="h-6 w-6" />
+                  <MdBookmark className="h-6 w-6" />
                 ) : (
-                  <MdOutlineCircle className="h-6 w-6" />
+                  <MdBookmarkBorder className="h-6 w-6" />
                 )}
               </button>
 
-              <div className="py-4">
+              <div>
                 <div className="text-xl text-slate-700">{name}</div>
                 <div className="mt-1 flex items-center gap-1">
                   <pre className="font-mono text-slate-400">{format}</pre>
@@ -130,26 +130,29 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
               </div>
             </div>
 
-            {readonly ? (
-              <div className={clsx("badge badge-primary badge-outline")}>
-                Predefined
-              </div>
-            ) : (
+            <div className="flex items-center gap-4">
+              {readonly && (
+                <div className={clsx("badge badge-primary badge-outline")}>
+                  Predefined
+                </div>
+              )}
               <div className={clsx("dropdown dropdown-end")}>
                 <label tabIndex={0} className="btn btn-ghost btn-circle">
                   <MdMoreHoriz className="h-8 w-8" />
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu shadow w-52 bg-white"
+                  className="dropdown-content menu drop-shadow bg-white w-64"
                 >
-                  <li>
+                  <li
+                    className={clsx(
+                      "hover:bg-slate-100 active:bg-blue-200",
+                      "text-slate-800 disabled:text-slate-300",
+                      readonly && "disabled"
+                    )}
+                  >
                     <button
-                      className={
-                        "group w-full p-4 flex items-center gap-2" +
-                        "hover:bg-slate-100 active:bg-blue-200" +
-                        "text-slate-800 disabled:text-slate-300"
-                      }
+                      className="group w-full p-4 flex items-center gap-2"
                       onClick={handleClickEdit}
                       disabled={readonly}
                     >
@@ -157,13 +160,15 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
                       <div>Edit Format</div>
                     </button>
                   </li>
-                  <li className="hover:bg-slate-100 flex items-center">
+                  <li
+                    className={clsx(
+                      "hover:bg-slate-100 active:bg-blue-200",
+                      "text-slate-800 disabled:text-slate-300",
+                      readonly && "disabled"
+                    )}
+                  >
                     <button
-                      className={
-                        "group w-full p-4 flex items-center gap-2" +
-                        "hover:bg-slate-100 active:bg-blue-200" +
-                        "text-slate-800 disabled:text-slate-300"
-                      }
+                      className="group w-full p-4 flex items-center gap-2"
                       onClick={handleClickDelete}
                       disabled={readonly}
                     >
@@ -173,7 +178,7 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
                   </li>
                 </ul>
               </div>
-            )}
+            </div>
           </div>
           <div className="flex-none px-4">
             <div className="cursor-grab" draggable>
