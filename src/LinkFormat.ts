@@ -1,21 +1,6 @@
+import { LinkFormatItem } from "./LinkFormatItem";
 import Mustache from "mustache";
-import { nanoid } from "nanoid";
 import browser from "webextension-polyfill";
-
-export interface LinkFormatItem {
-  id: string;
-  name: string;
-  format: string;
-  readonly: boolean;
-  enabled: boolean;
-}
-
-export const newLinkFormatItem = (args: {
-  name: string;
-  format: string;
-}): LinkFormatItem => {
-  return { id: nanoid(), ...args, readonly: false, enabled: true };
-};
 
 export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
   {

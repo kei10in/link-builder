@@ -1,4 +1,5 @@
-import { LinkFormat, LinkFormatItem } from "../LinkFormat";
+import { LinkFormat } from "../LinkFormat";
+import { LinkFormatItem } from "../LinkFormatItem";
 import { OptionsApp } from "./OptionsApp";
 import { useEffect, useState } from "react";
 import browser from "webextension-polyfill";

@@ -1,6 +1,6 @@
 import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
-import { LinkFormatItem, newLinkFormatItem } from "../LinkFormat";
+import { LinkFormatItem, newLinkFormatItem } from "../LinkFormatItem";
 import { EditFormatDialog } from "./EditFormatDialog";
 import { LinkFormatView } from "./LinkFormatView";
 import { useState } from "react";
