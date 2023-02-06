@@ -26,7 +26,7 @@ export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
   },
 ];
 
-const storage = browser.storage.local;
+const storage = browser.storage.sync;
 
 export const LinkFormat = {
   load: async (): Promise<LinkFormatItem[]> => {
