@@ -20,6 +20,12 @@ export default defineConfig({
           url: "https://github.com/kei10in/link-builder",
         },
 
+        browser_specific_settings: {
+          gecko: {
+            id: "{3b7ad711-acd1-428c-8ec5-d682027e0c9d}",
+          },
+        },
+
         icons: {
           "16": "icon-16.png",
           "32": "icon-32.png",
