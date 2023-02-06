@@ -12,7 +12,7 @@ export default defineConfig({
         manifest_version: 2,
         name: "Link Builder",
         description:
-          "Make Link alternative to WebExtensions.\nBuild a link and copy to the clipboard in various markup languages",
+          "Make Link alternative to WebExtensions.\nBuild a link and copy to the clipboard in various formats",
         version: "0.1.0",
 
         developer: {

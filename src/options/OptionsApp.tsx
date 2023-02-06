@@ -98,7 +98,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
             </a>
           </div>
           <p className="text-base text-slate-600">
-            Build a link and copy to the clipboard in various markup languages.
+            Build a link and copy to the clipboard in various formats.
           </p>
         </div>
       </div>

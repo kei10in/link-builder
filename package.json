@@ -1,6 +1,6 @@
 {
   "name": "link-builder",
-  "description": "Build a link and copy to the clipboard in various markup languages.",
+  "description": "Build a link and copy to the clipboard in various formats.",
   "private": true,
   "version": "0.1.0",
   "license": "MIT",
