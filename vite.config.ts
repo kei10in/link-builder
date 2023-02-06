@@ -15,6 +15,11 @@ export default defineConfig({
           "Make Link alternative to WebExtensions.\nBuild a link and copy to the clipboard in various markup languages",
         version: "0.1.0",
 
+        developer: {
+          name: "kei10in",
+          url: "https://github.com/kei10in/link-builder",
+        },
+
         icons: {
           "16": "icon-16.png",
           "32": "icon-32.png",
