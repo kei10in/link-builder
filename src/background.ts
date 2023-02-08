@@ -58,11 +58,19 @@ const buildContextMenu = async () => {
   });
 };
 
+const updateContextMenu = () => {
+  browser.contextMenus.removeAll();
+  buildContextMenu();
+};
+
+browser.runtime.onInstalled.addListener(() => {
+  updateContextMenu();
+});
+
 browser.runtime.onMessage.addListener((message) => {
   switch (message.type) {
     case "linkFormatUpdated":
-      browser.contextMenus.removeAll();
-      buildContextMenu();
+      updateContextMenu();
       break;
   }
 });
