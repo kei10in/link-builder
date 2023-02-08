@@ -1,11 +1,12 @@
-import { isCopyHyperlinkMessage, isCopyTextLinkMessage } from "./Message";
+import { isCopyHyperTextMessage, isCopyTextMessage } from "./Message";
+import { markdownToHtml } from "./markdown";
 import browser from "webextension-polyfill";
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (isCopyTextLinkMessage(message)) {
-    copyTextLinkToClipboard(message.text);
-  } else if (isCopyHyperlinkMessage(message)) {
-    copyHyperlinkToClipboard(message.text, message.url);
+  if (isCopyTextMessage(message)) {
+    copyTextToClipboard(message.text);
+  } else if (isCopyHyperTextMessage(message)) {
+    copyHyperTextToClipboard(message.text);
   } else {
     console.log("Invalid message");
   }
@@ -13,18 +14,18 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   return;
 });
 
-const copyTextLinkToClipboard = (text: string) => {
+const copyTextToClipboard = (text: string) => {
   copyToClipboard({ "text/plain": text });
 };
 
-const copyHyperlinkToClipboard = (text: string, url: string) => {
-  const a = document.createElement("a");
-  a.setAttribute("href", url);
-  a.text = text;
+const copyHyperTextToClipboard = (text: string) => {
+  const html = markdownToHtml(text);
+  const div = document.createElement("div");
+  div.innerHTML = html;
 
   copyToClipboard({
-    "text/plain": text,
-    "text/html": a.outerHTML,
+    "text/html": html,
+    "text/plain": div.innerText,
   });
 };
 

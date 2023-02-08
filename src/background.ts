@@ -1,5 +1,5 @@
-import { formatLink, LinkFormat } from "./LinkFormat";
-import { CopyTextLinkMessage } from "./Message";
+import { LinkFormat } from "./LinkFormat";
+import { createMessage } from "./Message";
 import browser from "webextension-polyfill";
 
 const buildContextMenu = async () => {
@@ -35,12 +35,7 @@ const buildContextMenu = async () => {
         const title = tab.title;
         const data = { url, title };
 
-        const linkText = formatLink(linkFormat, data);
-
-        const message: CopyTextLinkMessage = {
-          type: "copyTextLink",
-          text: linkText,
-        };
+        const message = createMessage(linkFormat, data);
 
         await browser.tabs.sendMessage(tab.id, message);
       },
