@@ -20,6 +20,14 @@ export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
     enabled: true,
   },
   {
+    id: "restructured-text",
+    name: "reStructuredText",
+    format: "`{{title}} <{{url}}>`_",
+    docType: "text",
+    readonly: true,
+    enabled: false,
+  },
+  {
     id: "html",
     name: "HTML",
     format: '<a href="{{url}}">{{title}}</a>',
