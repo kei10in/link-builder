@@ -1,14 +1,8 @@
 import { EditFormatDialog } from "./EditFormatDialog";
+import { LinkFormatMenus } from "./LinkFormatMenus";
 import clsx from "clsx";
 import { DragEventHandler, useState } from "react";
-import {
-  MdBookmark,
-  MdBookmarkBorder,
-  MdDelete,
-  MdDragHandle,
-  MdEdit,
-  MdMoreHoriz,
-} from "react-icons/md";
+import { MdBookmark, MdBookmarkBorder, MdDragHandle } from "react-icons/md";
 
 interface Props {
   id: string;
@@ -41,19 +35,17 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
 
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
-  const [isOpen, setIsOpen] = useState(false);
-
   const handleClickCheck = () => {
     onChangeEnabled?.(id, !enabled);
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleClickEdit = () => setIsOpen(true);
   const handleClickDelete = () => onDelete?.(id);
 
-  const handleSave = (name: string, format: string) => {
-    setIsOpen(false);
+  const handleSave = (name: string, format: string) =>
     onSave?.(id, { name, format });
-  };
 
   const handleDragStart: DragEventHandler<HTMLDivElement> = (event) => {
     event.dataTransfer.clearData();
@@ -136,48 +128,11 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
                   Predefined
                 </div>
               )}
-              <div className={clsx("dropdown dropdown-end")}>
-                <label tabIndex={0} className="btn btn-ghost btn-circle">
-                  <MdMoreHoriz className="h-8 w-8" />
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu drop-shadow bg-white w-64"
-                >
-                  <li
-                    className={clsx(
-                      "hover:bg-slate-100 active:bg-blue-200",
-                      "text-slate-800 disabled:text-slate-300",
-                      readonly && "disabled"
-                    )}
-                  >
-                    <button
-                      className="group w-full p-4 flex items-center gap-2"
-                      onClick={handleClickEdit}
-                      disabled={readonly}
-                    >
-                      <MdEdit className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
-                      <div>Edit Format</div>
-                    </button>
-                  </li>
-                  <li
-                    className={clsx(
-                      "hover:bg-slate-100 active:bg-blue-200",
-                      "text-slate-800 disabled:text-slate-300",
-                      readonly && "disabled"
-                    )}
-                  >
-                    <button
-                      className="group w-full p-4 flex items-center gap-2"
-                      onClick={handleClickDelete}
-                      disabled={readonly}
-                    >
-                      <MdDelete className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
-                      <div>Delete</div>
-                    </button>
-                  </li>
-                </ul>
-              </div>
+              <LinkFormatMenus
+                readonly={readonly}
+                onEdit={handleClickEdit}
+                onDelete={handleClickDelete}
+              />
             </div>
           </div>
           <div className="flex-none px-4">
