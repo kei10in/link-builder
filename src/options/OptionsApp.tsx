@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from "../../public/icon.svg";
 import { LinkFormatItem, newLinkFormatItem } from "../LinkFormatItem";
 import { EditFormatDialog } from "./EditFormatDialog";
 import { LinkFormatView } from "./LinkFormatView";
+import { Ordering } from "./Ordering";
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
 
@@ -120,15 +121,22 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           {currentFormats.map((item) => {
             return (
               <li key={item.id}>
-                <LinkFormatView
-                  {...item}
-                  onChangeEnabled={handleChangeEnabled}
-                  onSave={handleSave}
-                  onDelete={handleDelete}
+                <Ordering
+                  id={item.id}
                   onMoving={handleMoving}
                   onMoveEnd={handleMoveEnd}
                   onChangeOrder={handleChangeOrder}
-                />
+                >
+                  {(isDragging) => (
+                    <LinkFormatView
+                      {...item}
+                      dragging={isDragging}
+                      onChangeEnabled={handleChangeEnabled}
+                      onSave={handleSave}
+                      onDelete={handleDelete}
+                    />
+                  )}
+                </Ordering>
               </li>
             );
           })}

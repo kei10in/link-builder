@@ -1,7 +1,7 @@
 import { EditFormatDialog } from "./EditFormatDialog";
 import { LinkFormatMenus } from "./LinkFormatMenus";
 import clsx from "clsx";
-import { DragEventHandler, useState } from "react";
+import { useState } from "react";
 import { MdBookmark, MdBookmarkBorder, MdDragHandle } from "react-icons/md";
 
 interface Props {
@@ -10,12 +10,10 @@ interface Props {
   format: string;
   enabled: boolean;
   readonly: boolean;
+  dragging?: boolean;
   onChangeEnabled?: (id: string, enabled: boolean) => void;
   onSave?: (id: string, update: { name?: string; format?: string }) => void;
   onDelete?: (id: string) => void;
-  onMoving?: (movingId: string, hoveringId: string) => void;
-  onMoveEnd?: () => void;
-  onChangeOrder?: (movedId: string, droppedId: string) => void;
 }
 
 export const LinkFormatView: React.FC<Props> = (props: Props) => {
@@ -25,15 +23,11 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
     format,
     enabled,
     readonly,
+    dragging = false,
     onChangeEnabled,
     onSave,
     onDelete,
-    onMoving,
-    onMoveEnd,
-    onChangeOrder,
   } = props;
-
-  const [isDragging, setIsDragging] = useState<boolean>(false);
 
   const handleClickCheck = () => {
     onChangeEnabled?.(id, !enabled);
@@ -44,60 +38,16 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
   const handleClickEdit = () => setIsOpen(true);
   const handleClickDelete = () => onDelete?.(id);
 
+  const handleCancel = () => setIsOpen(false);
   const handleSave = (name: string, format: string) =>
     onSave?.(id, { name, format });
 
-  const handleDragStart: DragEventHandler<HTMLDivElement> = (event) => {
-    event.dataTransfer.clearData();
-    event.dataTransfer.setData("text/plain", id);
-
-    const x = event.pageX - event.currentTarget.offsetLeft;
-    const y = event.pageY - event.currentTarget.offsetTop;
-    event.dataTransfer.setDragImage(event.currentTarget, x, y);
-
-    event.dataTransfer.effectAllowed = "move";
-  };
-
-  const handleDrag: DragEventHandler<HTMLDivElement> = () => {
-    setIsDragging(true);
-  };
-
-  const handleDragEnd: DragEventHandler<HTMLDivElement> = () => {
-    onMoveEnd?.();
-    setIsDragging(false);
-  };
-
-  const handleDragEnter: DragEventHandler<HTMLDivElement> = (event) => {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = "move";
-    const movingId = event.dataTransfer.getData("text/plain");
-    onMoving?.(movingId, id);
-  };
-
-  const handleDragOver: DragEventHandler<HTMLDivElement> = (event) => {
-    event.dataTransfer.dropEffect = "move";
-    event.preventDefault();
-  };
-
-  const handleDrop: DragEventHandler<HTMLDivElement> = (event) => {
-    const movingId = event.dataTransfer.getData("text/plain");
-    onChangeOrder?.(movingId, id);
-    event.preventDefault();
-  };
-
   return (
-    <div
-      onDragStart={handleDragStart}
-      onDrag={handleDrag}
-      onDragEnd={handleDragEnd}
-      onDragEnter={handleDragEnter}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-    >
+    <>
       <div
         className={clsx(
           "rounded-xl bg-white hover:bg-slate-100",
-          isDragging && "invisible"
+          dragging && "invisible"
         )}
       >
         <div className="flex items-center justify-between text-slate-800">
@@ -148,10 +98,10 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
           title={"Edit Link Format"}
           name={name}
           format={format}
-          onCancel={() => setIsOpen(false)}
+          onCancel={handleCancel}
           onSave={handleSave}
         />
       )}
-    </div>
+    </>
   );
 };
