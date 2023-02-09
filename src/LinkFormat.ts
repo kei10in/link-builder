@@ -51,6 +51,15 @@ export const LinkFormat = {
   save: async (linkFormats: LinkFormatItem[]) => {
     await storage.set({ linkFormats });
   },
+
+  upgrade: async (): Promise<void> => {
+    const formats = await LinkFormat.load();
+    const newFormats = DEFAULT_LINK_FORMATS.filter(
+      (x) => !formats.some((y) => x.id === y.id)
+    );
+
+    await LinkFormat.save([...formats, ...newFormats]);
+  },
 } as const;
 
 export const formatLink = (

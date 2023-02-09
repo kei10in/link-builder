@@ -58,19 +58,20 @@ const buildContextMenu = async () => {
   });
 };
 
-const updateContextMenu = () => {
-  browser.contextMenus.removeAll();
-  buildContextMenu();
+const updateContextMenu = async () => {
+  await browser.contextMenus.removeAll();
+  await buildContextMenu();
 };
 
-browser.runtime.onInstalled.addListener(() => {
-  updateContextMenu();
+browser.runtime.onInstalled.addListener(async () => {
+  await LinkFormat.upgrade();
+  await updateContextMenu();
 });
 
-browser.runtime.onMessage.addListener((message) => {
+browser.runtime.onMessage.addListener(async (message) => {
   switch (message.type) {
     case "linkFormatUpdated":
-      updateContextMenu();
+      await updateContextMenu();
       break;
   }
 });
