@@ -1,12 +1,13 @@
+import { DocumentFormat } from "./LinkFormatItem";
 import { isCopyHyperTextMessage, isCopyTextMessage } from "./Message";
-import { markdownToHtml } from "./markdown";
+import { textToHtml } from "./document";
 import browser from "webextension-polyfill";
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (isCopyTextMessage(message)) {
     copyTextToClipboard(message.text);
   } else if (isCopyHyperTextMessage(message)) {
-    copyHyperTextToClipboard(message.text);
+    copyHtmlToClipboard(message.text, message.docFormat);
   } else {
     console.log("Invalid message");
   }
@@ -18,10 +19,12 @@ const copyTextToClipboard = (text: string) => {
   copyToClipboard({ "text/plain": text });
 };
 
-const copyHyperTextToClipboard = (text: string) => {
-  const html = markdownToHtml(text);
+const copyHtmlToClipboard = (text: string, docFormat: DocumentFormat) => {
+  const html = textToHtml(text, docFormat);
   const div = document.createElement("div");
   div.innerHTML = html;
+
+  console.log({ html, text });
 
   copyToClipboard({
     "text/html": html,

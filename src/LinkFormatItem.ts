@@ -1,10 +1,28 @@
 import { nanoid } from "nanoid";
 
-export interface LinkFormatItem {
+export type LinkFormatItem = TextLinkFormatItem | HtmlLinkFormatItem;
+
+export interface TextLinkFormatItem {
+  type: "text";
   id: string;
   name: string;
   format: string;
-  docType: "text" | "markdown";
+  readonly: boolean;
+  enabled: boolean;
+}
+
+export type DocumentFormat = "markdown" | "html";
+
+export const isDocumentFormat = (value: unknown): value is DocumentFormat => {
+  return value === "markdown" || value === "html";
+};
+
+export interface HtmlLinkFormatItem {
+  type: "html";
+  id: string;
+  name: string;
+  format: string;
+  docFormat: DocumentFormat;
   readonly: boolean;
   enabled: boolean;
 }
@@ -12,11 +30,11 @@ export interface LinkFormatItem {
 export const newLinkFormatItem = (args: {
   name: string;
   format: string;
-}): LinkFormatItem => {
+}): TextLinkFormatItem => {
   return {
+    type: "text",
     id: nanoid(),
     ...args,
-    docType: "markdown",
     readonly: false,
     enabled: true,
   };

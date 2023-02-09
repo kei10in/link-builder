@@ -1,5 +1,9 @@
 import { formatLink } from "./LinkFormat";
-import { LinkFormatItem } from "./LinkFormatItem";
+import {
+  DocumentFormat,
+  isDocumentFormat,
+  LinkFormatItem,
+} from "./LinkFormatItem";
 
 export interface CopyTextMessage {
   type: "copyText";
@@ -15,9 +19,9 @@ export const isCopyTextMessage = (value: unknown): value is CopyTextMessage => {
 };
 
 export interface CopyHyperTextMessage {
-  type: "copyHyperText";
+  type: "copyHtml";
   text: string;
-  docType: "markdown";
+  docFormat: DocumentFormat;
 }
 
 export const isCopyHyperTextMessage = (
@@ -25,9 +29,9 @@ export const isCopyHyperTextMessage = (
 ): value is CopyHyperTextMessage => {
   return (
     isObject(value) &&
-    value.type === "copyHyperText" &&
+    value.type === "copyHtml" &&
     typeof value.text === "string" &&
-    value.docType === "markdown"
+    isDocumentFormat(value.docFormat)
   );
 };
 
@@ -43,18 +47,18 @@ export const createMessage = (
 ): RequestMessage => {
   const linkText = formatLink(linkFormat, data);
 
-  switch (linkFormat.docType) {
+  switch (linkFormat.type) {
     case "text":
     default:
       return {
         type: "copyText",
         text: linkText,
       };
-    case "markdown":
+    case "html":
       return {
-        type: "copyHyperText",
+        type: "copyHtml",
         text: linkText,
-        docType: "markdown",
+        docFormat: linkFormat.docFormat,
       };
   }
 };
