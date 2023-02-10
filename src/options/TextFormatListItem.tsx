@@ -1,4 +1,4 @@
-import { EditFormatDialog } from "./EditFormatDialog";
+import { TextFormatDialog } from "./TextFormatDialog";
 import { TextFormatMenus } from "./TextFormatMenus";
 import clsx from "clsx";
 import { useState } from "react";
@@ -94,7 +94,7 @@ export const TextFormatListItem: React.FC<Props> = (props: Props) => {
       </div>
 
       {isOpen && (
-        <EditFormatDialog
+        <TextFormatDialog
           title={"Edit Link Format"}
           name={name}
           format={format}

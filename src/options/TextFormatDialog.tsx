@@ -15,7 +15,7 @@ interface Props {
   onSave?: (name: string, format: string) => void;
 }
 
-export const EditFormatDialog: React.FC<Props> = (props: Props) => {
+export const TextFormatDialog: React.FC<Props> = (props: Props) => {
   const { title, name, format, onCancel, onSave } = props;
 
   const [innerName, setInnerName] = useState<string>(name);

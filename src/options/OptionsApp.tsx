@@ -5,9 +5,9 @@ import {
   newStyledTextFormatItem,
   newTextFormatItem,
 } from "../FormatItem";
-import { EditFormatDialog } from "./EditFormatDialog";
 import { Ordering } from "./Ordering";
 import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
+import { TextFormatDialog } from "./TextFormatDialog";
 import { TextFormatListItem } from "./TextFormatListItem";
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
@@ -169,7 +169,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
       </div>
 
       {editingNewFormat == "text/plain" && (
-        <EditFormatDialog
+        <TextFormatDialog
           title={"New Text Format"}
           name=""
           format=""
