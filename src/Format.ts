@@ -1,8 +1,8 @@
-import { LinkFormatItem } from "./LinkFormatItem";
+import { FormatItem } from "./FormatItem";
 import Mustache from "mustache";
 import browser from "webextension-polyfill";
 
-export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
+export const DEFAULT_LINK_FORMATS: FormatItem[] = [
   {
     type: "text",
     id: "markdown",
@@ -48,34 +48,31 @@ export const DEFAULT_LINK_FORMATS: LinkFormatItem[] = [
 
 const storage = browser.storage.sync;
 
-export const LinkFormat = {
-  load: async (): Promise<LinkFormatItem[]> => {
+export const Format = {
+  load: async (): Promise<FormatItem[]> => {
     return (
       await storage.get({
         linkFormats: DEFAULT_LINK_FORMATS,
       })
-    ).linkFormats as LinkFormatItem[];
+    ).linkFormats as FormatItem[];
   },
 
-  save: async (linkFormats: LinkFormatItem[]) => {
+  save: async (linkFormats: FormatItem[]) => {
     await storage.set({ linkFormats });
   },
 
   upgrade: async (): Promise<void> => {
-    const formats = await LinkFormat.load();
+    const formats = await Format.load();
     const newFormats = DEFAULT_LINK_FORMATS.filter(
       (x) => !formats.some((y) => x.id === y.id)
     );
 
-    await LinkFormat.save([...formats, ...newFormats]);
+    await Format.save([...formats, ...newFormats]);
   },
-} as const;
 
-export const formatLink = (
-  item: LinkFormatItem,
-  data: { title: string; url: string }
-): string => {
-  return Mustache.render(item.format, data, {}, { escape: (s) => s });
+  render: (item: FormatItem, data: { title: string; url: string }): string => {
+    return Mustache.render(item.format, data, {}, { escape: (s) => s });
+  },
 };
 
 export const EXAMPLE_DATA = {

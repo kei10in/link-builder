@@ -1,20 +1,20 @@
-import { LinkFormat } from "../LinkFormat";
-import { LinkFormatItem } from "../LinkFormatItem";
+import { Format } from "../Format";
+import { FormatItem } from "../FormatItem";
 import { OptionsApp } from "./OptionsApp";
 import { useEffect, useState } from "react";
 import browser from "webextension-polyfill";
 
 export const OptionsAppContainer: React.FC = () => {
-  const [formats, setFormats] = useState<LinkFormatItem[]>([]);
+  const [formats, setFormats] = useState<FormatItem[]>([]);
 
   useEffect(() => {
-    LinkFormat.load().then((loaded) => {
+    Format.load().then((loaded) => {
       setFormats(loaded);
     });
   }, []);
 
-  const handleChangeFormat = (formats: LinkFormatItem[]) => {
-    LinkFormat.save(formats);
+  const handleChangeFormat = (formats: FormatItem[]) => {
+    Format.save(formats);
     setFormats(formats);
     browser.runtime.sendMessage({ type: "linkFormatUpdated" });
   };

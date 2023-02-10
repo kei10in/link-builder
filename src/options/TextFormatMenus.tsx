@@ -7,7 +7,7 @@ interface Props {
   onDelete?: () => void;
 }
 
-export const LinkFormatMenus: React.FC<Props> = (props: Props) => {
+export const TextFormatMenus: React.FC<Props> = (props: Props) => {
   const { readonly, onEdit, onDelete } = props;
 
   const handleClickEdit = () => onEdit?.();

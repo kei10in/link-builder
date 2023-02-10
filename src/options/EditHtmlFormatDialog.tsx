@@ -1,4 +1,4 @@
-import { DocumentFormat } from "../LinkFormatItem";
+import { DocumentFormat } from "../FormatItem";
 import { Variables } from "./Variables";
 import {
   ChangeEventHandler,

@@ -1,4 +1,4 @@
-import { DocumentFormat } from "./LinkFormatItem";
+import { DocumentFormat } from "./FormatItem";
 import { rehype } from "rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";

@@ -1,5 +1,5 @@
 import { EditFormatDialog } from "./EditFormatDialog";
-import { LinkFormatMenus } from "./LinkFormatMenus";
+import { TextFormatMenus } from "./TextFormatMenus";
 import clsx from "clsx";
 import { useState } from "react";
 import { MdBookmark, MdBookmarkBorder, MdDragHandle } from "react-icons/md";
@@ -16,7 +16,7 @@ interface Props {
   onDelete?: (id: string) => void;
 }
 
-export const LinkFormatView: React.FC<Props> = (props: Props) => {
+export const TextFormatListItem: React.FC<Props> = (props: Props) => {
   const {
     id,
     name,
@@ -78,7 +78,7 @@ export const LinkFormatView: React.FC<Props> = (props: Props) => {
                   Predefined
                 </div>
               )}
-              <LinkFormatMenus
+              <TextFormatMenus
                 readonly={readonly}
                 onEdit={handleClickEdit}
                 onDelete={handleClickDelete}

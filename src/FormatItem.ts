@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 
-export type LinkFormatItem = TextLinkFormatItem | HtmlLinkFormatItem;
+export type FormatItem = TextFormatItem | HyperTextFormatItem;
 
-export interface TextLinkFormatItem {
+export interface TextFormatItem {
   type: "text";
   id: string;
   name: string;
@@ -17,7 +17,7 @@ export const isDocumentFormat = (value: unknown): value is DocumentFormat => {
   return value === "markdown" || value === "html";
 };
 
-export interface HtmlLinkFormatItem {
+export interface HyperTextFormatItem {
   type: "html";
   id: string;
   name: string;
@@ -27,10 +27,10 @@ export interface HtmlLinkFormatItem {
   enabled: boolean;
 }
 
-export const newLinkFormatItem = (args: {
+export const newTextFormatItem = (args: {
   name: string;
   format: string;
-}): TextLinkFormatItem => {
+}): TextFormatItem => {
   return {
     type: "text",
     id: nanoid(),

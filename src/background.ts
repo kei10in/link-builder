@@ -1,9 +1,9 @@
-import { LinkFormat } from "./LinkFormat";
+import { Format } from "./Format";
 import { createMessage } from "./Message";
 import browser from "webextension-polyfill";
 
 const buildContextMenu = async () => {
-  const linkFormats = await LinkFormat.load();
+  const linkFormats = await Format.load();
 
   browser.contextMenus.create({
     id: "link-builder",
@@ -65,7 +65,7 @@ const updateContextMenu = async () => {
 
 browser.runtime.onInstalled.addListener(async () => {
   await browser.storage.sync.clear();
-  await LinkFormat.upgrade();
+  await Format.upgrade();
   await updateContextMenu();
 });
 

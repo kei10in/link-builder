@@ -1,15 +1,15 @@
 import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
-import { LinkFormatItem, newLinkFormatItem } from "../LinkFormatItem";
+import { FormatItem, newTextFormatItem } from "../FormatItem";
 import { EditFormatDialog } from "./EditFormatDialog";
-import { LinkFormatView } from "./LinkFormatView";
 import { Ordering } from "./Ordering";
+import { TextFormatListItem } from "./TextFormatListItem";
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
 
 interface Props {
-  formats: LinkFormatItem[];
-  onChangeFormats?: (formats: LinkFormatItem[]) => void;
+  formats: FormatItem[];
+  onChangeFormats?: (formats: FormatItem[]) => void;
 }
 
 export const OptionsApp: React.FC<Props> = (props: Props) => {
@@ -26,7 +26,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   const handleSaveNewLinkFormat = (name: string, format: string) => {
-    const newFormat = newLinkFormatItem({ name, format });
+    const newFormat = newTextFormatItem({ name, format });
     const newFormats = [...formats, newFormat];
     onChangeFormats?.(newFormats);
     setIsEditingNewFormat(false);
@@ -61,7 +61,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   const [movingFormats, setMovingFormats] = useState<
-    LinkFormatItem[] | undefined
+    FormatItem[] | undefined
   >();
 
   const handleMoving = (movingId: string, hoveringId: string) => {
@@ -128,7 +128,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
                   onChangeOrder={handleChangeOrder}
                 >
                   {(isDragging) => (
-                    <LinkFormatView
+                    <TextFormatListItem
                       {...item}
                       dragging={isDragging}
                       onChangeEnabled={handleChangeEnabled}

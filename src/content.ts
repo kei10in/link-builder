@@ -1,4 +1,4 @@
-import { DocumentFormat } from "./LinkFormatItem";
+import { DocumentFormat } from "./FormatItem";
 import { isCopyHyperTextMessage, isCopyTextMessage } from "./Message";
 import { textToHtml } from "./document";
 import browser from "webextension-polyfill";

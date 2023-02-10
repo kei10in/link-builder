@@ -1,9 +1,5 @@
-import { formatLink } from "./LinkFormat";
-import {
-  DocumentFormat,
-  isDocumentFormat,
-  LinkFormatItem,
-} from "./LinkFormatItem";
+import { Format } from "./Format";
+import { DocumentFormat, isDocumentFormat, FormatItem } from "./FormatItem";
 
 export interface CopyTextMessage {
   type: "copyText";
@@ -42,12 +38,12 @@ const isObject = (value: unknown): value is Record<string, unknown> => {
 };
 
 export const createMessage = (
-  linkFormat: LinkFormatItem,
+  format: FormatItem,
   data: { title: string; url: string }
 ): RequestMessage => {
-  const linkText = formatLink(linkFormat, data);
+  const linkText = Format.render(format, data);
 
-  switch (linkFormat.type) {
+  switch (format.type) {
     case "text":
     default:
       return {
@@ -58,7 +54,7 @@ export const createMessage = (
       return {
         type: "copyHtml",
         text: linkText,
-        docFormat: linkFormat.docFormat,
+        docFormat: format.docFormat,
       };
   }
 };

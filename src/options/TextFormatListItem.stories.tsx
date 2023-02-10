@@ -1,18 +1,18 @@
-import { LinkFormatView } from "./LinkFormatView";
+import { TextFormatListItem } from "./TextFormatListItem";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ComponentProps } from "react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Components/LinkFormatView",
-  component: LinkFormatView,
-} as ComponentMeta<typeof LinkFormatView>;
+  title: "Components/TextFormatListItem",
+  component: TextFormatListItem,
+} as ComponentMeta<typeof TextFormatListItem>;
 
-const Template: ComponentStory<typeof LinkFormatView> = (args) => (
-  <LinkFormatView {...args} />
+const Template: ComponentStory<typeof TextFormatListItem> = (args) => (
+  <TextFormatListItem {...args} />
 );
 
-const format: ComponentProps<typeof LinkFormatView> = {
+const format: ComponentProps<typeof TextFormatListItem> = {
   id: "key-1",
   name: "Markdown",
   format: "[{{title}}]({{url}})",
