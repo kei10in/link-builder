@@ -57,48 +57,65 @@ export const HyperTextFormatDialog: React.FC<Props> = (props: Props) => {
 
   return (
     <div className={"modal modal-open"} onClick={handleClickOverlay}>
-      <div className="modal-box" onKeyDown={handleKeyDown} tabIndex={-1}>
+      <div
+        className="modal-box max-w-3xl"
+        onKeyDown={handleKeyDown}
+        tabIndex={-1}
+      >
         <form onSubmit={handleSubmit}>
-          <div className="w-full">
-            <h1 className="text-2xl mb-6">{title}</h1>
+          <div className="w-full flex items-stretch gap-8">
+            <div className="basis-3/5">
+              <h1 className="text-2xl mb-6">{title}</h1>
+              <div className="w-full">
+                <div>
+                  <p className="mb-8">
+                    Styled Text Format allows you to create decorated text such
+                    as bold and italic as well as link text and copy that text
+                    to the clipboard.
+                  </p>
+                  <label htmlFor="name" className="label">
+                    Name:
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    className="input input-bordered w-full"
+                    autoFocus
+                    defaultValue={name}
+                    onChange={handleChangeName}
+                  />
+                </div>
 
-            <div className="w-full">
-              <div>
-                <label htmlFor="name" className="label">
-                  Name:
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  className="input input-bordered w-full"
-                  autoFocus
-                  defaultValue={name}
-                  onChange={handleChangeName}
-                />
-              </div>
-
-              <div className="mt-4">
-                <label htmlFor="format" className="label">
-                  Format:
-                </label>
-                <textarea
-                  id="format"
-                  className="textarea textarea-bordered w-full h-36 text-base font-mono resize-none"
-                  defaultValue={format}
-                  onChange={handleChangeFormat}
-                />
+                <div className="mt-4">
+                  <label htmlFor="format" className="label">
+                    Format:
+                  </label>
+                  <textarea
+                    id="format"
+                    className="textarea textarea-bordered w-full h-36 text-base font-mono resize-none"
+                    defaultValue={format}
+                    onChange={handleChangeFormat}
+                  />
+                  <p className="text-sm text-zinc-400 px-1">
+                    Styling with Markdown
+                  </p>
+                </div>
+                <div className="modal-action">
+                  <button className="btn" onClick={onCancel}>
+                    Cancel
+                  </button>
+                  <button className="btn" type="submit" disabled={!canSave}>
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
 
-            <Variables />
-          </div>
-          <div className="modal-action">
-            <button className="btn" onClick={onCancel}>
-              Cancel
-            </button>
-            <button className="btn" type="submit" disabled={!canSave}>
-              Save
-            </button>
+            <div className="basis-2/5">
+              <div className="bg-neutral-100 h-full p-6">
+                <Variables />
+              </div>
+            </div>
           </div>
         </form>
       </div>

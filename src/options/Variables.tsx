@@ -1,8 +1,7 @@
 export const Variables: React.FC = () => {
   return (
     <div>
-      {" "}
-      <h3 className="mt-10 mb-4">Variables:</h3>
+      <h3 className="mb-4 text-lg">Variables:</h3>
       <p className="text-gray-500">
         You can use following variables in format.
       </p>

@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof HyperTextFormatDialog> = (args) => (
 );
 
 const format: ComponentProps<typeof HyperTextFormatDialog> = {
-  title: "Edit Format",
+  title: "New Styled Text Format",
   name: "format name",
   format: "[{{text}}]({{url}}",
 };
