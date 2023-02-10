@@ -1,18 +1,18 @@
-import { HyperTextFormatDialog } from "./HyperTextFormatDialog";
+import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ComponentProps } from "react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Components/HyperTextFormatDialog",
-  component: HyperTextFormatDialog,
-} as ComponentMeta<typeof HyperTextFormatDialog>;
+  title: "Components/StyledTextFormatDialog",
+  component: StyledTextFormatDialog,
+} as ComponentMeta<typeof StyledTextFormatDialog>;
 
-const Template: ComponentStory<typeof HyperTextFormatDialog> = (args) => (
-  <HyperTextFormatDialog {...args} />
+const Template: ComponentStory<typeof StyledTextFormatDialog> = (args) => (
+  <StyledTextFormatDialog {...args} />
 );
 
-const format: ComponentProps<typeof HyperTextFormatDialog> = {
+const format: ComponentProps<typeof StyledTextFormatDialog> = {
   title: "New Styled Text Format",
   name: "format name",
   format: "[{{text}}]({{url}}",

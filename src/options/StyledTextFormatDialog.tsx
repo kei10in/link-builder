@@ -16,7 +16,7 @@ interface Props {
   onSave?: (name: string, format: string) => void;
 }
 
-export const HyperTextFormatDialog: React.FC<Props> = (props: Props) => {
+export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
   const { title, name, format, onCancel, onSave } = props;
 
   const [innerName, setInnerName] = useState<string>(name);

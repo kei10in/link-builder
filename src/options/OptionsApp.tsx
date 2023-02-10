@@ -2,12 +2,12 @@ import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
 import {
   FormatItem,
-  newHyperTextFormatItem,
+  newStyledTextFormatItem,
   newTextFormatItem,
 } from "../FormatItem";
 import { EditFormatDialog } from "./EditFormatDialog";
-import { HyperTextFormatDialog } from "./HyperTextFormatDialog";
 import { Ordering } from "./Ordering";
+import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
 import { TextFormatListItem } from "./TextFormatListItem";
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
@@ -41,7 +41,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   const handleSaveNewHyperTextFormat = (name: string, format: string) => {
-    const newFormat = newHyperTextFormatItem({ name, format });
+    const newFormat = newStyledTextFormatItem({ name, format });
     const newFormats = [...formats, newFormat];
     onChangeFormats?.(newFormats);
     setEditingNewFormat(undefined);
@@ -179,7 +179,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
       )}
 
       {editingNewFormat == "text/html" && (
-        <HyperTextFormatDialog
+        <StyledTextFormatDialog
           title={"New Hyper Text Format"}
           name=""
           format=""

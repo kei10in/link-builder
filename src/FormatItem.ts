@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-export type FormatItem = TextFormatItem | HyperTextFormatItem;
+export type FormatItem = TextFormatItem | StyledTextFormatItem;
 
 export interface TextFormatItem {
   type: "text";
@@ -17,7 +17,7 @@ export const isDocumentFormat = (value: unknown): value is DocumentFormat => {
   return value === "markdown" || value === "html";
 };
 
-export interface HyperTextFormatItem {
+export interface StyledTextFormatItem {
   type: "html";
   id: string;
   name: string;
@@ -40,10 +40,10 @@ export const newTextFormatItem = (args: {
   };
 };
 
-export const newHyperTextFormatItem = (args: {
+export const newStyledTextFormatItem = (args: {
   name: string;
   format: string;
-}): HyperTextFormatItem => {
+}): StyledTextFormatItem => {
   return {
     type: "html",
     id: nanoid(),
