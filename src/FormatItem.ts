@@ -39,3 +39,17 @@ export const newTextFormatItem = (args: {
     enabled: true,
   };
 };
+
+export const newHyperTextFormatItem = (args: {
+  name: string;
+  format: string;
+}): HyperTextFormatItem => {
+  return {
+    type: "html",
+    id: nanoid(),
+    ...args,
+    docFormat: "markdown",
+    readonly: false,
+    enabled: true,
+  };
+};

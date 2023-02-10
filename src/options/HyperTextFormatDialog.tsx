@@ -1,4 +1,3 @@
-import { DocumentFormat } from "../FormatItem";
 import { Variables } from "./Variables";
 import {
   ChangeEventHandler,
@@ -11,23 +10,16 @@ import {
 interface Props {
   title: string;
   name: string;
-  documentFormat: DocumentFormat;
   format: string;
 
   onCancel?: () => void;
-  onSave?: (
-    name: string,
-    documentFormat: DocumentFormat,
-    format: string
-  ) => void;
+  onSave?: (name: string, format: string) => void;
 }
 
-export const EditHtmlFormatDialog: React.FC<Props> = (props: Props) => {
-  const { title, name, documentFormat, format, onCancel, onSave } = props;
+export const HyperTextFormatDialog: React.FC<Props> = (props: Props) => {
+  const { title, name, format, onCancel, onSave } = props;
 
   const [innerName, setInnerName] = useState<string>(name);
-  const [innerDocumentFormat, setInnerDocumentFormat] =
-    useState<DocumentFormat>(documentFormat);
   const [innerFormat, setInnerFormat] = useState<string>(format);
 
   const canSave =
@@ -41,7 +33,7 @@ export const EditHtmlFormatDialog: React.FC<Props> = (props: Props) => {
 
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
-    onSave?.(innerName.trim(), innerDocumentFormat, innerFormat.trim());
+    onSave?.(innerName.trim(), innerFormat.trim());
   };
 
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
@@ -55,16 +47,6 @@ export const EditHtmlFormatDialog: React.FC<Props> = (props: Props) => {
 
   const handleChangeName: ChangeEventHandler<HTMLInputElement> = (event) => {
     setInnerName(event.currentTarget.value);
-  };
-
-  const handleChangeDocumentFormat: ChangeEventHandler<HTMLSelectElement> = (
-    event
-  ) => {
-    if (event.currentTarget.value === "markdown") {
-      setInnerDocumentFormat("markdown");
-    } else {
-      setInnerDocumentFormat("html");
-    }
   };
 
   const handleChangeFormat: ChangeEventHandler<HTMLTextAreaElement> = (
@@ -93,21 +75,6 @@ export const EditHtmlFormatDialog: React.FC<Props> = (props: Props) => {
                   defaultValue={name}
                   onChange={handleChangeName}
                 />
-              </div>
-
-              <div className="mt-4">
-                <label htmlFor="documentForma" className="label">
-                  Markup:
-                </label>
-                <select
-                  id="documentFormat"
-                  className="block select select-bordered w-full"
-                  defaultValue={documentFormat}
-                  onChange={handleChangeDocumentFormat}
-                >
-                  <option value="markdown">Markdown</option>
-                  <option value="html">HTML</option>
-                </select>
               </div>
 
               <div className="mt-4">

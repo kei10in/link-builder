@@ -1,7 +1,12 @@
 import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
-import { FormatItem, newTextFormatItem } from "../FormatItem";
+import {
+  FormatItem,
+  newHyperTextFormatItem,
+  newTextFormatItem,
+} from "../FormatItem";
 import { EditFormatDialog } from "./EditFormatDialog";
+import { HyperTextFormatDialog } from "./HyperTextFormatDialog";
 import { Ordering } from "./Ordering";
 import { TextFormatListItem } from "./TextFormatListItem";
 import { useState } from "react";
@@ -15,21 +20,31 @@ interface Props {
 export const OptionsApp: React.FC<Props> = (props: Props) => {
   const { formats, onChangeFormats } = props;
 
-  const [isEditingNewFormat, setIsEditingNewFormat] = useState(false);
-
-  const handleClickNewLinkFormat = () => {
-    setIsEditingNewFormat(true);
+  const [editingNewFormat, setEditingNewFormat] = useState<
+    undefined | "text/plain" | "text/html"
+  >();
+  const handleClickNewTextFormat = () => {
+    setEditingNewFormat("text/plain");
+  };
+  const handleClickNewHyperTextFormat = () => {
+    setEditingNewFormat("text/html");
+  };
+  const handleCancelNewFormat = () => {
+    setEditingNewFormat(undefined);
   };
 
-  const handleCancelNewLinkFormat = () => {
-    setIsEditingNewFormat(false);
-  };
-
-  const handleSaveNewLinkFormat = (name: string, format: string) => {
+  const handleSaveNewTextFormat = (name: string, format: string) => {
     const newFormat = newTextFormatItem({ name, format });
     const newFormats = [...formats, newFormat];
     onChangeFormats?.(newFormats);
-    setIsEditingNewFormat(false);
+    setEditingNewFormat(undefined);
+  };
+
+  const handleSaveNewHyperTextFormat = (name: string, format: string) => {
+    const newFormat = newHyperTextFormatItem({ name, format });
+    const newFormats = [...formats, newFormat];
+    onChangeFormats?.(newFormats);
+    setEditingNewFormat(undefined);
   };
 
   const handleChangeEnabled = (id: string, enabled: boolean) => {
@@ -108,13 +123,23 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
         <h2 className="text-3xl text-slate-800">Link Formats</h2>
 
         <div className="w-full flex justify-end">
-          <button
-            className="btn normal-case gap-2"
-            onClick={handleClickNewLinkFormat}
-          >
-            <MdAdd className="h-6 w-6" />
-            Add New Format
-          </button>
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn gap-2 normal-case">
+              <MdAdd className="h-6 w-6" />
+              Add New Format
+            </label>
+            <ul
+              tabIndex={0}
+              className="mt-2 dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a onClick={handleClickNewTextFormat}>Text</a>
+              </li>
+              <li>
+                <a onClick={handleClickNewHyperTextFormat}>Hyper Text</a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <ul className="mt-4">
@@ -143,13 +168,23 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
         </ul>
       </div>
 
-      {isEditingNewFormat && (
+      {editingNewFormat == "text/plain" && (
         <EditFormatDialog
-          title={"New Link Format"}
+          title={"New Text Format"}
           name=""
           format=""
-          onCancel={handleCancelNewLinkFormat}
-          onSave={handleSaveNewLinkFormat}
+          onCancel={handleCancelNewFormat}
+          onSave={handleSaveNewTextFormat}
+        />
+      )}
+
+      {editingNewFormat == "text/html" && (
+        <HyperTextFormatDialog
+          title={"New Hyper Text Format"}
+          name=""
+          format=""
+          onCancel={handleCancelNewFormat}
+          onSave={handleSaveNewHyperTextFormat}
         />
       )}
     </div>
