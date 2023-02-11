@@ -13,13 +13,17 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
   const handleClickDelete = () => onDelete?.();
 
   return (
-    <div className={clsx("dropdown dropdown-end")}>
-      <label tabIndex={0} className="btn btn-ghost btn-circle">
+    <div className="relative">
+      <label tabIndex={0} className="peer btn btn-ghost btn-circle">
         <MdMoreHoriz className="h-8 w-8" />
       </label>
       <ul
         tabIndex={0}
-        className="dropdown-content menu drop-shadow bg-white w-64"
+        className={clsx(
+          "bg-white drop-shadow-lg w-48",
+          "hidden hover:block peer-focus:block focus-within:block",
+          "absolute right-0 z-50"
+        )}
       >
         <li
           className={clsx(
