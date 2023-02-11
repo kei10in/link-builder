@@ -128,7 +128,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
       </div>
 
       <div className="w-full">
-        <h2 className="text-3xl text-slate-800">Link Formats</h2>
+        <h2 className="text-3xl text-slate-800">Formats</h2>
 
         <div className="w-full flex justify-end">
           <div className="dropdown dropdown-end">
