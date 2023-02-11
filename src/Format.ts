@@ -14,13 +14,6 @@ export const DEFAULT_FORMATS: FormatItem[] = [
     id: "textile",
     name: "Textile",
     format: '"{{title}}":{{url}}',
-    enabled: true,
-  },
-  {
-    type: "text",
-    id: "restructured-text",
-    name: "reStructuredText",
-    format: "`{{title}} <{{url}}>`_",
     enabled: false,
   },
   {
@@ -32,8 +25,8 @@ export const DEFAULT_FORMATS: FormatItem[] = [
   },
   {
     type: "html",
-    id: "rich-text",
-    name: "Rich Text",
+    id: "link",
+    name: "Link",
     format: "[{{title}}]({{url}})",
     docFormat: "markdown",
     enabled: true,
