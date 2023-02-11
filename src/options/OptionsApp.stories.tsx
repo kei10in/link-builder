@@ -1,4 +1,4 @@
-import { OptionsApp } from "./OptionsApp";
+import { OptionsApp } from "./OptionsApp.js";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ComponentProps } from "react";
 

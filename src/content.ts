@@ -1,6 +1,6 @@
-import { DocumentFormat } from "./FormatItem";
-import { isCopyHyperTextMessage, isCopyTextMessage } from "./Message";
-import { textToHtml } from "./document";
+import { DocumentFormat } from "./FormatItem.js";
+import { isCopyHyperTextMessage, isCopyTextMessage } from "./Message.js";
+import { textToHtml } from "./document.js";
 import browser from "webextension-polyfill";
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {

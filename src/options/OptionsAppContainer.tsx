@@ -1,6 +1,6 @@
-import { Format } from "../Format";
-import { FormatItem } from "../FormatItem";
-import { OptionsApp } from "./OptionsApp";
+import { Format } from "../Format.js";
+import { FormatItem } from "../FormatItem.js";
+import { OptionsApp } from "./OptionsApp.js";
 import { useEffect, useState } from "react";
 import browser from "webextension-polyfill";
 

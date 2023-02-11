@@ -1,4 +1,4 @@
-import { FormatListItem } from "./FormatListItem";
+import { FormatListItem } from "./FormatListItem.js";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ComponentProps } from "react";
 

@@ -4,11 +4,11 @@ import {
   FormatItem,
   newStyledTextFormatItem,
   newTextFormatItem,
-} from "../FormatItem";
-import { FormatListItem } from "./FormatListItem";
-import { Ordering } from "./Ordering";
-import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
-import { TextFormatDialog } from "./TextFormatDialog";
+} from "../FormatItem.js";
+import { FormatListItem } from "./FormatListItem.js";
+import { Ordering } from "./Ordering.js";
+import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
+import { TextFormatDialog } from "./TextFormatDialog.js";
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
 

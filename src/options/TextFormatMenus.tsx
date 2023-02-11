@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { MdDelete, MdEdit, MdMoreHoriz } from "react-icons/md";
 
 interface Props {

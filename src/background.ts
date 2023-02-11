@@ -1,5 +1,5 @@
-import { Format } from "./Format";
-import { createMessage } from "./Message";
+import { Format } from "./Format.js";
+import { createMessage } from "./Message.js";
 import browser from "webextension-polyfill";
 
 const buildContextMenu = async () => {

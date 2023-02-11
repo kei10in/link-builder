@@ -1,4 +1,4 @@
-import { DocumentFormat } from "./FormatItem";
+import { DocumentFormat } from "./FormatItem.js";
 import { rehype } from "rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";

@@ -1,4 +1,4 @@
-import { TextFormatDialog } from "./TextFormatDialog";
+import { TextFormatDialog } from "./TextFormatDialog.js";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ComponentProps } from "react";
 

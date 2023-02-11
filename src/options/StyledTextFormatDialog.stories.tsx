@@ -1,4 +1,4 @@
-import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
+import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ComponentProps } from "react";
 

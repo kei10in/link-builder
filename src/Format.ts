@@ -1,4 +1,4 @@
-import { FormatItem } from "./FormatItem";
+import { FormatItem } from "./FormatItem.js";
 import Mustache from "mustache";
 import browser from "webextension-polyfill";
 

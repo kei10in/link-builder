@@ -1,7 +1,7 @@
-import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
-import { TextFormatDialog } from "./TextFormatDialog";
-import { TextFormatMenus } from "./TextFormatMenus";
-import clsx from "clsx";
+import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
+import { TextFormatDialog } from "./TextFormatDialog.js";
+import { TextFormatMenus } from "./TextFormatMenus.js";
+import { clsx } from "clsx";
 import { useState } from "react";
 import { MdBookmark, MdBookmarkBorder, MdDragHandle } from "react-icons/md";
 

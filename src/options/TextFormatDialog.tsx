@@ -1,4 +1,4 @@
-import { Variables } from "./Variables";
+import { Variables } from "./Variables.js";
 import {
   ChangeEventHandler,
   FormEventHandler,
