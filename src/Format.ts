@@ -1,5 +1,4 @@
-import { FormatItem } from "./FormatItem.js";
-import Mustache from "mustache";
+import { FormatItem, renderFormat } from "./FormatItem.js";
 import browser from "webextension-polyfill";
 
 export const DEFAULT_FORMATS: FormatItem[] = [
@@ -63,7 +62,7 @@ export const Format = {
   },
 
   render: (item: FormatItem, data: { title: string; url: string }): string => {
-    return Mustache.render(item.format, data, {}, { escape: (s) => s });
+    return renderFormat(item, data);
   },
 };
 

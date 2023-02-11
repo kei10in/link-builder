@@ -1,3 +1,4 @@
+import Mustache from "mustache";
 import { nanoid } from "nanoid";
 
 export type FormatItem = TextFormatItem | StyledTextFormatItem;
@@ -48,4 +49,24 @@ export const newStyledTextFormatItem = (args: {
     docFormat: "markdown",
     enabled: true,
   };
+};
+
+export const renderFormat = (
+  item: FormatItem,
+  data: { title: string; url: string }
+): string => {
+  const url = new URL(data.url);
+  const paths = url.pathname.split("/").reverse();
+  const url_filename = paths[0] !== "" ? paths[0] : paths[1];
+
+  return Mustache.render(
+    item.format,
+    {
+      ...data,
+      url_pathname: url.pathname,
+      url_filename,
+    },
+    {},
+    { escape: (s) => s }
+  );
 };
