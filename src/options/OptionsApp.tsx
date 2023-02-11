@@ -83,11 +83,17 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
     onChangeFormats?.(newFormats);
   };
 
+  const [movingId, setMovingId] = useState<string>();
   const [movingFormats, setMovingFormats] = useState<
     FormatItem[] | undefined
   >();
 
-  const handleMoving = (movingId: string, hoveringId: string) => {
+  const handleMoveStart = (id: string) => setMovingId(id);
+
+  const handleMoving = (hoveringId: string) => {
+    if (movingId === undefined || movingId === hoveringId) {
+      return;
+    }
     const xs = [...(movingFormats ?? formats)];
     const movingIndex = xs.findIndex((x) => x.id === movingId);
     const hoveringIndex = xs.findIndex((x) => x.id === hoveringId);
@@ -169,9 +175,10 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
             <ul>
               {currentFormats.map((item) => {
                 return (
-                  <li key={item.id}>
+                  <li key={item.id} className="my-2 first:mt-0 last:mb-0">
                     <Ordering
                       id={item.id}
+                      onMoveStart={handleMoveStart}
                       onMoving={handleMoving}
                       onMoveEnd={handleMoveEnd}
                       onChangeOrder={handleChangeOrder}

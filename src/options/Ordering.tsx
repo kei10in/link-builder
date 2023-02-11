@@ -3,13 +3,15 @@ import { DragEventHandler, ReactNode, useState } from "react";
 interface Props {
   id: string;
   children?: (isDragging: boolean) => ReactNode | undefined;
-  onMoving?: (movingId: string, hoveringId: string) => void;
+  onMoveStart?: (id: string) => void;
+  onMoving?: (hoveringId: string) => void;
   onMoveEnd?: () => void;
   onChangeOrder?: (movedId: string, droppedId: string) => void;
 }
 
 export const Ordering: React.FC<Props> = (props: Props) => {
-  const { id, onMoving, onMoveEnd, onChangeOrder, children } = props;
+  const { id, onMoveStart, onMoving, onMoveEnd, onChangeOrder, children } =
+    props;
 
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
@@ -19,9 +21,12 @@ export const Ordering: React.FC<Props> = (props: Props) => {
 
     const x = event.pageX - event.currentTarget.offsetLeft;
     const y = event.pageY - event.currentTarget.offsetTop;
-    event.dataTransfer.setDragImage(event.currentTarget, x, y);
+    const element = event.currentTarget;
 
+    event.dataTransfer.setDragImage(element, x, y);
     event.dataTransfer.effectAllowed = "move";
+
+    onMoveStart?.(id);
   };
 
   const handleDrag: DragEventHandler<HTMLDivElement> = () => {
@@ -34,10 +39,9 @@ export const Ordering: React.FC<Props> = (props: Props) => {
   };
 
   const handleDragEnter: DragEventHandler<HTMLDivElement> = (event) => {
-    event.preventDefault();
     event.dataTransfer.dropEffect = "move";
-    const movingId = event.dataTransfer.getData("text/plain");
-    onMoving?.(movingId, id);
+    onMoving?.(id);
+    event.preventDefault();
   };
 
   const handleDragOver: DragEventHandler<HTMLDivElement> = (event) => {
