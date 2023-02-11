@@ -14,7 +14,8 @@
     "serve:firefox": "web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./dist/",
     "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "ava"
   },
   "dependencies": {
     "clsx": "^1.2.1",
@@ -52,6 +53,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "autoprefixer": "^10.4.13",
+    "ava": "^5.2.0",
     "babel-loader": "^8.3.0",
     "daisyui": "^2.49.0",
     "eslint": "^8.33.0",
@@ -62,6 +64,7 @@
     "postcss": "^8.4.21",
     "prettier": "^2.8.3",
     "tailwindcss": "^3.2.4",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.4",
     "vite": "^4.0.0",
     "vite-plugin-svgr": "^2.4.0",
