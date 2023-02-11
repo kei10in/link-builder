@@ -2,7 +2,7 @@ import { FormatItem } from "./FormatItem";
 import Mustache from "mustache";
 import browser from "webextension-polyfill";
 
-export const DEFAULT_LINK_FORMATS: FormatItem[] = [
+export const DEFAULT_FORMATS: FormatItem[] = [
   {
     type: "text",
     id: "markdown",
@@ -45,11 +45,8 @@ const storage = browser.storage.sync;
 
 export const Format = {
   load: async (): Promise<FormatItem[]> => {
-    return (
-      await storage.get({
-        linkFormats: DEFAULT_LINK_FORMATS,
-      })
-    ).linkFormats as FormatItem[];
+    const r = await storage.get({ linkFormats: DEFAULT_FORMATS });
+    return r.linkFormats as FormatItem[];
   },
 
   save: async (linkFormats: FormatItem[]) => {
@@ -57,12 +54,12 @@ export const Format = {
   },
 
   upgrade: async (): Promise<void> => {
-    const formats = await Format.load();
-    const newFormats = DEFAULT_LINK_FORMATS.filter(
-      (x) => !formats.some((y) => x.id === y.id)
-    );
+    // not implemented
+  },
 
-    await Format.save([...formats, ...newFormats]);
+  reset: async (): Promise<FormatItem[]> => {
+    await storage.clear();
+    return await Format.load();
   },
 
   render: (item: FormatItem, data: { title: string; url: string }): string => {

@@ -64,7 +64,6 @@ const updateContextMenu = async () => {
 };
 
 browser.runtime.onInstalled.addListener(async () => {
-  await browser.storage.sync.clear();
   await Format.upgrade();
   await updateContextMenu();
 });

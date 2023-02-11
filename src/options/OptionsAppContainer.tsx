@@ -13,11 +13,22 @@ export const OptionsAppContainer: React.FC = () => {
     });
   }, []);
 
+  const handleRestore = async () => {
+    const formats = await Format.reset();
+    setFormats(formats);
+  };
+
   const handleChangeFormat = (formats: FormatItem[]) => {
     Format.save(formats);
     setFormats(formats);
     browser.runtime.sendMessage({ type: "linkFormatUpdated" });
   };
 
-  return <OptionsApp formats={formats} onChangeFormats={handleChangeFormat} />;
+  return (
+    <OptionsApp
+      formats={formats}
+      restore={handleRestore}
+      onChangeFormats={handleChangeFormat}
+    />
+  );
 };

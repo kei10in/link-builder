@@ -14,11 +14,19 @@ import { MdAdd } from "react-icons/md";
 
 interface Props {
   formats: FormatItem[];
+  restore?: () => Promise<void>;
   onChangeFormats?: (formats: FormatItem[]) => void;
 }
 
 export const OptionsApp: React.FC<Props> = (props: Props) => {
-  const { formats, onChangeFormats } = props;
+  const { formats, restore, onChangeFormats } = props;
+
+  const [isRestoring, setIsRestoring] = useState(false);
+
+  const handleClickRestore = async () => {
+    setIsRestoring(true);
+    await restore?.();
+  };
 
   const [editingNewFormat, setEditingNewFormat] = useState<
     undefined | "text/plain" | "text/html"
@@ -142,30 +150,48 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           </div>
         </div>
 
-        <ul className="mt-4">
-          {currentFormats.map((item) => {
-            return (
-              <li key={item.id}>
-                <Ordering
-                  id={item.id}
-                  onMoving={handleMoving}
-                  onMoveEnd={handleMoveEnd}
-                  onChangeOrder={handleChangeOrder}
+        <div className="mt-4">
+          {currentFormats.length === 0 && (
+            <div className="w-full bg-neutral-100 py-4">
+              <div className="mx-auto w-fit">
+                <button
+                  className="btn normal-case my-12"
+                  onClick={handleClickRestore}
+                  disabled={isRestoring}
                 >
-                  {(isDragging) => (
-                    <FormatListItem
-                      {...item}
-                      dragging={isDragging}
-                      onChangeEnabled={handleChangeEnabled}
-                      onSave={handleSave}
-                      onDelete={handleDelete}
-                    />
-                  )}
-                </Ordering>
-              </li>
-            );
-          })}
-        </ul>
+                  Restore
+                </button>
+              </div>
+            </div>
+          )}
+
+          {currentFormats.length > 0 && (
+            <ul>
+              {currentFormats.map((item) => {
+                return (
+                  <li key={item.id}>
+                    <Ordering
+                      id={item.id}
+                      onMoving={handleMoving}
+                      onMoveEnd={handleMoveEnd}
+                      onChangeOrder={handleChangeOrder}
+                    >
+                      {(isDragging) => (
+                        <FormatListItem
+                          {...item}
+                          dragging={isDragging}
+                          onChangeEnabled={handleChangeEnabled}
+                          onSave={handleSave}
+                          onDelete={handleDelete}
+                        />
+                      )}
+                    </Ordering>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
       </div>
 
       {editingNewFormat == "text/plain" && (

@@ -55,3 +55,11 @@ const format: ComponentProps<typeof OptionsApp> = {
 
 export const Default = Template.bind({});
 Default.args = { ...format };
+
+export const NoFormats = Template.bind({});
+NoFormats.args = {
+  formats: [],
+  restore: () => {
+    return new Promise((resolve) => setTimeout(resolve, 2000));
+  },
+};
