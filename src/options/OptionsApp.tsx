@@ -5,10 +5,10 @@ import {
   newStyledTextFormatItem,
   newTextFormatItem,
 } from "../FormatItem";
+import { FormatListItem } from "./FormatListItem";
 import { Ordering } from "./Ordering";
 import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
 import { TextFormatDialog } from "./TextFormatDialog";
-import { TextFormatListItem } from "./TextFormatListItem";
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
 
@@ -153,7 +153,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
                   onChangeOrder={handleChangeOrder}
                 >
                   {(isDragging) => (
-                    <TextFormatListItem
+                    <FormatListItem
                       {...item}
                       dragging={isDragging}
                       onChangeEnabled={handleChangeEnabled}

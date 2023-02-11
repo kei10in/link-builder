@@ -1,3 +1,4 @@
+import { StyledTextFormatDialog } from "./StyledTextFormatDialog";
 import { TextFormatDialog } from "./TextFormatDialog";
 import { TextFormatMenus } from "./TextFormatMenus";
 import clsx from "clsx";
@@ -6,6 +7,7 @@ import { MdBookmark, MdBookmarkBorder, MdDragHandle } from "react-icons/md";
 
 interface Props {
   id: string;
+  type: "text" | "html";
   name: string;
   format: string;
   enabled: boolean;
@@ -16,9 +18,10 @@ interface Props {
   onDelete?: (id: string) => void;
 }
 
-export const TextFormatListItem: React.FC<Props> = (props: Props) => {
+export const FormatListItem: React.FC<Props> = (props: Props) => {
   const {
     id,
+    type,
     name,
     format,
     enabled,
@@ -65,7 +68,12 @@ export const TextFormatListItem: React.FC<Props> = (props: Props) => {
               </button>
 
               <div>
-                <div className="text-xl text-slate-700">{name}</div>
+                <div className="flex items-center gap-2">
+                  <div className="text-xl text-slate-700">{name}</div>
+                  {type === "html" && (
+                    <div className="badge badge-primary badge-sm">Styled</div>
+                  )}
+                </div>
                 <div className="mt-1 flex items-center gap-1">
                   <pre className="font-mono text-slate-400">{format}</pre>
                 </div>
@@ -93,9 +101,19 @@ export const TextFormatListItem: React.FC<Props> = (props: Props) => {
         </div>
       </div>
 
-      {isOpen && (
+      {isOpen && type === "text" && (
         <TextFormatDialog
-          title={"Edit Link Format"}
+          title={"Edit Text Format"}
+          name={name}
+          format={format}
+          onCancel={handleCancel}
+          onSave={handleSave}
+        />
+      )}
+
+      {isOpen && type === "html" && (
+        <StyledTextFormatDialog
+          title={"Edit Styled Text Format"}
           name={name}
           format={format}
           onCancel={handleCancel}
