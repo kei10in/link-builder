@@ -8,7 +8,6 @@ export const DEFAULT_LINK_FORMATS: FormatItem[] = [
     id: "markdown",
     name: "Markdown",
     format: "[{{title}}]({{url}})",
-    readonly: true,
     enabled: true,
   },
   {
@@ -16,7 +15,6 @@ export const DEFAULT_LINK_FORMATS: FormatItem[] = [
     id: "textile",
     name: "Textile",
     format: '"{{title}}":{{url}}',
-    readonly: true,
     enabled: true,
   },
   {
@@ -24,7 +22,6 @@ export const DEFAULT_LINK_FORMATS: FormatItem[] = [
     id: "restructured-text",
     name: "reStructuredText",
     format: "`{{title}} <{{url}}>`_",
-    readonly: true,
     enabled: false,
   },
   {
@@ -32,7 +29,6 @@ export const DEFAULT_LINK_FORMATS: FormatItem[] = [
     id: "html",
     name: "HTML",
     format: '<a href="{{url}}">{{title}}</a>',
-    readonly: true,
     enabled: true,
   },
   {
@@ -41,7 +37,6 @@ export const DEFAULT_LINK_FORMATS: FormatItem[] = [
     name: "Rich Text",
     format: "[{{title}}]({{url}})",
     docFormat: "markdown",
-    readonly: true,
     enabled: true,
   },
 ];

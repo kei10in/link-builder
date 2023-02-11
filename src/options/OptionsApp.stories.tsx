@@ -19,7 +19,6 @@ const format: ComponentProps<typeof OptionsApp> = {
       id: "markdown",
       name: "Markdown",
       format: "[{{title}}]({{url}})",
-      readonly: true,
       enabled: true,
     },
     {
@@ -27,7 +26,6 @@ const format: ComponentProps<typeof OptionsApp> = {
       id: "textile",
       name: "Textile",
       format: '"{{title}}":{{url}}',
-      readonly: true,
       enabled: true,
     },
     {
@@ -35,7 +33,6 @@ const format: ComponentProps<typeof OptionsApp> = {
       id: "restructured-text",
       name: "reStructuredText",
       format: "`{{title}} <{{url}}>`_",
-      readonly: true,
       enabled: false,
     },
     {
@@ -43,7 +40,6 @@ const format: ComponentProps<typeof OptionsApp> = {
       id: "html",
       name: "HTML",
       format: '<a href="{{url}}">{{title}}</a>',
-      readonly: true,
       enabled: true,
     },
     {
@@ -52,7 +48,6 @@ const format: ComponentProps<typeof OptionsApp> = {
       name: "Rich Text",
       format: "[{{title}}]({{url}})",
       docFormat: "markdown",
-      readonly: true,
       enabled: true,
     },
   ],

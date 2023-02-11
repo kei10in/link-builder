@@ -2,13 +2,12 @@ import clsx from "clsx";
 import { MdDelete, MdEdit, MdMoreHoriz } from "react-icons/md";
 
 interface Props {
-  readonly: boolean;
   onEdit?: () => void;
   onDelete?: () => void;
 }
 
 export const TextFormatMenus: React.FC<Props> = (props: Props) => {
-  const { readonly, onEdit, onDelete } = props;
+  const { onEdit, onDelete } = props;
 
   const handleClickEdit = () => onEdit?.();
   const handleClickDelete = () => onDelete?.();
@@ -25,14 +24,12 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
         <li
           className={clsx(
             "hover:bg-slate-100 active:bg-blue-200",
-            "text-slate-800 disabled:text-slate-300",
-            readonly && "disabled"
+            "text-slate-800 disabled:text-slate-300"
           )}
         >
           <button
             className="group w-full p-4 flex items-center gap-2"
             onClick={handleClickEdit}
-            disabled={readonly}
           >
             <MdEdit className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
             <div>Edit</div>
@@ -41,14 +38,12 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
         <li
           className={clsx(
             "hover:bg-slate-100 active:bg-blue-200",
-            "text-slate-800 disabled:text-slate-300",
-            readonly && "disabled"
+            "text-slate-800 disabled:text-slate-300"
           )}
         >
           <button
             className="group w-full p-4 flex items-center gap-2"
             onClick={handleClickDelete}
-            disabled={readonly}
           >
             <MdDelete className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
             <div>Delete</div>

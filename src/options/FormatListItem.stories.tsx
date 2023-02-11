@@ -18,7 +18,6 @@ const format: ComponentProps<typeof FormatListItem> = {
   name: "Markdown",
   format: "[{{title}}]({{url}})",
   enabled: true,
-  readonly: true,
 };
 
 const styledFormat: ComponentProps<typeof FormatListItem> = {
@@ -27,7 +26,6 @@ const styledFormat: ComponentProps<typeof FormatListItem> = {
   name: "Markdown",
   format: "[{{title}}]({{url}})",
   enabled: true,
-  readonly: true,
 };
 
 export const Default = Template.bind({});
@@ -35,9 +33,6 @@ Default.args = { ...format };
 
 export const StyledFormat = Template.bind({});
 StyledFormat.args = { ...styledFormat };
-
-export const UserDefined = Template.bind({});
-UserDefined.args = { ...format, readonly: true };
 
 export const Disabled = Template.bind({});
 Disabled.args = { ...format, enabled: false };

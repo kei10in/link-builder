@@ -62,7 +62,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
     update: { name?: string; format?: string }
   ) => {
     const newFormats = formats.map((v) => {
-      if (v.readonly || v.id != id) {
+      if (v.id != id) {
         return v;
       }
       return { ...v, ...update };
@@ -71,7 +71,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   const handleDelete = (id: string) => {
-    const newFormats = formats.filter((x) => x.readonly || x.id != id);
+    const newFormats = formats.filter((x) => x.id != id);
     onChangeFormats?.(newFormats);
   };
 

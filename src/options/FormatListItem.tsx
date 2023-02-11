@@ -11,7 +11,6 @@ interface Props {
   name: string;
   format: string;
   enabled: boolean;
-  readonly: boolean;
   dragging?: boolean;
   onChangeEnabled?: (id: string, enabled: boolean) => void;
   onSave?: (id: string, update: { name?: string; format?: string }) => void;
@@ -25,7 +24,6 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
     name,
     format,
     enabled,
-    readonly,
     dragging = false,
     onChangeEnabled,
     onSave,
@@ -80,18 +78,10 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              {readonly && (
-                <div className={clsx("badge badge-primary badge-outline")}>
-                  Predefined
-                </div>
-              )}
-              <TextFormatMenus
-                readonly={readonly}
-                onEdit={handleClickEdit}
-                onDelete={handleClickDelete}
-              />
-            </div>
+            <TextFormatMenus
+              onEdit={handleClickEdit}
+              onDelete={handleClickDelete}
+            />
           </div>
           <div className="flex-none px-4">
             <div className="cursor-grab" draggable>

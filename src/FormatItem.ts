@@ -7,7 +7,6 @@ export interface TextFormatItem {
   id: string;
   name: string;
   format: string;
-  readonly: boolean;
   enabled: boolean;
 }
 
@@ -23,7 +22,6 @@ export interface StyledTextFormatItem {
   name: string;
   format: string;
   docFormat: DocumentFormat;
-  readonly: boolean;
   enabled: boolean;
 }
 
@@ -35,7 +33,6 @@ export const newTextFormatItem = (args: {
     type: "text",
     id: nanoid(),
     ...args,
-    readonly: false,
     enabled: true,
   };
 };
@@ -49,7 +46,6 @@ export const newStyledTextFormatItem = (args: {
     id: nanoid(),
     ...args,
     docFormat: "markdown",
-    readonly: false,
     enabled: true,
   };
 };
