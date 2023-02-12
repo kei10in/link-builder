@@ -15,6 +15,7 @@
     "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "package": "web-ext build --source-dir ./dist --overwrite-dest",
     "test": "ava"
   },
   "dependencies": {
