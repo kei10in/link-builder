@@ -40,17 +40,11 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
   const handleClickDelete = () => onDelete?.(id);
 
   const handleCancel = () => setIsOpen(false);
-  const handleSave = (name: string, format: string) =>
-    onSave?.(id, { name, format });
+  const handleSave = (name: string, format: string) => onSave?.(id, { name, format });
 
   return (
     <>
-      <div
-        className={clsx(
-          "rounded-xl bg-white hover:bg-slate-100",
-          dragging && "invisible"
-        )}
-      >
+      <div className={clsx("rounded-xl bg-white hover:bg-slate-100", dragging && "invisible")}>
         <div className="flex items-center justify-between text-slate-800">
           <div className="group flex items-center justify-between flex-1">
             <div
@@ -68,9 +62,7 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
               <div>
                 <div className="flex items-center gap-2">
                   <div className="text-xl text-slate-700">{name}</div>
-                  {type === "html" && (
-                    <div className="badge badge-primary badge-sm">Styled</div>
-                  )}
+                  {type === "html" && <div className="badge badge-primary badge-sm">Styled</div>}
                 </div>
                 <div className="mt-1 flex items-center gap-1">
                   <pre className="font-mono text-slate-400">{format}</pre>
@@ -78,10 +70,7 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
               </div>
             </div>
 
-            <TextFormatMenus
-              onEdit={handleClickEdit}
-              onDelete={handleClickDelete}
-            />
+            <TextFormatMenus onEdit={handleClickEdit} onDelete={handleClickDelete} />
           </div>
           <div className="flex-none px-4">
             <div className="cursor-grab" draggable>

@@ -34,14 +34,12 @@ test("renderFormat should render url_pathname", (t) => {
   t.is(result, "/path");
 });
 
-const renderUrlFilenameLastMacro = test.macro(
-  (t, url: string, expected: string) => {
-    const item = makeFormat("{{url_filename}}");
-    const data = { title: "title", url };
-    const result = renderFormat(item, data);
-    t.is(result, expected);
-  }
-);
+const renderUrlFilenameLastMacro = test.macro((t, url: string, expected: string) => {
+  const item = makeFormat("{{url_filename}}");
+  const data = { title: "title", url };
+  const result = renderFormat(item, data);
+  t.is(result, expected);
+});
 
 test(
   "renderFormat should render url_filename as empty",

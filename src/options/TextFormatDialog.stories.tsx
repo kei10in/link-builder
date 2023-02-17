@@ -8,9 +8,7 @@ export default {
   component: TextFormatDialog,
 } as ComponentMeta<typeof TextFormatDialog>;
 
-const Template: ComponentStory<typeof TextFormatDialog> = (args) => (
-  <TextFormatDialog {...args} />
-);
+const Template: ComponentStory<typeof TextFormatDialog> = (args) => <TextFormatDialog {...args} />;
 
 const format: ComponentProps<typeof TextFormatDialog> = {
   title: "New Text Format",

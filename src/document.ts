@@ -14,11 +14,7 @@ export const textToHtml = (text: string, docFormat: DocumentFormat): string => {
 };
 
 export const markdownToHtml = (text: string): string => {
-  const r = remark()
-    .use(remarkRehype)
-    .use(rehypeSanitize)
-    .use(rehypeStringify)
-    .processSync(text);
+  const r = remark().use(remarkRehype).use(rehypeSanitize).use(rehypeStringify).processSync(text);
   return String(r);
 };
 

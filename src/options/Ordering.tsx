@@ -10,8 +10,7 @@ interface Props {
 }
 
 export const Ordering: React.FC<Props> = (props: Props) => {
-  const { id, onMoveStart, onMoving, onMoveEnd, onChangeOrder, children } =
-    props;
+  const { id, onMoveStart, onMoving, onMoveEnd, onChangeOrder, children } = props;
 
   const [isDragging, setIsDragging] = useState<boolean>(false);
 

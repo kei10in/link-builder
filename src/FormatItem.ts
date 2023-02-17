@@ -26,10 +26,7 @@ export interface StyledTextFormatItem {
   enabled: boolean;
 }
 
-export const newTextFormatItem = (args: {
-  name: string;
-  format: string;
-}): TextFormatItem => {
+export const newTextFormatItem = (args: { name: string; format: string }): TextFormatItem => {
   return {
     type: "text",
     id: nanoid(),
@@ -51,10 +48,7 @@ export const newStyledTextFormatItem = (args: {
   };
 };
 
-export const renderFormat = (
-  item: FormatItem,
-  data: { title: string; url: string }
-): string => {
+export const renderFormat = (item: FormatItem, data: { title: string; url: string }): string => {
   const url = new URL(data.url);
   const paths = url.pathname.split("/").reverse();
   const url_filename = paths[0] !== "" ? paths[0] : paths[1];

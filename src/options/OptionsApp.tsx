@@ -1,10 +1,6 @@
 import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
-import {
-  FormatItem,
-  newStyledTextFormatItem,
-  newTextFormatItem,
-} from "../FormatItem.js";
+import { FormatItem, newStyledTextFormatItem, newTextFormatItem } from "../FormatItem.js";
 import { FormatListItem } from "./FormatListItem.js";
 import { Ordering } from "./Ordering.js";
 import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
@@ -65,10 +61,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
     onChangeFormats?.(newFormats);
   };
 
-  const handleSave = (
-    id: string,
-    update: { name?: string; format?: string }
-  ) => {
+  const handleSave = (id: string, update: { name?: string; format?: string }) => {
     const newFormats = formats.map((v) => {
       if (v.id != id) {
         return v;
@@ -84,9 +77,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   const [movingId, setMovingId] = useState<string>();
-  const [movingFormats, setMovingFormats] = useState<
-    FormatItem[] | undefined
-  >();
+  const [movingFormats, setMovingFormats] = useState<FormatItem[] | undefined>();
 
   const handleMoveStart = (id: string) => setMovingId(id);
 
@@ -120,10 +111,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
         <div>
           <h1 className="text-5xl">Link Builder</h1>
           <div className="mt-2">
-            <a
-              href="https://github.com/kei10in/link-builder"
-              className="block w-8 h-8"
-            >
+            <a href="https://github.com/kei10in/link-builder" className="block w-8 h-8">
               <Invertocat width={24} height={24} viewBox="0 0 96 96" />
             </a>
           </div>

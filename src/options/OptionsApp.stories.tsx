@@ -8,9 +8,7 @@ export default {
   component: OptionsApp,
 } as ComponentMeta<typeof OptionsApp>;
 
-const Template: ComponentStory<typeof OptionsApp> = (args) => (
-  <OptionsApp {...args} />
-);
+const Template: ComponentStory<typeof OptionsApp> = (args) => <OptionsApp {...args} />;
 
 const format: ComponentProps<typeof OptionsApp> = {
   formats: [

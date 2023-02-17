@@ -16,7 +16,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "package": "web-ext build --source-dir ./dist --overwrite-dest",
-    "test": "ava"
+    "test": "ava",
+    "format": "prettier --write ./src"
   },
   "dependencies": {
     "clsx": "^1.2.1",

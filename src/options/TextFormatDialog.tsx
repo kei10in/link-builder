@@ -22,8 +22,7 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
   const [innerName, setInnerName] = useState<string>(name);
   const [innerFormat, setInnerFormat] = useState<string>(format);
 
-  const canSave =
-    innerName.trim().length != 0 && innerFormat.trim().length != 0;
+  const canSave = innerName.trim().length != 0 && innerFormat.trim().length != 0;
 
   const handleClickOverlay: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.currentTarget === e.target) {
@@ -49,19 +48,13 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
     setInnerName(event.currentTarget.value);
   };
 
-  const handleChangeFormat: ChangeEventHandler<HTMLTextAreaElement> = (
-    event
-  ) => {
+  const handleChangeFormat: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
     setInnerFormat(event.currentTarget.value);
   };
 
   return (
     <div className={"modal modal-open"} onClick={handleClickOverlay}>
-      <div
-        className="modal-box max-w-3xl"
-        onKeyDown={handleKeyDown}
-        tabIndex={-1}
-      >
+      <div className="modal-box max-w-3xl" onKeyDown={handleKeyDown} tabIndex={-1}>
         <form onSubmit={handleSubmit}>
           <div className="w-full flex items-stretch gap-8">
             <div className="basis-3/5">
@@ -69,8 +62,7 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
               <div className="w-full">
                 <div>
                   <p className="mb-8">
-                    Text Format allows you to create plain text and copy to the
-                    clipboard.
+                    Text Format allows you to create plain text and copy to the clipboard.
                   </p>
                   <label htmlFor="name" className="label">
                     Name:

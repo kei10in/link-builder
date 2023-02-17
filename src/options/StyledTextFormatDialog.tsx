@@ -22,8 +22,7 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
   const [innerName, setInnerName] = useState<string>(name);
   const [innerFormat, setInnerFormat] = useState<string>(format);
 
-  const canSave =
-    innerName.trim().length != 0 && innerFormat.trim().length != 0;
+  const canSave = innerName.trim().length != 0 && innerFormat.trim().length != 0;
 
   const handleClickOverlay: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.currentTarget === e.target) {
@@ -49,19 +48,13 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
     setInnerName(event.currentTarget.value);
   };
 
-  const handleChangeFormat: ChangeEventHandler<HTMLTextAreaElement> = (
-    event
-  ) => {
+  const handleChangeFormat: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
     setInnerFormat(event.currentTarget.value);
   };
 
   return (
     <div className={"modal modal-open"} onClick={handleClickOverlay}>
-      <div
-        className="modal-box max-w-3xl"
-        onKeyDown={handleKeyDown}
-        tabIndex={-1}
-      >
+      <div className="modal-box max-w-3xl" onKeyDown={handleKeyDown} tabIndex={-1}>
         <form onSubmit={handleSubmit}>
           <div className="w-full flex items-stretch gap-8">
             <div className="basis-3/5">
@@ -69,9 +62,8 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
               <div className="w-full">
                 <div>
                   <p className="mb-8">
-                    Styled Text Format allows you to create decorated text such
-                    as bold and italic as well as link text and copy that text
-                    to the clipboard.
+                    Styled Text Format allows you to create decorated text such as bold and italic
+                    as well as link text and copy that text to the clipboard.
                   </p>
                   <label htmlFor="name" className="label">
                     Name:
@@ -96,9 +88,7 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
                     defaultValue={format}
                     onChange={handleChangeFormat}
                   />
-                  <p className="text-sm text-zinc-400 px-1">
-                    Styling with Markdown
-                  </p>
+                  <p className="text-sm text-zinc-400 px-1">Styling with Markdown</p>
                 </div>
                 <div className="modal-action">
                   <button className="btn" onClick={onCancel}>

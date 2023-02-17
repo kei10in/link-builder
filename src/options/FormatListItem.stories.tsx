@@ -8,9 +8,7 @@ export default {
   component: FormatListItem,
 } as ComponentMeta<typeof FormatListItem>;
 
-const Template: ComponentStory<typeof FormatListItem> = (args) => (
-  <FormatListItem {...args} />
-);
+const Template: ComponentStory<typeof FormatListItem> = (args) => <FormatListItem {...args} />;
 
 const format: ComponentProps<typeof FormatListItem> = {
   id: "key-1",

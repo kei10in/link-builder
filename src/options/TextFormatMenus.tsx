@@ -31,10 +31,7 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
             "text-slate-800 disabled:text-slate-300"
           )}
         >
-          <button
-            className="group w-full p-4 flex items-center gap-2"
-            onClick={handleClickEdit}
-          >
+          <button className="group w-full p-4 flex items-center gap-2" onClick={handleClickEdit}>
             <MdEdit className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
             <div>Edit</div>
           </button>
@@ -45,10 +42,7 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
             "text-slate-800 disabled:text-slate-300"
           )}
         >
-          <button
-            className="group w-full p-4 flex items-center gap-2"
-            onClick={handleClickDelete}
-          >
+          <button className="group w-full p-4 flex items-center gap-2" onClick={handleClickDelete}>
             <MdDelete className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
             <div>Delete</div>
           </button>

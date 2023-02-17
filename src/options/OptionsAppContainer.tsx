@@ -25,10 +25,6 @@ export const OptionsAppContainer: React.FC = () => {
   };
 
   return (
-    <OptionsApp
-      formats={formats}
-      restore={handleRestore}
-      onChangeFormats={handleChangeFormat}
-    />
+    <OptionsApp formats={formats} restore={handleRestore} onChangeFormats={handleChangeFormat} />
   );
 };

@@ -7,11 +7,7 @@ export interface CopyTextMessage {
 }
 
 export const isCopyTextMessage = (value: unknown): value is CopyTextMessage => {
-  return (
-    isObject(value) &&
-    value.type === "copyText" &&
-    typeof value.text === "string"
-  );
+  return isObject(value) && value.type === "copyText" && typeof value.text === "string";
 };
 
 export interface CopyHyperTextMessage {
@@ -20,9 +16,7 @@ export interface CopyHyperTextMessage {
   docFormat: DocumentFormat;
 }
 
-export const isCopyHyperTextMessage = (
-  value: unknown
-): value is CopyHyperTextMessage => {
+export const isCopyHyperTextMessage = (value: unknown): value is CopyHyperTextMessage => {
   return (
     isObject(value) &&
     value.type === "copyHtml" &&
