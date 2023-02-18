@@ -8,7 +8,11 @@ export default {
   component: FormatListItem,
 } as ComponentMeta<typeof FormatListItem>;
 
-const Template: ComponentStory<typeof FormatListItem> = (args) => <FormatListItem {...args} />;
+const Template: ComponentStory<typeof FormatListItem> = (args) => (
+  <div className="max-w-xl">
+    <FormatListItem {...args} />
+  </div>
+);
 
 const format: ComponentProps<typeof FormatListItem> = {
   id: "key-1",
