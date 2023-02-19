@@ -3,7 +3,7 @@ import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
 import { TextFormatDialog } from "./TextFormatDialog.js";
 import { clsx } from "clsx";
 import { useState } from "react";
-import { MdBookmark, MdBookmarkBorder, MdDragHandle } from "react-icons/md";
+import { MdBookmark, MdBookmarkBorder, MdDragIndicator } from "react-icons/md";
 
 interface Props {
   id: string;
@@ -44,28 +44,35 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <div className={clsx("rounded-xl bg-white hover:bg-slate-100", dragging && "invisible")}>
+      <div
+        className={clsx(
+          "rounded-md bg-white hover:bg-gray-50 hover:shadow-md",
+          dragging && "invisible"
+        )}
+      >
         <div className="flex items-center justify-between text-slate-800">
           <div className="group flex items-center justify-between flex-1">
             <div
-              className="flex items-start px-6 py-4 aria-disabled:opacity-50 gap-4"
+              className="flex items-start px-2 py-2 aria-disabled:opacity-50 gap-2"
               aria-disabled={!enabled}
             >
-              <button onClick={handleClickCheck} className="flex-none my-1">
+              <button onClick={handleClickCheck} className="flex-none my-2">
                 {enabled ? (
-                  <MdBookmark className="h-6 w-6" />
+                  <MdBookmark className="h-4 w-4" />
                 ) : (
-                  <MdBookmarkBorder className="h-6 w-6" />
+                  <MdBookmarkBorder className="h-4 w-4" />
                 )}
               </button>
 
               <div>
                 <div className="flex items-center gap-2">
-                  <div className="text-xl text-slate-700">{name}</div>
-                  {type === "html" && <div className="badge badge-primary badge-sm">Styled</div>}
+                  <div className="text-lg text-slate-700">{name}</div>
+                  {type === "html" && (
+                    <div className="text-xs rounded-full bg-blue-500 text-white px-2">Styled</div>
+                  )}
                 </div>
-                <div className="mt-1 flex items-center gap-1">
-                  <pre className="font-mono text-slate-400">{format}</pre>
+                <div className="flex items-center gap-1">
+                  <pre className="text-sm font-mono text-slate-400">{format}</pre>
                 </div>
               </div>
             </div>
@@ -74,7 +81,7 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
           </div>
           <div className="flex-none px-4">
             <div className="cursor-grab" draggable>
-              <MdDragHandle className="h-8 w-8" />
+              <MdDragIndicator className="h-5 w-5 text-gray-500" />
             </div>
           </div>
         </div>
