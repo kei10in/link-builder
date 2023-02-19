@@ -14,7 +14,7 @@ interface Props {
   onDelete?: () => void;
 }
 
-export const TextFormatMenus: React.FC<Props> = (props: Props) => {
+export const FormatListItemMenus: React.FC<Props> = (props: Props) => {
   const { onEdit, onDelete } = props;
 
   const [open, setOpen] = useState(false);

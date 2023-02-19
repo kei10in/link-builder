@@ -1,6 +1,6 @@
+import { FormatListItemMenus } from "./FormatListItemMenus.js";
 import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
 import { TextFormatDialog } from "./TextFormatDialog.js";
-import { TextFormatMenus } from "./TextFormatMenus.js";
 import { clsx } from "clsx";
 import { useState } from "react";
 import { MdBookmark, MdBookmarkBorder, MdDragHandle } from "react-icons/md";
@@ -70,7 +70,7 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
               </div>
             </div>
 
-            <TextFormatMenus onEdit={handleClickEdit} onDelete={handleClickDelete} />
+            <FormatListItemMenus onEdit={handleClickEdit} onDelete={handleClickDelete} />
           </div>
           <div className="flex-none px-4">
             <div className="cursor-grab" draggable>
