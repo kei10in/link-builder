@@ -67,7 +67,9 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
               <div>
                 <div className="flex items-center gap-2">
                   <div className="text-lg text-slate-700">{name}</div>
-                  {type === "html" && <div className="badge badge-primary badge-sm">Styled</div>}
+                  {type === "html" && (
+                    <div className="text-xs rounded-full bg-blue-500 text-white px-2">Styled</div>
+                  )}
                 </div>
                 <div className="flex items-center gap-1">
                   <pre className="text-sm font-mono text-slate-400">{format}</pre>
