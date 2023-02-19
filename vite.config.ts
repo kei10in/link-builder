@@ -38,6 +38,7 @@ export default defineConfig({
 
         background: {
           scripts: ["src/background.ts"],
+          persistent: false,
         },
 
         content_scripts: [
