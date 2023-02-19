@@ -85,6 +85,7 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
           title={"Edit Text Format"}
           name={name}
           format={format}
+          isOpen={true}
           onCancel={handleCancel}
           onSave={handleSave}
         />
@@ -95,6 +96,7 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
           title={"Edit Styled Text Format"}
           name={name}
           format={format}
+          isOpen={true}
           onCancel={handleCancel}
           onSave={handleSave}
         />

@@ -181,6 +181,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           title={"New Text Format"}
           name=""
           format=""
+          isOpen={true}
           onCancel={handleCancelNewFormat}
           onSave={handleSaveNewTextFormat}
         />
@@ -191,6 +192,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           title={"New Hyper Text Format"}
           name=""
           format=""
+          isOpen={true}
           onCancel={handleCancelNewFormat}
           onSave={handleSaveNewHyperTextFormat}
         />
