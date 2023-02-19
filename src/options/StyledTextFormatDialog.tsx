@@ -81,17 +81,10 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
               </div>
 
               <div className="mt-6 flex gap-2 justify-end">
-                <button
-                  className="flex items-center bg-gray-100 text-gray-800 rounded-md border border-gray-300 px-4 py-1.5 hover:opacity-80 transition-transform active:scale-95"
-                  onClick={onCancel}
-                >
+                <button className="btn" onClick={onCancel}>
                   Cancel
                 </button>
-                <button
-                  className="flex items-center bg-green-600 text-white rounded-md border border-green-700 px-4 py-1.5 hover:opacity-80 transition-transform active:scale-95 disabled:opacity-50"
-                  type="submit"
-                  disabled={!canSave}
-                >
+                <button className="btn-primary" type="submit" disabled={!canSave}>
                   Save
                 </button>
               </div>

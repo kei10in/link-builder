@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply flex items-center;
+    @apply bg-gray-100 text-gray-800 hover:opacity-80 disabled:opacity-50;
+    @apply rounded-md border border-gray-300;
+    @apply px-4 py-1.5 transition-transform active:scale-95;
+  }
+
+  .btn-primary {
+    @apply flex items-center;
+    @apply bg-green-600 text-white hover:opacity-80 disabled:opacity-50;
+    @apply rounded-md border border-green-700;
+    @apply px-4 py-1.5 transition-transform active:scale-95;
+  }
+}

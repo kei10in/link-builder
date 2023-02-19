@@ -34,11 +34,7 @@ export const FormatListItemMenus: React.FC<Props> = (props: Props) => {
 
   return (
     <div>
-      <button
-        ref={refs.setReference}
-        {...getReferenceProps()}
-        className="flex items-center bg-gray-100 text-gray-800 rounded-md border border-gray-300 px-2 py-1 active:scale-95 transition-all"
-      >
+      <button ref={refs.setReference} {...getReferenceProps()} className="btn px-2 py-1">
         <MdMoreHoriz className="h-5 w-5" />
       </button>
 

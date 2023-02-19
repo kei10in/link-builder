@@ -31,11 +31,7 @@ export const AddFormatButton: React.FC<Props> = (props: Props) => {
 
   return (
     <div>
-      <button
-        ref={refs.setReference}
-        {...getReferenceProps()}
-        className="flex items-center bg-black text-white rounded-md px-2 py-1.5 hover:opacity-80 transition-transform active:scale-95"
-      >
+      <button ref={refs.setReference} {...getReferenceProps()} className="btn-primary px-2">
         <MdAdd className="h-6 w-6" />
         <div className="px-1">Add</div>
       </button>
