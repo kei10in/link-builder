@@ -1,12 +1,12 @@
 import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
 import { FormatItem, newStyledTextFormatItem, newTextFormatItem } from "../FormatItem.js";
+import { AddFormatButton } from "./AddFormatButton.js";
 import { FormatListItem } from "./FormatListItem.js";
 import { Ordering } from "./Ordering.js";
 import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
 import { TextFormatDialog } from "./TextFormatDialog.js";
 import { useState } from "react";
-import { MdAdd } from "react-icons/md";
 
 interface Props {
   formats: FormatItem[];
@@ -125,23 +125,10 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
         <h2 className="text-3xl text-slate-800">Formats</h2>
 
         <div className="w-full flex justify-end">
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn gap-2 normal-case">
-              <MdAdd className="h-6 w-6" />
-              Add New Format
-            </label>
-            <ul
-              tabIndex={0}
-              className="mt-2 dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a onClick={handleClickNewTextFormat}>Text</a>
-              </li>
-              <li>
-                <a onClick={handleClickNewHyperTextFormat}>Hyper Text</a>
-              </li>
-            </ul>
-          </div>
+          <AddFormatButton
+            onClickNewTextFormat={handleClickNewTextFormat}
+            onClickNewHyperTextFormat={handleClickNewHyperTextFormat}
+          />
         </div>
 
         <div className="mt-4">
