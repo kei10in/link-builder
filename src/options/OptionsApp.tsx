@@ -135,11 +135,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
           {currentFormats.length === 0 && (
             <div className="w-full py-4 rounded-md border border-gray-300">
               <div className="mx-auto w-fit">
-                <button
-                  className="my-12 flex items-center bg-gray-100 text-gray-800 rounded-md border border-gray-300 px-4 py-1.5 hover:opacity-80 transition-transform active:scale-95"
-                  onClick={handleClickRestore}
-                  disabled={isRestoring}
-                >
+                <button className="btn my-12" onClick={handleClickRestore} disabled={isRestoring}>
                   Restore
                 </button>
               </div>
