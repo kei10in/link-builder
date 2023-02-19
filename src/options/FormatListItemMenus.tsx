@@ -1,3 +1,4 @@
+import { ActionMenu } from "./ActionMenu.js";
 import {
   FloatingPortal,
   useClick,
@@ -5,8 +6,7 @@ import {
   useFloating,
   useInteractions,
 } from "@floating-ui/react";
-import { clsx } from "clsx";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { MdDelete, MdEdit, MdMoreHoriz } from "react-icons/md";
 
 interface Props {
@@ -37,14 +37,14 @@ export const FormatListItemMenus: React.FC<Props> = (props: Props) => {
       <button
         ref={refs.setReference}
         {...getReferenceProps()}
-        className="hover:bg-slate-300 rounded-full p-2 active:scale-95 transition-all"
+        className="flex items-center bg-gray-100 text-gray-800 rounded-md border border-gray-300 px-2 py-1 active:scale-95 transition-all"
       >
-        <MdMoreHoriz className="h-8 w-8" />
+        <MdMoreHoriz className="h-5 w-5" />
       </button>
 
       <FloatingPortal>
         {open && (
-          <ul
+          <div
             ref={refs.setFloating}
             {...getFloatingProps}
             style={{
@@ -53,32 +53,28 @@ export const FormatListItemMenus: React.FC<Props> = (props: Props) => {
               left: x ?? 0,
               width: "max-content",
             }}
-            className={clsx("bg-white shadow-lg w-48")}
           >
-            <li className={clsx("hover:bg-slate-100 active:bg-blue-200")}>
-              <button
-                className="group w-full p-4 flex items-center gap-2 disabled:opacity-25"
-                onClick={handleClickEdit}
-              >
-                <MdEdit className="h-6 w-6 text-slate-500" />
-                <div className="text-slate-800">Edit</div>
-              </button>
-            </li>
-            <li
-              className={clsx(
-                "hover:bg-slate-100 active:bg-blue-200",
-                "text-slate-800 disabled:text-slate-300"
-              )}
-            >
-              <button
-                className="group w-full p-4 flex items-center gap-2 disabled:opacity-25"
-                onClick={handleClickDelete}
-              >
-                <MdDelete className="h-6 w-6 text-slate-500" />
-                <div className="text-slate-800">Delete</div>
-              </button>
-            </li>
-          </ul>
+            <ActionMenu
+              items={[
+                {
+                  content: (
+                    <Fragment>
+                      <MdEdit className="h-5 w-5" /> <div className="px-2">Edit</div>
+                    </Fragment>
+                  ),
+                  onClick: handleClickEdit,
+                },
+                {
+                  content: (
+                    <Fragment>
+                      <MdDelete className="h-5 w-5" /> <div className="px-2">Delete</div>
+                    </Fragment>
+                  ),
+                  onClick: handleClickDelete,
+                },
+              ]}
+            />
+          </div>
         )}
       </FloatingPortal>
     </div>

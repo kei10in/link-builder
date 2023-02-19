@@ -14,7 +14,7 @@ export const ActionMenu: React.FC<Props> = (props: Props) => {
       {items.map((item, index) => (
         <li key={index}>
           <button
-            className="text-left w-full cursor-pointer px-4 py-1.5 hover:bg-blue-500 hover:text-white"
+            className="text-left w-full cursor-pointer px-4 py-1.5 hover:bg-blue-500 hover:text-white flex items-center"
             onClick={item.onClick}
           >
             {item.content}
