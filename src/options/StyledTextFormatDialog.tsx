@@ -79,7 +79,8 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
                 />
                 <p className="text-sm text-zinc-400 px-1">Styling with Markdown</p>
               </div>
-              <div className="modal-action">
+
+              <div className="mt-6 flex gap-2 justify-end">
                 <button
                   className="flex items-center bg-gray-100 text-gray-800 rounded-md border border-gray-300 px-4 py-1.5 hover:opacity-80 transition-transform active:scale-95"
                   onClick={onCancel}
