@@ -1,3 +1,4 @@
+import { ActionMenu } from "./ActionMenu.js";
 import {
   FloatingPortal,
   useClick,
@@ -41,7 +42,7 @@ export const AddFormatButton: React.FC<Props> = (props: Props) => {
 
       <FloatingPortal>
         {open && (
-          <ul
+          <div
             ref={refs.setFloating}
             {...getFloatingProps}
             style={{
@@ -50,25 +51,14 @@ export const AddFormatButton: React.FC<Props> = (props: Props) => {
               left: x ?? 0,
               width: "max-content",
             }}
-            className="mt-2 shadow bg-base-100 rounded-md py-1.5 w-52 border border-gray-300"
           >
-            <li>
-              <button
-                className="text-left w-full cursor-pointer px-4 py-1.5 hover:bg-blue-500 hover:text-white"
-                onClick={onClickNewTextFormat}
-              >
-                Text
-              </button>
-            </li>
-            <li>
-              <button
-                className="text-left w-full cursor-pointer px-4 py-1.5 hover:bg-blue-500 hover:text-white"
-                onClick={onClickNewHyperTextFormat}
-              >
-                Styled Text
-              </button>
-            </li>
-          </ul>
+            <ActionMenu
+              items={[
+                { content: "Text", onClick: onClickNewTextFormat },
+                { content: "Styled Text", onClick: onClickNewHyperTextFormat },
+              ]}
+            />
+          </div>
         )}
       </FloatingPortal>
     </div>
