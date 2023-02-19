@@ -2,7 +2,15 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <rect id="art-board" serif:id="art board" x="0" y="0" width="64" height="64" style="fill:none;"/>
-    <g id="art-board1" serif:id="art board">
+    <clipPath id="_clip1">
+        <rect id="art-board1" serif:id="art board" x="0" y="0" width="64" height="64"/>
+    </clipPath>
+    <g clip-path="url(#_clip1)">
+        <g transform="matrix(1.07563,0,0,1.09402,-4.84034,-6.01709)">
+            <g id="icon-base">
+                <path d="M64,20.125C64,12.053 57.335,5.5 49.125,5.5L19.375,5.5C11.165,5.5 4.5,12.053 4.5,20.125L4.5,49.375C4.5,57.447 11.165,64 19.375,64L49.125,64C57.335,64 64,57.447 64,49.375L64,20.125Z" style="fill:rgb(242,242,242);"/>
+            </g>
+        </g>
         <g id="icon">
             <g transform="matrix(2.06422,0,0,5.01048,-16.8761,-81.34)">
                 <path d="M18.647,27.411C17.011,27.403 15.722,27.257 14.78,26.971C13.838,26.685 13.367,26.25 13.367,25.664L13.367,24.049C13.367,23.675 13.087,23.41 12.527,23.252C11.967,23.095 11.162,23.016 10.113,23.016L10.113,22.214C11.162,22.207 11.967,22.126 12.527,21.972C13.087,21.819 13.367,21.559 13.367,21.192L13.367,19.566C13.367,18.981 13.856,18.545 14.833,18.259C15.811,17.973 17.082,17.831 18.647,17.831L18.647,18.622C17.722,18.629 16.998,18.713 16.473,18.874C15.949,19.035 15.687,19.295 15.687,19.654L15.687,21.236C15.687,21.991 14.718,22.437 12.78,22.577L12.78,22.643C14.718,22.782 15.687,23.228 15.687,23.983L15.687,25.598C15.687,25.957 15.944,26.215 16.46,26.372C16.976,26.53 17.704,26.612 18.647,26.62L18.647,27.411Z" style="fill:rgb(48,48,48);fill-rule:nonzero;"/>
