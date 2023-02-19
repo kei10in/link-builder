@@ -60,7 +60,6 @@
     "autoprefixer": "^10.4.13",
     "ava": "^5.2.0",
     "babel-loader": "^8.3.0",
-    "daisyui": "^2.49.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.32.2",
