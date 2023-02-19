@@ -25,9 +25,7 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
   const { x, y, strategy, refs, context } = useFloating({
     placement: "bottom-end",
     open,
-    onOpenChange: (v) => {
-      setOpen(v);
-    },
+    onOpenChange: setOpen,
   });
 
   const click = useClick(context);
@@ -35,11 +33,11 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
   const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss]);
 
   return (
-    <div className="relative">
+    <div>
       <button
         ref={refs.setReference}
         {...getReferenceProps()}
-        className="peer btn btn-ghost btn-circle"
+        className="hover:bg-slate-300 rounded-full p-2 active:scale-95 transition-all"
       >
         <MdMoreHoriz className="h-8 w-8" />
       </button>
@@ -55,24 +53,15 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
               left: x ?? 0,
               width: "max-content",
             }}
-            className={clsx(
-              "bg-white drop-shadow-lg w-48",
-              "hover:block peer-focus:block focus-within:block",
-              "absolute right-0"
-            )}
+            className={clsx("bg-white shadow-lg w-48")}
           >
-            <li
-              className={clsx(
-                "hover:bg-slate-100 active:bg-blue-200",
-                "text-slate-800 disabled:text-slate-300"
-              )}
-            >
+            <li className={clsx("hover:bg-slate-100 active:bg-blue-200")}>
               <button
-                className="group w-full p-4 flex items-center gap-2"
+                className="group w-full p-4 flex items-center gap-2 disabled:opacity-25"
                 onClick={handleClickEdit}
               >
-                <MdEdit className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
-                <div>Edit</div>
+                <MdEdit className="h-6 w-6 text-slate-500" />
+                <div className="text-slate-800">Edit</div>
               </button>
             </li>
             <li
@@ -82,11 +71,11 @@ export const TextFormatMenus: React.FC<Props> = (props: Props) => {
               )}
             >
               <button
-                className="group w-full p-4 flex items-center gap-2"
+                className="group w-full p-4 flex items-center gap-2 disabled:opacity-25"
                 onClick={handleClickDelete}
               >
-                <MdDelete className="h-6 w-6 text-slate-500 group-disabled:text-slate-300" />
-                <div>Delete</div>
+                <MdDelete className="h-6 w-6 text-slate-500" />
+                <div className="text-slate-800">Delete</div>
               </button>
             </li>
           </ul>
