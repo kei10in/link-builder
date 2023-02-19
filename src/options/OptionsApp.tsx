@@ -103,13 +103,13 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   const currentFormats = movingFormats ?? formats;
 
   return (
-    <div className="h-screen max-w-4xl px-12 py-6 mx-auto">
+    <div className="h-screen max-w-2xl px-12 py-6 mx-auto">
       <div className="flex items-center gap-8 my-8">
         <div>
-          <Logo className="w-32 mx-auto" />
+          <Logo className="w-28 mx-auto" />
         </div>
         <div>
-          <h1 className="text-5xl">Link Builder</h1>
+          <h1 className="text-4xl">Link Builder</h1>
           <div className="mt-2">
             <a href="https://github.com/kei10in/link-builder" className="block w-8 h-8">
               <Invertocat width={24} height={24} viewBox="0 0 96 96" />
@@ -122,7 +122,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
       </div>
 
       <div className="w-full">
-        <h2 className="text-3xl text-slate-800">Formats</h2>
+        <h2 className="text-2xl text-slate-800">Formats</h2>
 
         <div className="w-full flex justify-end">
           <AddFormatButton

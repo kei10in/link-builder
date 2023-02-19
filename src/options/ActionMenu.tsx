@@ -10,7 +10,7 @@ interface Props {
 export const ActionMenu: React.FC<Props> = (props: Props) => {
   const { items } = props;
   return (
-    <ul className="mt-2 shadow bg-white rounded-md py-1.5 w-52 border border-gray-300">
+    <ul className="mt-2 shadow bg-white rounded-md py-1.5 border border-gray-300">
       {items.map((item, index) => (
         <li key={index}>
           <button
