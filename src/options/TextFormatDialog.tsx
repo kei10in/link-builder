@@ -77,7 +77,8 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
                   onChange={handleChangeFormat}
                 />
               </div>
-              <div className="modal-action">
+
+              <div className="mt-6 flex gap-2 justify-end">
                 <button
                   className="flex items-center bg-gray-100 text-gray-800 rounded-md border border-gray-300 px-4 py-1.5 hover:opacity-80 transition-transform active:scale-95"
                   onClick={onCancel}
