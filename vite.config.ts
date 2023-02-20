@@ -1,14 +1,14 @@
-import webExtension from "@samrum/vite-plugin-web-extension";
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
+import webExtension from "vite-plugin-web-extension";
 
 export default defineConfig({
   plugins: [
     react(),
     svgr(),
     webExtension({
-      manifest: {
+      manifest: () => ({
         manifest_version: 3,
         name: "Link Builder",
         description:
@@ -51,15 +51,11 @@ export default defineConfig({
 
         options_ui: {
           page: "src/options.html",
-          chrome_style: false,
-          browser_style: false,
           open_in_tab: true,
         },
 
         permissions: ["activeTab", "clipboardWrite", "contextMenus", "storage"],
-      },
-
-      useDynamicUrlContentScripts: false,
+      }),
     }),
   ],
 });
