@@ -3,11 +3,18 @@ import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import webExtension from "vite-plugin-web-extension";
 
+const targetBrowser = process.env.TARGET_BROWSER;
+
 export default defineConfig({
+  build: {
+    outDir: `./dist/${targetBrowser}`,
+  },
+
   plugins: [
     react(),
     svgr(),
     webExtension({
+      browser: targetBrowser,
       manifest: () => ({
         manifest_version: 3,
         name: "Link Builder",
@@ -15,7 +22,9 @@ export default defineConfig({
           "Make Link alternative to WebExtensions.\nBuild a link and copy to the clipboard in various formats",
         version: "0.1.1",
 
-        developer: {
+        "{{chrome}}.author": "kei10in",
+
+        "{{firefox}}.developer": {
           name: "kei10in",
           url: "https://github.com/kei10in/link-builder",
         },
@@ -30,14 +39,15 @@ export default defineConfig({
           "256": "icon.svg",
         },
 
-        browser_specific_settings: {
+        "{{firefox}}.browser_specific_settings": {
           gecko: {
             id: "{3b7ad711-acd1-428c-8ec5-d682027e0c9d}",
           },
         },
 
         background: {
-          scripts: ["src/background.ts"],
+          "{{firefox}}.scripts": ["src/background.ts"],
+          "{{chrome}}.service_worker": "src/background.ts",
         },
 
         content_scripts: [
