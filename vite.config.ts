@@ -9,7 +9,7 @@ export default defineConfig({
     svgr(),
     webExtension({
       manifest: {
-        manifest_version: 2,
+        manifest_version: 3,
         name: "Link Builder",
         description:
           "Make Link alternative to WebExtensions.\nBuild a link and copy to the clipboard in various formats",
@@ -18,12 +18,6 @@ export default defineConfig({
         developer: {
           name: "kei10in",
           url: "https://github.com/kei10in/link-builder",
-        },
-
-        browser_specific_settings: {
-          gecko: {
-            id: "{3b7ad711-acd1-428c-8ec5-d682027e0c9d}",
-          },
         },
 
         icons: {
@@ -36,9 +30,14 @@ export default defineConfig({
           "256": "icon.svg",
         },
 
+        browser_specific_settings: {
+          gecko: {
+            id: "{3b7ad711-acd1-428c-8ec5-d682027e0c9d}",
+          },
+        },
+
         background: {
           scripts: ["src/background.ts"],
-          persistent: false,
         },
 
         content_scripts: [
@@ -59,6 +58,8 @@ export default defineConfig({
 
         permissions: ["activeTab", "clipboardWrite", "contextMenus", "storage"],
       },
+
+      useDynamicUrlContentScripts: false,
     }),
   ],
 });
