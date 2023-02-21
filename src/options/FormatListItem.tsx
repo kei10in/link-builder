@@ -40,7 +40,10 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
   const handleClickDelete = () => onDelete?.(id);
 
   const handleCancel = () => setIsOpen(false);
-  const handleSave = (name: string, format: string) => onSave?.(id, { name, format });
+  const handleSave = (name: string, format: string) => {
+    onSave?.(id, { name, format });
+    setIsOpen(false);
+  };
 
   return (
     <>
