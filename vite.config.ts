@@ -59,6 +59,10 @@ export default defineConfig({
           },
         ],
 
+        content_security_policy: {
+          extension_pages: "default-src 'self'",
+        },
+
         options_ui: {
           page: "src/options.html",
           open_in_tab: true,
