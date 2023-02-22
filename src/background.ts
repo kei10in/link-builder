@@ -70,14 +70,16 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
     typeof info.menuItemId === "string" &&
     info.menuItemId.startsWith("link-builder--item--")
   ) {
+    if (tab == undefined || tab.id == undefined || tab.title == undefined || tab.url == undefined) {
+      return;
+    }
+
+    await setupContentsScript({ tabId: tab.id });
+
     const linkFormats = await Format.load();
 
     const linkFormat = linkFormats.find((x) => info.menuItemId === `link-builder--item--${x.id}`);
     if (linkFormat === undefined) {
-      return;
-    }
-
-    if (tab == undefined || tab.id == undefined || tab.title == undefined || tab.url == undefined) {
       return;
     }
 
@@ -90,3 +92,17 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
     await browser.tabs.sendMessage(tab.id, message);
   }
 });
+
+const setupContentsScript = async (target: browser.Scripting.InjectionTarget) => {
+  try {
+    const response = await browser.tabs.sendMessage(target.tabId, { type: "ping" });
+
+    if (response.type === "pong") {
+      return;
+    }
+  } catch (ex) {
+    // Do nothing
+  }
+
+  await browser.scripting.executeScript({ files: ["src/content.js"], target });
+};

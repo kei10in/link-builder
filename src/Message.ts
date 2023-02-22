@@ -52,3 +52,11 @@ export const createMessage = (
       };
   }
 };
+
+export interface HeartbeatMessage {
+  type: "ping";
+}
+
+export const isHeartbeatMessage = (value: unknown): value is HeartbeatMessage => {
+  return isObject(value) && value.type === "ping";
+};

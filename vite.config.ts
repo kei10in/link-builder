@@ -50,15 +50,6 @@ export default defineConfig({
           "{{chrome}}.service_worker": "src/background.ts",
         },
 
-        content_scripts: [
-          {
-            matches: ["http://*/*", "https://*/*"],
-            js: ["src/content.ts"],
-            run_at: "document_end",
-            all_frames: false,
-          },
-        ],
-
         content_security_policy: {
           extension_pages: "default-src 'self'",
         },
@@ -68,7 +59,7 @@ export default defineConfig({
           open_in_tab: true,
         },
 
-        permissions: ["activeTab", "clipboardWrite", "contextMenus", "storage"],
+        permissions: ["activeTab", "clipboardWrite", "contextMenus", "scripting", "storage"],
       }),
     }),
   ],

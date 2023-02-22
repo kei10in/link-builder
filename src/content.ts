@@ -1,18 +1,24 @@
 import { DocumentFormat } from "./FormatItem.js";
-import { isCopyHyperTextMessage, isCopyTextMessage } from "./Message.js";
+import { isCopyHyperTextMessage, isCopyTextMessage, isHeartbeatMessage } from "./Message.js";
 import { textToHtml } from "./document.js";
 import browser from "webextension-polyfill";
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (isCopyTextMessage(message)) {
     copyTextToClipboard(message.text);
+    sendResponse();
+    return;
   } else if (isCopyHyperTextMessage(message)) {
     copyHtmlToClipboard(message.text, message.docFormat);
+    sendResponse();
+    return;
+  } else if (isHeartbeatMessage(message)) {
+    return Promise.resolve({ type: "pong" });
   } else {
     console.log("Invalid message");
+    sendResponse();
+    return;
   }
-  sendResponse();
-  return;
 });
 
 const copyTextToClipboard = (text: string) => {
@@ -23,8 +29,6 @@ const copyHtmlToClipboard = (text: string, docFormat: DocumentFormat) => {
   const html = textToHtml(text, docFormat);
   const div = document.createElement("div");
   div.innerHTML = html;
-
-  console.log({ html, text });
 
   copyToClipboard({
     "text/html": html,
