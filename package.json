@@ -19,7 +19,8 @@
     "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "package": "web-ext build --source-dir ./dist --overwrite-dest",
+    "package:firefox": "web-ext build --source-dir ./dist/firefox --artifacts-dir ./web-ext-artifacts/chrome --overwrite-dest",
+    "package:chrome": "web-ext build --source-dir ./dist/chrome --artifacts-dir ./web-ext-artifacts/chrome --overwrite-dest",
     "test": "ava",
     "format": "prettier --write ./src"
   },
