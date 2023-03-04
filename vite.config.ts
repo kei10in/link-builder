@@ -45,6 +45,16 @@ export default defineConfig({
           },
         },
 
+        commands: {
+          "copy-link": {
+            suggested_key: {
+              default: "Ctrl+Alt+C",
+              mac: "MacCtrl+Command+C",
+            },
+            description: "Copy format to clipboard",
+          },
+        },
+
         background: {
           "{{firefox}}.scripts": ["src/background.ts"],
           "{{chrome}}.service_worker": "src/background.ts",
