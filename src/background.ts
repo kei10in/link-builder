@@ -55,6 +55,11 @@ browser.runtime.onStartup.addListener(async () => {
 
 browser.runtime.onInstalled.addListener(async (details) => {
   switch (details.reason) {
+    case "install":
+      await Format.install();
+      await updateContextMenu();
+      return;
+
     case "update":
       if (details.previousVersion == undefined) {
         return;

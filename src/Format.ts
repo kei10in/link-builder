@@ -48,6 +48,13 @@ export const Format = {
     await storage.set({ linkFormats, defaultLinkFormat });
   },
 
+  install: async () => {
+    await storage.set({
+      linkFormats: DEFAULT_FORMATS,
+      defaultLinkFormat: DEFAULT_FORMATS[0].id,
+    });
+  },
+
   upgrade: async (previousVersion: string): Promise<void> => {
     if (previousVersion === "0.1.0" || previousVersion === "0.1.1") {
       const items = await Format.load();
@@ -60,6 +67,7 @@ export const Format = {
 
   reset: async (): Promise<FormatItem[]> => {
     await storage.clear();
+    await Format.install();
     return (await Format.load()).linkFormats;
   },
 
