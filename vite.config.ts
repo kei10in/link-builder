@@ -15,6 +15,7 @@ export default defineConfig({
     svgr(),
     webExtension({
       browser: targetBrowser,
+      additionalInputs: ["src/content.ts"],
       manifest: () => ({
         manifest_version: 3,
         name: "Link Builder",
