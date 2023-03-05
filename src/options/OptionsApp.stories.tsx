@@ -49,6 +49,7 @@ const format: ComponentProps<typeof OptionsApp> = {
       enabled: true,
     },
   ],
+  defaultFormat: "markdown",
 };
 
 export const Default = Template.bind({});

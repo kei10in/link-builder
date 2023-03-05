@@ -36,19 +36,22 @@ export const DEFAULT_FORMATS: FormatItem[] = [
 const storage = browser.storage.sync;
 
 export const Format = {
-  load: async (): Promise<FormatItem[]> => {
-    const r = await storage.get({ linkFormats: DEFAULT_FORMATS });
-    return r.linkFormats as FormatItem[];
+  load: async (): Promise<{ linkFormats: FormatItem[]; defaultLinkFormat: string | undefined }> => {
+    const r = await storage.get({ linkFormats: DEFAULT_FORMATS, defaultLinkFormat: undefined });
+    return {
+      linkFormats: r.linkFormats as FormatItem[],
+      defaultLinkFormat: r.defaultLinkFormat as string | undefined,
+    };
   },
 
-  save: async (linkFormats: FormatItem[]) => {
-    await storage.set({ linkFormats });
+  save: async (linkFormats: FormatItem[], defaultLinkFormat: string | undefined) => {
+    await storage.set({ linkFormats, defaultLinkFormat });
   },
 
   upgrade: async (previousVersion: string): Promise<void> => {
     if (previousVersion === "0.1.0" || previousVersion === "0.1.1") {
       const items = await Format.load();
-      const item = items[0];
+      const item = items.linkFormats[0];
       if (item != undefined) {
         await storage.set({ defaultLinkFormat: item.id });
       }
@@ -57,12 +60,12 @@ export const Format = {
 
   reset: async (): Promise<FormatItem[]> => {
     await storage.clear();
-    return await Format.load();
+    return (await Format.load()).linkFormats;
   },
 
   findById: async (id: string): Promise<FormatItem | undefined> => {
     const items = await Format.load();
-    const item = items.find((x) => x.id === id);
+    const item = items.linkFormats.find((x) => x.id === id);
     return item;
   },
 

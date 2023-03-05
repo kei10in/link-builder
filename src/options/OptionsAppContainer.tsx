@@ -6,10 +6,12 @@ import browser from "webextension-polyfill";
 
 export const OptionsAppContainer: React.FC = () => {
   const [formats, setFormats] = useState<FormatItem[]>([]);
+  const [defaultLinkFormat, setDefaultLinkFormat] = useState<string | undefined>();
 
   useEffect(() => {
     Format.load().then((loaded) => {
-      setFormats(loaded);
+      setFormats(loaded.linkFormats);
+      setDefaultLinkFormat(loaded.defaultLinkFormat);
     });
   }, []);
 
@@ -18,13 +20,19 @@ export const OptionsAppContainer: React.FC = () => {
     setFormats(formats);
   };
 
-  const handleChangeFormat = (formats: FormatItem[]) => {
-    Format.save(formats);
+  const handleChangeFormat = (formats: FormatItem[], defaultLinkFormat: string | undefined) => {
+    Format.save(formats, defaultLinkFormat);
     setFormats(formats);
+    setDefaultLinkFormat(defaultLinkFormat);
     browser.runtime.sendMessage({ type: "linkFormatUpdated" });
   };
 
   return (
-    <OptionsApp formats={formats} restore={handleRestore} onChangeFormats={handleChangeFormat} />
+    <OptionsApp
+      formats={formats}
+      defaultFormat={defaultLinkFormat}
+      restore={handleRestore}
+      onChangeFormats={handleChangeFormat}
+    />
   );
 };

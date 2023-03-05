@@ -12,7 +12,9 @@ interface Props {
   format: string;
   enabled: boolean;
   dragging?: boolean;
+  isDefault?: boolean;
   onChangeEnabled?: (id: string, enabled: boolean) => void;
+  onClickSetAsShortcut?: (id: string) => void;
   onSave?: (id: string, update: { name?: string; format?: string }) => void;
   onDelete?: (id: string) => void;
 }
@@ -25,7 +27,9 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
     format,
     enabled,
     dragging = false,
+    isDefault = false,
     onChangeEnabled,
+    onClickSetAsShortcut,
     onSave,
     onDelete,
   } = props;
@@ -36,6 +40,9 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleSetAsShortcut = () => {
+    onClickSetAsShortcut?.(id);
+  };
   const handleClickEdit = () => setIsOpen(true);
   const handleClickDelete = () => onDelete?.(id);
 
@@ -70,9 +77,19 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
               <div>
                 <div className="flex items-center gap-2">
                   <div className="text-lg">{name}</div>
-                  {type === "html" && (
-                    <div className="text-xs rounded-full bg-blue-500 text-white px-2">Styled</div>
-                  )}
+                  <div className="flex items-center gap-1">
+                    {type === "text" && (
+                      <div className="text-xs rounded-full bg-blue-500 text-white px-2">Plain</div>
+                    )}
+                    {type === "html" && (
+                      <div className="text-xs rounded-full bg-blue-500 text-white px-2">Styled</div>
+                    )}
+                    {isDefault && (
+                      <div className="text-xs rounded-full bg-green-500 text-white px-2">
+                        Default
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <div className="flex items-center gap-1">
                   <pre className="text-sm font-mono text-gray-400">{format}</pre>
@@ -80,7 +97,11 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
               </div>
             </div>
 
-            <FormatListItemMenus onEdit={handleClickEdit} onDelete={handleClickDelete} />
+            <FormatListItemMenus
+              onSetAsShortcut={handleSetAsShortcut}
+              onEdit={handleClickEdit}
+              onDelete={handleClickDelete}
+            />
           </div>
           <div className="flex-none px-4">
             <div className="cursor-grab" draggable>

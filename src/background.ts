@@ -6,7 +6,7 @@ import browser from "webextension-polyfill";
 const MENU_PREFIX = "link-builder--item--";
 
 const buildContextMenu = async () => {
-  const linkFormats = await Format.load();
+  const linkFormats = (await Format.load()).linkFormats;
 
   browser.contextMenus.create({
     id: "link-builder",

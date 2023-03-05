@@ -7,20 +7,31 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { Fragment, useState } from "react";
-import { MdDelete, MdEdit, MdMoreHoriz } from "react-icons/md";
+import { MdContentCopy, MdDelete, MdEdit, MdMoreHoriz } from "react-icons/md";
 
 interface Props {
+  onSetAsShortcut?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
 }
 
 export const FormatListItemMenus: React.FC<Props> = (props: Props) => {
-  const { onEdit, onDelete } = props;
+  const { onSetAsShortcut, onEdit, onDelete } = props;
 
   const [open, setOpen] = useState(false);
 
-  const handleClickEdit = () => onEdit?.();
-  const handleClickDelete = () => onDelete?.();
+  const handleClickSetAsShortcut = () => {
+    onSetAsShortcut?.();
+    setOpen(false);
+  };
+  const handleClickEdit = () => {
+    onEdit?.();
+    setOpen(false);
+  };
+  const handleClickDelete = () => {
+    onDelete?.();
+    setOpen(false);
+  };
 
   const { x, y, strategy, refs, context } = useFloating({
     placement: "bottom-end",
@@ -52,6 +63,15 @@ export const FormatListItemMenus: React.FC<Props> = (props: Props) => {
           >
             <ActionMenu
               items={[
+                {
+                  content: (
+                    <Fragment>
+                      <MdContentCopy className="h-5 w-5" />
+                      <div className="px-2">Set as Default</div>
+                    </Fragment>
+                  ),
+                  onClick: handleClickSetAsShortcut,
+                },
                 {
                   content: (
                     <Fragment>

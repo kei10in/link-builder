@@ -30,11 +30,17 @@ const styledFormat: ComponentProps<typeof FormatListItem> = {
   enabled: true,
 };
 
-export const Default = Template.bind({});
-Default.args = { ...format };
+export const PlainFormat = Template.bind({});
+PlainFormat.args = { ...format };
 
 export const StyledFormat = Template.bind({});
 StyledFormat.args = { ...styledFormat };
+
+export const DefaultPlainFormat = Template.bind({});
+DefaultPlainFormat.args = { ...format, isDefault: true };
+
+export const DefaultStyledFormat = Template.bind({});
+DefaultStyledFormat.args = { ...styledFormat, isDefault: true };
 
 export const Disabled = Template.bind({});
 Disabled.args = { ...format, enabled: false };

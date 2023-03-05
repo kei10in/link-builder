@@ -10,12 +10,13 @@ import { useState } from "react";
 
 interface Props {
   formats: FormatItem[];
+  defaultFormat: string | undefined;
   restore?: () => Promise<void>;
-  onChangeFormats?: (formats: FormatItem[]) => void;
+  onChangeFormats?: (formats: FormatItem[], shortcutFormat: string | undefined) => void;
 }
 
 export const OptionsApp: React.FC<Props> = (props: Props) => {
-  const { formats, restore, onChangeFormats } = props;
+  const { formats, defaultFormat, restore, onChangeFormats } = props;
 
   const [isRestoring, setIsRestoring] = useState(false);
 
@@ -40,14 +41,14 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   const handleSaveNewTextFormat = (name: string, format: string) => {
     const newFormat = newTextFormatItem({ name, format });
     const newFormats = [...formats, newFormat];
-    onChangeFormats?.(newFormats);
+    onChangeFormats?.(newFormats, defaultFormat);
     setEditingNewFormat(undefined);
   };
 
   const handleSaveNewHyperTextFormat = (name: string, format: string) => {
     const newFormat = newStyledTextFormatItem({ name, format });
     const newFormats = [...formats, newFormat];
-    onChangeFormats?.(newFormats);
+    onChangeFormats?.(newFormats, defaultFormat);
     setEditingNewFormat(undefined);
   };
 
@@ -58,7 +59,12 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
       }
       return { ...v, enabled };
     });
-    onChangeFormats?.(newFormats);
+    onChangeFormats?.(newFormats, defaultFormat);
+  };
+
+  const handleClickSetAsShortcut = (id: string) => {
+    console.log(id);
+    onChangeFormats?.(formats, id);
   };
 
   const handleSave = (id: string, update: { name?: string; format?: string }) => {
@@ -68,12 +74,12 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
       }
       return { ...v, ...update };
     });
-    onChangeFormats?.(newFormats);
+    onChangeFormats?.(newFormats, defaultFormat);
   };
 
   const handleDelete = (id: string) => {
     const newFormats = formats.filter((x) => x.id != id);
-    onChangeFormats?.(newFormats);
+    onChangeFormats?.(newFormats, id == defaultFormat ? undefined : defaultFormat);
   };
 
   const [movingId, setMovingId] = useState<string>();
@@ -97,7 +103,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   };
 
   const handleChangeOrder = () => {
-    onChangeFormats?.(currentFormats);
+    onChangeFormats?.(currentFormats, defaultFormat);
   };
 
   const currentFormats = movingFormats ?? formats;
@@ -157,8 +163,10 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
                       {(isDragging) => (
                         <FormatListItem
                           {...item}
+                          isDefault={item.id === defaultFormat}
                           dragging={isDragging}
                           onChangeEnabled={handleChangeEnabled}
+                          onClickSetAsShortcut={handleClickSetAsShortcut}
                           onSave={handleSave}
                           onDelete={handleDelete}
                         />
@@ -170,6 +178,12 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
             </ul>
           )}
         </div>
+      </div>
+
+      <div className="mt-8 w-full">
+        <h2 className="my-4 text-2xl text-slate-800">Default Format</h2>
+
+        <p className="px-4">Default format is used when a shortcut is activated.</p>
       </div>
 
       {editingNewFormat == "text/plain" && (
