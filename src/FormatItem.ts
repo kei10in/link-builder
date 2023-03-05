@@ -48,13 +48,13 @@ export const newStyledTextFormatItem = (args: {
   };
 };
 
-export const renderFormat = (item: FormatItem, data: { title: string; url: string }): string => {
+export const renderFormat = (format: string, data: { title: string; url: string }): string => {
   const url = new URL(data.url);
   const paths = url.pathname.split("/").reverse();
   const url_filename = paths[0] !== "" ? paths[0] : paths[1];
 
   return Mustache.render(
-    item.format,
+    format,
     {
       ...data,
       url_pathname: url.pathname,

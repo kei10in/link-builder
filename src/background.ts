@@ -76,12 +76,13 @@ browser.runtime.onMessage.addListener(async (message) => {
 
 browser.commands.onCommand.addListener(async (name) => {
   if (name === "copy-link") {
+    const window = await browser.windows.getCurrent();
     const tabs = await browser.tabs.query({ active: true });
-    if (tabs.length === 0) {
+
+    const tab = tabs.find((t) => t.windowId == window.id);
+    if (tab == undefined) {
       return;
     }
-
-    const tab = tabs[0];
 
     const item = await Format.findDefault();
     if (item == undefined) {
@@ -107,17 +108,13 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 });
 
 const copyFormatToClipboard = async (tab: browser.Tabs.Tab | undefined, item: FormatItem) => {
-  if (tab == undefined || tab.id == undefined || tab.title == undefined || tab.url == undefined) {
+  if (tab == undefined || tab.id == undefined) {
     return;
   }
 
   await setupContentsScript({ tabId: tab.id });
 
-  const url = tab.url;
-  const title = tab.title;
-  const data = { url, title };
-
-  const message = createMessage(item, data);
+  const message = createMessage(item);
 
   await browser.tabs.sendMessage(tab.id, message);
 };

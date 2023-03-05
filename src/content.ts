@@ -1,25 +1,33 @@
-import { DocumentFormat } from "./FormatItem.js";
+import { DocumentFormat, renderFormat } from "./FormatItem.js";
 import { isCopyHyperTextMessage, isCopyTextMessage, isHeartbeatMessage } from "./Message.js";
 import { textToHtml } from "./document.js";
 import browser from "webextension-polyfill";
 
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message) => {
   if (isCopyTextMessage(message)) {
-    copyTextToClipboard(message.text);
-    sendResponse();
+    const text = renderContent(message.format);
+    copyTextToClipboard(text);
     return;
   } else if (isCopyHyperTextMessage(message)) {
-    copyHtmlToClipboard(message.text, message.docFormat);
-    sendResponse();
+    const text = renderContent(message.format);
+    copyHtmlToClipboard(text, message.docFormat);
     return;
   } else if (isHeartbeatMessage(message)) {
     return Promise.resolve({ type: "pong" });
   } else {
     console.log("Invalid message");
-    sendResponse();
     return;
   }
 });
+
+const renderContent = (format: string) => {
+  const data = {
+    title: document.title,
+    url: location.href,
+  };
+
+  return renderFormat(format, data);
+};
 
 const copyTextToClipboard = (text: string) => {
   copyToClipboard({ "text/plain": text });

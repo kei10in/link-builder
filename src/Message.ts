@@ -1,18 +1,17 @@
-import { Format } from "./Format.js";
 import { DocumentFormat, isDocumentFormat, FormatItem } from "./FormatItem.js";
 
 export interface CopyTextMessage {
   type: "copyText";
-  text: string;
+  format: string;
 }
 
 export const isCopyTextMessage = (value: unknown): value is CopyTextMessage => {
-  return isObject(value) && value.type === "copyText" && typeof value.text === "string";
+  return isObject(value) && value.type === "copyText" && typeof value.format === "string";
 };
 
 export interface CopyHyperTextMessage {
   type: "copyHtml";
-  text: string;
+  format: string;
   docFormat: DocumentFormat;
 }
 
@@ -20,7 +19,7 @@ export const isCopyHyperTextMessage = (value: unknown): value is CopyHyperTextMe
   return (
     isObject(value) &&
     value.type === "copyHtml" &&
-    typeof value.text === "string" &&
+    typeof value.format === "string" &&
     isDocumentFormat(value.docFormat)
   );
 };
@@ -31,23 +30,18 @@ const isObject = (value: unknown): value is Record<string, unknown> => {
   return value != undefined && typeof value === "object";
 };
 
-export const createMessage = (
-  format: FormatItem,
-  data: { title: string; url: string }
-): RequestMessage => {
-  const linkText = Format.render(format, data);
-
+export const createMessage = (format: FormatItem): RequestMessage => {
   switch (format.type) {
     case "text":
     default:
       return {
         type: "copyText",
-        text: linkText,
+        format: format.format,
       };
     case "html":
       return {
         type: "copyHtml",
-        text: linkText,
+        format: format.format,
         docFormat: format.docFormat,
       };
   }

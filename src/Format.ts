@@ -1,4 +1,4 @@
-import { FormatItem, renderFormat } from "./FormatItem.js";
+import { FormatItem } from "./FormatItem.js";
 import browser from "webextension-polyfill";
 
 export const DEFAULT_FORMATS: FormatItem[] = [
@@ -76,10 +76,6 @@ export const Format = {
     }
 
     return Format.findById(r.defaultLinkFormat);
-  },
-
-  render: (item: FormatItem, data: { title: string; url: string }): string => {
-    return renderFormat(item, data);
   },
 };
 
