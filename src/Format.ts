@@ -37,15 +37,16 @@ const storage = browser.storage.sync;
 
 export const Format = {
   load: async (): Promise<{ linkFormats: FormatItem[]; defaultLinkFormat: string | undefined }> => {
-    const r = await storage.get({ linkFormats: DEFAULT_FORMATS, defaultLinkFormat: undefined });
+    const r = await storage.get({ linkFormats: DEFAULT_FORMATS, defaultLinkFormat: "" });
+    const defaultLinkFormat = r.defaultLinkFormat as string;
     return {
       linkFormats: r.linkFormats as FormatItem[],
-      defaultLinkFormat: r.defaultLinkFormat as string | undefined,
+      defaultLinkFormat: defaultLinkFormat === "" ? undefined : defaultLinkFormat,
     };
   },
 
   save: async (linkFormats: FormatItem[], defaultLinkFormat: string | undefined) => {
-    await storage.set({ linkFormats, defaultLinkFormat });
+    await storage.set({ linkFormats, defaultLinkFormat: defaultLinkFormat ?? "" });
   },
 
   install: async () => {
@@ -78,12 +79,13 @@ export const Format = {
   },
 
   findDefault: async (): Promise<FormatItem | undefined> => {
-    const r = await storage.get({ defaultLinkFormat: undefined });
-    if (typeof r.defaultLinkFormat != "string") {
+    const r = await storage.get({ defaultLinkFormat: "" });
+    const defaultLinkFormat = r.defaultLinkFormat as string;
+    if (defaultLinkFormat === "") {
       return undefined;
     }
 
-    return Format.findById(r.defaultLinkFormat);
+    return Format.findById(defaultLinkFormat);
   },
 };
 
