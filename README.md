@@ -2,61 +2,59 @@
 
 Make Link alternative to WebExtensions.
 
-Build a link and copy to the clipboard in various formats.
+Easily build links and copy them to the clipboard in various formats.
 
 ## Usage
 
-Link Builder add the context menus that copies page title and/or page url to the clipboard.
-You can create your own copy format.
-In addition to copying as plain text, you can also copy as styled text.
+Link Builder adds context menus that copy the page title and/or URL to the clipboard.
+You can create your own copy formats.
+In addition to plain text, you can also copy as styled text.
 
-### Copy to the clipboard
+### Copying to the Clipboard
 
 1. Open the web page.
-2. Open the context menus.
-3. Select format from [Link Builder].
+1. Access the context menus.
+1. Choose a format from [Link Builder].
 
-### Customize
+### Customization
 
 You can customize the following:
 
-* Add the user defined format.
-* Edit the preset or user defined format.
-* Delete the preset or user defined format.
-* Hide the format from the context menu.
-* Recorder formats in the context menu.
+- Add user-defined formats.
+- Edit preset or user-defined formats.
+- Delete preset or user-defined formats.
+- Hide formats from the context menu.
+- Reorder formats in the context menu.
 
-These customization are made on the option page.
-You can open the option page from context menu, [Link Builder] > [Configure].
+Customizations can be made on the options page. You can open the options page from the context menu, [Link Builder] > [Configure].
 
-#### Add the custom format
+#### Adding a Custom Format
 
-1. Click [Add New Format] button and select [Text] or [Styled Text].
-2. Type Name and Format fields and click [Save].
+1. Click the [Add New Format] button and select [Text] or [Styled Text].
+1. Fill in the Name and Format fields, then click [Save].
 
-#### Reorder formats in the context menu
+#### Reordering Formats in the Context Menu
 
 You can change the order of menu items.
 
-1. Grab the right side handle of the format.
-2. Drag and drop to the desired position.
+1. Grab the handle on the right side of the format.
+1. Drag and drop it to the desired position.
 
-## For Developer
+## For Developers
 
 ### Getting Started
 
 Install dependencies and build.
 
-```
+```shell
 % yarn install
 % yarn build
 ```
 
 ### Scripts
 
-* `yarn watch`: Build in watch mode
-* `yarn test`: Run tests
-* `yarn lint`: Lint code by ESLint
-* `yarn format`: Format code by prettier
-* `yarn storybook`: Start storybook
-
+- yarn watch: Build in watch mode
+- yarn test: Run tests
+- yarn lint: Lint code using ESLint
+- yarn format: Format code using Prettier
+- yarn storybook: Launch Storybook
