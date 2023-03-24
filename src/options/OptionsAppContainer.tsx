@@ -20,8 +20,11 @@ export const OptionsAppContainer: React.FC = () => {
     setFormats(formats);
   };
 
-  const handleChangeFormat = (formats: FormatItem[], defaultLinkFormat: string | undefined) => {
-    Format.save(formats, defaultLinkFormat);
+  const handleChangeFormat = async (
+    formats: FormatItem[],
+    defaultLinkFormat: string | undefined
+  ) => {
+    await Format.save(formats, defaultLinkFormat);
     setFormats(formats);
     setDefaultLinkFormat(defaultLinkFormat);
     browser.runtime.sendMessage({ type: "linkFormatUpdated" });
