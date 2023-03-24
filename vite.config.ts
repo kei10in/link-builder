@@ -48,9 +48,12 @@ export default defineConfig({
 
         commands: {
           "copy-link": {
-            suggested_key: {
+            "{{firefox}}.suggested_key": {
               default: "Ctrl+Alt+C",
               mac: "MacCtrl+Command+C",
+            },
+            "{{chrome}}.suggested_key": {
+              default: "Ctrl+Shift+C",
             },
             description: "Copy format to clipboard",
           },
