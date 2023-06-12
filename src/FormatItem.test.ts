@@ -1,58 +1,43 @@
 import { renderFormat } from "./FormatItem.js";
-import test from "ava";
+import { describe, expect, test } from "vitest";
 
-test("renderFormat should render title", (t) => {
-  const format = "{{title}}";
-  const data = {
-    title: "title",
-    url: "https://example.com",
-  };
-  const result = renderFormat(format, data);
-  t.is(result, "title");
+describe("FormatItem", () => {
+  test("renderFormat should render title", () => {
+    const format = "{{title}}";
+    const data = {
+      title: "title",
+      url: "https://example.com",
+    };
+    const result = renderFormat(format, data);
+    expect(result).toBe("title");
+  });
+
+  test("renderFormat should render url", () => {
+    const format = "{{url}}";
+    const data = {
+      title: "title",
+      url: "https://example.com",
+    };
+    const result = renderFormat(format, data);
+    expect(result).toBe("https://example.com");
+  });
+
+  test("renderFormat should render url_pathname", () => {
+    const format = "{{url_pathname}}";
+    const data = { title: "title", url: "https://example.com/path" };
+
+    const result = renderFormat(format, data);
+    expect(result).toBe("/path");
+  });
+
+  test.each([
+    ["https://example.com/", ""],
+    ["https://example.com/path", "path"],
+    ["https://example.com/path/", "path"],
+  ])('renderFormat should render "%s" as url_filename gets "%s"', (url, expected) => {
+    const format = "{{url_filename}}";
+    const data = { title: "title", url };
+    const result = renderFormat(format, data);
+    expect(result).toBe(expected);
+  });
 });
-
-test("renderFormat should render url", (t) => {
-  const format = "{{url}}";
-  const data = {
-    title: "title",
-    url: "https://example.com",
-  };
-  const result = renderFormat(format, data);
-  t.is(result, "https://example.com");
-});
-
-test("renderFormat should render url_pathname", (t) => {
-  const format = "{{url_pathname}}";
-  const data = { title: "title", url: "https://example.com/path" };
-
-  const result = renderFormat(format, data);
-  t.is(result, "/path");
-});
-
-const renderUrlFilenameLastMacro = test.macro((t, url: string, expected: string) => {
-  const format = "{{url_filename}}";
-  const data = { title: "title", url };
-  const result = renderFormat(format, data);
-  t.is(result, expected);
-});
-
-test(
-  "renderFormat should render url_filename as empty",
-  renderUrlFilenameLastMacro,
-  "https://example.com/",
-  ""
-);
-
-test(
-  "renderFormat should render url_filename",
-  renderUrlFilenameLastMacro,
-  "https://example.com/path",
-  "path"
-);
-
-test(
-  "renderFormat should render url_filename that ends with path delimiter",
-  renderUrlFilenameLastMacro,
-  "https://example.com/path/",
-  "path"
-);
