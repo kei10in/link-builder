@@ -9,6 +9,7 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended",
     "plugin:storybook/recommended",
+    "plugin:tailwindcss/recommended",
   ],
   overrides: [],
   parser: "@typescript-eslint/parser",
