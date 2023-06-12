@@ -109,15 +109,15 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
   const currentFormats = movingFormats ?? formats;
 
   return (
-    <div className="h-screen max-w-2xl px-12 py-6 mx-auto">
-      <div className="flex items-center gap-8 my-8">
+    <div className="mx-auto h-screen max-w-2xl px-12 py-6">
+      <div className="my-8 flex items-center gap-8">
         <div>
-          <Logo className="w-28 mx-auto" />
+          <Logo className="mx-auto w-28" />
         </div>
         <div>
           <h1 className="text-4xl">Link Builder</h1>
           <div className="mt-2">
-            <a href="https://github.com/kei10in/link-builder" className="block w-8 h-8">
+            <a href="https://github.com/kei10in/link-builder" className="block h-8 w-8">
               <Invertocat width={24} height={24} viewBox="0 0 96 96" />
             </a>
           </div>
@@ -130,7 +130,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
       <div className="w-full">
         <h2 className="text-2xl text-slate-800">Formats</h2>
 
-        <div className="w-full flex justify-end">
+        <div className="flex w-full justify-end">
           <AddFormatButton
             onClickNewTextFormat={handleClickNewTextFormat}
             onClickNewHyperTextFormat={handleClickNewHyperTextFormat}
@@ -139,7 +139,7 @@ export const OptionsApp: React.FC<Props> = (props: Props) => {
 
         <div className="mt-4">
           {currentFormats.length === 0 && (
-            <div className="w-full py-4 rounded-md border border-gray-300">
+            <div className="w-full rounded-md border border-gray-300 py-4">
               <div className="mx-auto w-fit">
                 <button className="btn my-12" onClick={handleClickRestore} disabled={isRestoring}>
                   Restore

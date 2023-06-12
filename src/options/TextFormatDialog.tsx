@@ -42,12 +42,12 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
       isOpen={isOpen}
       onRequestClose={handleRequestClose}
       overlayClassName="ReactModal__Overlay w-screen h-screen fixed top-0 left-0 bg-black bg-opacity-25 flex items-center"
-      className="ReactModal__Content bg-white max-w-4xl mx-auto p-8 rounded-md shadow-xl border border-gray-300"
+      className="ReactModal__Content mx-auto max-w-4xl rounded-md border border-gray-300 bg-white p-8 shadow-xl"
     >
       <div className="flex items-stretch gap-8">
         <div className="basis-1/2">
           <form onSubmit={handleSubmit}>
-            <h1 className="text-2xl mb-6">{title}</h1>
+            <h1 className="mb-6 text-2xl">{title}</h1>
             <div className="w-full">
               <div>
                 <p className="mb-8">
@@ -59,7 +59,7 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
                 <input
                   id="name"
                   type="text"
-                  className="w-full px-2.5 py-1 rounded border border-gray-300"
+                  className="w-full rounded border border-gray-300 px-2.5 py-1"
                   autoFocus
                   defaultValue={name}
                   onChange={handleChangeName}
@@ -72,13 +72,13 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
                 </label>
                 <textarea
                   id="format"
-                  className="w-full px-2.5 py-1 rounded border border-gray-300 h-36 font-mono resize-none"
+                  className="h-36 w-full resize-none rounded border border-gray-300 px-2.5 py-1 font-mono"
                   defaultValue={format}
                   onChange={handleChangeFormat}
                 />
               </div>
 
-              <div className="mt-6 flex gap-2 justify-end">
+              <div className="mt-6 flex justify-end gap-2">
                 <button className="btn" onClick={onCancel}>
                   Cancel
                 </button>
@@ -91,7 +91,7 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
         </div>
 
         <div className="basis-1/2">
-          <div className="bg-neutral-100 h-full p-6">
+          <div className="h-full bg-neutral-100 p-6">
             <Variables />
           </div>
         </div>

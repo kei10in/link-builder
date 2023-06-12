@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof TextFormatDialog>;
 
 const Template: ComponentStory<typeof TextFormatDialog> = (args) => (
-  <div className="w-screen h-screen">
+  <div className="h-screen w-screen">
     <TextFormatDialog {...args} />
   </div>
 );
@@ -31,9 +31,9 @@ export const WithButton = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-screen h-screen flex items-center">
+    <div className="flex h-screen w-screen items-center">
       <button
-        className="mx-auto px-3 py-1 rounded border border-gray-300 bg-gray-100"
+        className="mx-auto rounded border border-gray-300 bg-gray-100 px-3 py-1"
         onClick={() => setOpen(true)}
       >
         Open

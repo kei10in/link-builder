@@ -10,11 +10,11 @@ interface Props {
 export const ActionMenu: React.FC<Props> = (props: Props) => {
   const { items } = props;
   return (
-    <ul className="mt-2 shadow bg-white rounded-md py-1.5 border border-gray-300">
+    <ul className="mt-2 rounded-md border border-gray-300 bg-white py-1.5 shadow">
       {items.map((item, index) => (
         <li key={index}>
           <button
-            className="text-left w-full cursor-pointer px-4 py-1.5 hover:bg-blue-500 hover:text-white flex items-center"
+            className="flex w-full cursor-pointer items-center px-4 py-1.5 text-left hover:bg-blue-500 hover:text-white"
             onClick={item.onClick}
           >
             {item.content}

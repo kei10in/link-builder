@@ -61,12 +61,12 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
         )}
       >
         <div className="flex items-center justify-between text-gray-700">
-          <div className="group flex items-center justify-between flex-1">
+          <div className="group flex flex-1 items-center justify-between">
             <div
-              className="flex items-start px-2 py-2 aria-disabled:opacity-50 gap-2 pl-4"
+              className="flex items-start gap-2 p-2 pl-4 aria-disabled:opacity-50"
               aria-disabled={!enabled}
             >
-              <button onClick={handleClickCheck} className="flex-none my-2">
+              <button onClick={handleClickCheck} className="my-2 flex-none">
                 {enabled ? (
                   <MdBookmark className="h-4 w-4" />
                 ) : (
@@ -79,20 +79,20 @@ export const FormatListItem: React.FC<Props> = (props: Props) => {
                   <div className="text-lg">{name}</div>
                   <div className="flex items-center gap-1">
                     {type === "text" && (
-                      <div className="text-xs rounded-full bg-blue-500 text-white px-2">Plain</div>
+                      <div className="rounded-full bg-blue-500 px-2 text-xs text-white">Plain</div>
                     )}
                     {type === "html" && (
-                      <div className="text-xs rounded-full bg-blue-500 text-white px-2">Styled</div>
+                      <div className="rounded-full bg-blue-500 px-2 text-xs text-white">Styled</div>
                     )}
                     {isDefault && (
-                      <div className="text-xs rounded-full bg-green-500 text-white px-2">
+                      <div className="rounded-full bg-green-500 px-2 text-xs text-white">
                         Default
                       </div>
                     )}
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <pre className="text-sm font-mono text-gray-400">{format}</pre>
+                  <pre className="font-mono text-sm text-gray-400">{format}</pre>
                 </div>
               </div>
             </div>
