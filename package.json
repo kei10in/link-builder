@@ -79,5 +79,6 @@
     "vite-plugin-web-extension": "^3.0.2",
     "vitest": "^0.32.0",
     "web-ext": "^7.5.0"
-  }
+  },
+  "packageManager": "yarn@3.6.0"
 }
