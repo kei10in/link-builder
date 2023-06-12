@@ -18,7 +18,14 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "react-hooks", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "tailwindcss/no-custom-classname": [
+      "warn",
+      {
+        whitelist: ["ReactModal__.*"],
+      },
+    ],
+  },
   settings: {
     react: {
       version: "detect",

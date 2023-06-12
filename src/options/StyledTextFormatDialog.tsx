@@ -54,9 +54,7 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
                   Styled Text Format allows you to create decorated text such as bold and italic as
                   well as link text and copy that text to the clipboard.
                 </p>
-                <label htmlFor="name" className="label">
-                  Name:
-                </label>
+                <label htmlFor="name">Name:</label>
                 <input
                   id="name"
                   type="text"
@@ -68,9 +66,7 @@ export const StyledTextFormatDialog: React.FC<Props> = (props: Props) => {
               </div>
 
               <div className="mt-4">
-                <label htmlFor="format" className="label">
-                  Format:
-                </label>
+                <label htmlFor="format">Format:</label>
                 <textarea
                   id="format"
                   className="h-36 w-full resize-none rounded border border-gray-300 px-2.5 py-1 font-mono"

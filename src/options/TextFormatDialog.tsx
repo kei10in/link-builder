@@ -53,9 +53,7 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
                 <p className="mb-8">
                   Text Format allows you to create plain text and copy to the clipboard.
                 </p>
-                <label htmlFor="name" className="label">
-                  Name:
-                </label>
+                <label htmlFor="name">Name:</label>
                 <input
                   id="name"
                   type="text"
@@ -67,9 +65,7 @@ export const TextFormatDialog: React.FC<Props> = (props: Props) => {
               </div>
 
               <div className="mt-4">
-                <label htmlFor="format" className="label">
-                  Format:
-                </label>
+                <label htmlFor="format">Format:</label>
                 <textarea
                   id="format"
                   className="h-36 w-full resize-none rounded border border-gray-300 px-2.5 py-1 font-mono"
