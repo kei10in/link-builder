@@ -1,5 +1,5 @@
-import { renderFormat } from "./FormatItem.js";
 import { describe, expect, test } from "vitest";
+import { renderFormat } from "./FormatItem.js";
 
 describe("FormatItem", () => {
   test("renderFormat should render title", () => {

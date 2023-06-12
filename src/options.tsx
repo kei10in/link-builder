@@ -1,8 +1,8 @@
-import "./main.css";
-import { OptionsAppContainer } from "./options/OptionsAppContainer.js";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import ReactModal from "react-modal";
+import "./main.css";
+import { OptionsAppContainer } from "./options/OptionsAppContainer.js";
 
 ReactModal.setAppElement("#root");
 

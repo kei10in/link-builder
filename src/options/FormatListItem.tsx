@@ -1,9 +1,9 @@
-import { FormatListItemMenus } from "./FormatListItemMenus.js";
-import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
-import { TextFormatDialog } from "./TextFormatDialog.js";
 import { clsx } from "clsx";
 import { useState } from "react";
 import { MdBookmark, MdBookmarkBorder, MdDragIndicator } from "react-icons/md";
+import { FormatListItemMenus } from "./FormatListItemMenus.js";
+import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
+import { TextFormatDialog } from "./TextFormatDialog.js";
 
 interface Props {
   id: string;

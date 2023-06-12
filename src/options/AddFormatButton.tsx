@@ -1,4 +1,3 @@
-import { ActionMenu } from "./ActionMenu.js";
 import {
   FloatingPortal,
   useClick,
@@ -8,6 +7,7 @@ import {
 } from "@floating-ui/react";
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
+import { ActionMenu } from "./ActionMenu.js";
 
 interface Props {
   onClickNewTextFormat?: () => void;

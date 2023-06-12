@@ -1,5 +1,5 @@
-import { FormatItem } from "./FormatItem.js";
 import browser from "webextension-polyfill";
+import { FormatItem } from "./FormatItem.js";
 
 export const DEFAULT_FORMATS: FormatItem[] = [
   {

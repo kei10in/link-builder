@@ -1,4 +1,3 @@
-import { ActionMenu } from "./ActionMenu.js";
 import {
   FloatingPortal,
   useClick,
@@ -8,6 +7,7 @@ import {
 } from "@floating-ui/react";
 import { Fragment, useState } from "react";
 import { MdContentCopy, MdDelete, MdEdit, MdMoreHoriz } from "react-icons/md";
+import { ActionMenu } from "./ActionMenu.js";
 
 interface Props {
   onSetAsShortcut?: () => void;

@@ -1,4 +1,4 @@
-import { DocumentFormat, isDocumentFormat, FormatItem } from "./FormatItem.js";
+import { DocumentFormat, FormatItem, isDocumentFormat } from "./FormatItem.js";
 
 export interface CopyTextMessage {
   type: "copyText";

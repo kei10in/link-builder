@@ -1,7 +1,7 @@
+import browser from "webextension-polyfill";
 import { Format } from "./Format.js";
 import { FormatItem } from "./FormatItem.js";
 import { createMessage } from "./Message.js";
-import browser from "webextension-polyfill";
 
 const MENU_PREFIX = "link-builder--item--";
 

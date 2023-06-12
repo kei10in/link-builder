@@ -1,7 +1,7 @@
+import browser from "webextension-polyfill";
+import { textToHtml } from "./document.js";
 import { DocumentFormat, renderFormat } from "./FormatItem.js";
 import { isCopyHyperTextMessage, isCopyTextMessage, isHeartbeatMessage } from "./Message.js";
-import { textToHtml } from "./document.js";
-import browser from "webextension-polyfill";
 
 browser.runtime.onMessage.addListener((message) => {
   if (isCopyTextMessage(message)) {

@@ -1,6 +1,6 @@
-import { Variables } from "./Variables.js";
 import { ChangeEventHandler, FormEventHandler, MouseEventHandler, useState } from "react";
 import ReactModal from "react-modal";
+import { Variables } from "./Variables.js";
 
 interface Props {
   title: string;

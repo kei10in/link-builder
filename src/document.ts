@@ -1,9 +1,9 @@
-import { DocumentFormat } from "./FormatItem.js";
 import { rehype } from "rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
 import { remark } from "remark";
 import remarkRehype from "remark-rehype";
+import { DocumentFormat } from "./FormatItem.js";
 
 export const textToHtml = (text: string, docFormat: DocumentFormat): string => {
   if (docFormat === "markdown") {

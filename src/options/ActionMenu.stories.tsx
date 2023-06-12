@@ -1,5 +1,5 @@
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { ActionMenu } from "./ActionMenu.js";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

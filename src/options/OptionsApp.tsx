@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
 import { ReactComponent as Logo } from "../../public/icon.svg";
 import { FormatItem, newStyledTextFormatItem, newTextFormatItem } from "../FormatItem.js";
@@ -6,7 +7,6 @@ import { FormatListItem } from "./FormatListItem.js";
 import { Ordering } from "./Ordering.js";
 import { StyledTextFormatDialog } from "./StyledTextFormatDialog.js";
 import { TextFormatDialog } from "./TextFormatDialog.js";
-import { useState } from "react";
 
 interface Props {
   formats: FormatItem[];

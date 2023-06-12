@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
+import browser from "webextension-polyfill";
 import { Format } from "../Format.js";
 import { FormatItem } from "../FormatItem.js";
 import { OptionsApp } from "./OptionsApp.js";
-import { useEffect, useState } from "react";
-import browser from "webextension-polyfill";
 
 export const OptionsAppContainer: React.FC = () => {
   const [formats, setFormats] = useState<FormatItem[]>([]);
