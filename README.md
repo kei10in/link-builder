@@ -47,14 +47,14 @@ You can change the order of menu items.
 Install dependencies and build.
 
 ```shell
-% yarn install
-% yarn build
+% pnpm install
+% pnpm build
 ```
 
 ### Scripts
 
-- yarn watch: Build in watch mode
-- yarn test: Run tests
-- yarn lint: Lint code using ESLint
-- yarn format: Format code using Prettier
-- yarn storybook: Launch Storybook
+- pnpm watch: Build in watch mode
+- pnpm test: Run tests
+- pnpm lint: Lint code using ESLint
+- pnpm format: Format code using Prettier
+- pnpm storybook: Launch Storybook
