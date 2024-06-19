@@ -7,11 +7,21 @@ const MENU_PREFIX = "link-builder--item--";
 
 const buildContextMenu = async () => {
   const linkFormats = (await Format.load()).linkFormats;
+  const contexts: browser.Menus.ContextType[] = [
+    "audio",
+    "editable",
+    "frame",
+    "image",
+    "link",
+    "page",
+    "selection",
+    "video",
+  ];
 
   browser.contextMenus.create({
     id: "link-builder",
     title: "Build Link",
-    contexts: ["page"],
+    contexts,
   });
 
   for (const linkFormat of linkFormats) {
@@ -24,7 +34,7 @@ const buildContextMenu = async () => {
         id: `${MENU_PREFIX}${linkFormat.id}`,
         parentId: "link-builder",
         title: linkFormat.name,
-        contexts: ["page"],
+        contexts,
       });
     } catch (e) {
       console.log({ error: e });
