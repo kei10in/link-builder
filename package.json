@@ -7,10 +7,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "build:firefox",
+    "build": "pnpm run build:firefox",
     "build:firefox": "tsc && cross-env TARGET_BROWSER=firefox vite build",
     "build:chrome": "tsc && cross-env TARGET_BROWSER=chrome vite build",
-    "watch": "watch:firefox",
+    "watch": "pnpm run watch:firefox",
     "watch:firefox": "cross-env TARGET_BROWSER=firefox vite build --watch",
     "watch:chrome": "cross-env TARGET_BROWSER=chrome vite build --watch",
     "preview": "vite preview",
