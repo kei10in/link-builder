@@ -2,7 +2,8 @@ const { mergeConfig } = require("vite");
 const svgr = require("vite-plugin-svgr");
 
 module.exports = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -15,17 +16,25 @@ module.exports = {
         },
       },
     },
+    "@chromatic-com/storybook"
   ],
-  framework: "@storybook/react",
-  core: {
-    builder: "@storybook/builder-vite",
+
+  framework: {
+    name: "@storybook/react-vite",
+    options: {}
   },
-  features: {
-    storyStoreV7: true,
-  },
+
+  features: {},
+
   async viteFinal(config) {
     return mergeConfig(config, {
       plugins: [svgr()],
     });
   },
+
+  docs: {},
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript"
+  }
 };
