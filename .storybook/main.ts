@@ -1,7 +1,8 @@
-const { mergeConfig } = require("vite");
-const svgr = require("vite-plugin-svgr");
+import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
+import svgr from "vite-plugin-svgr";
 
-module.exports = {
+const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
 
   addons: [
@@ -16,12 +17,12 @@ module.exports = {
         },
       },
     },
-    "@chromatic-com/storybook"
+    "@chromatic-com/storybook",
   ],
 
   framework: {
     name: "@storybook/react-vite",
-    options: {}
+    options: {},
   },
 
   features: {},
@@ -35,6 +36,8 @@ module.exports = {
   docs: {},
 
   typescript: {
-    reactDocgen: "react-docgen-typescript"
-  }
+    reactDocgen: "react-docgen-typescript",
+  },
 };
+
+export default config;
