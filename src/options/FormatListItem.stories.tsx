@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { ComponentProps } from "react";
 import { FormatListItem } from "./FormatListItem.js";
 
@@ -6,9 +6,9 @@ import { FormatListItem } from "./FormatListItem.js";
 export default {
   title: "Components/FormatListItem",
   component: FormatListItem,
-} as ComponentMeta<typeof FormatListItem>;
+} as Meta<typeof FormatListItem>;
 
-const Template: ComponentStory<typeof FormatListItem> = (args) => (
+const Template: StoryFn<typeof FormatListItem> = (args) => (
   <div className="max-w-xl">
     <FormatListItem {...args} />
   </div>
@@ -30,17 +30,27 @@ const styledFormat: ComponentProps<typeof FormatListItem> = {
   enabled: true,
 };
 
-export const PlainFormat = Template.bind({});
-PlainFormat.args = { ...format };
+export const PlainFormat = {
+  render: Template,
+  args: { ...format },
+};
 
-export const StyledFormat = Template.bind({});
-StyledFormat.args = { ...styledFormat };
+export const StyledFormat = {
+  render: Template,
+  args: { ...styledFormat },
+};
 
-export const DefaultPlainFormat = Template.bind({});
-DefaultPlainFormat.args = { ...format, isDefault: true };
+export const DefaultPlainFormat = {
+  render: Template,
+  args: { ...format, isDefault: true },
+};
 
-export const DefaultStyledFormat = Template.bind({});
-DefaultStyledFormat.args = { ...styledFormat, isDefault: true };
+export const DefaultStyledFormat = {
+  render: Template,
+  args: { ...styledFormat, isDefault: true },
+};
 
-export const Disabled = Template.bind({});
-Disabled.args = { ...format, enabled: false };
+export const Disabled = {
+  render: Template,
+  args: { ...format, enabled: false },
+};

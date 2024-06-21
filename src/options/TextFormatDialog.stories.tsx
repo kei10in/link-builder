@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { ComponentProps, useState } from "react";
 import { TextFormatDialog } from "./TextFormatDialog.js";
 
@@ -9,9 +9,9 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof TextFormatDialog>;
+} as Meta<typeof TextFormatDialog>;
 
-const Template: ComponentStory<typeof TextFormatDialog> = (args) => (
+const Template: StoryFn<typeof TextFormatDialog> = (args) => (
   <div className="h-screen w-screen">
     <TextFormatDialog {...args} />
   </div>
@@ -24,8 +24,10 @@ const format: ComponentProps<typeof TextFormatDialog> = {
   isOpen: true,
 };
 
-export const Default = Template.bind({});
-Default.args = { ...format };
+export const Default = {
+  render: Template,
+  args: { ...format },
+};
 
 export const WithButton = () => {
   const [open, setOpen] = useState(false);
