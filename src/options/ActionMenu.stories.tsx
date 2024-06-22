@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { ActionMenu } from "./ActionMenu.js";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -8,11 +8,10 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ActionMenu>;
+} as Meta<typeof ActionMenu>;
 
-const Template: ComponentStory<typeof ActionMenu> = (args) => <ActionMenu {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  items: [{ content: "Item 1" }, { content: "Item 2" }, { content: "Item 3" }],
+export const Default = {
+  args: {
+    items: [{ content: "Item 1" }, { content: "Item 2" }, { content: "Item 3" }],
+  },
 };

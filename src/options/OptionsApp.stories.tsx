@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { ComponentProps } from "react";
 import { OptionsApp } from "./OptionsApp.js";
 
@@ -6,9 +6,7 @@ import { OptionsApp } from "./OptionsApp.js";
 export default {
   title: "Components/OptionsApp",
   component: OptionsApp,
-} as ComponentMeta<typeof OptionsApp>;
-
-const Template: ComponentStory<typeof OptionsApp> = (args) => <OptionsApp {...args} />;
+} as Meta<typeof OptionsApp>;
 
 const format: ComponentProps<typeof OptionsApp> = {
   formats: [
@@ -52,13 +50,15 @@ const format: ComponentProps<typeof OptionsApp> = {
   defaultFormat: "markdown",
 };
 
-export const Default = Template.bind({});
-Default.args = { ...format };
+export const Default = {
+  args: { ...format },
+};
 
-export const NoFormats = Template.bind({});
-NoFormats.args = {
-  formats: [],
-  restore: () => {
-    return new Promise((resolve) => setTimeout(resolve, 2000));
+export const NoFormats = {
+  args: {
+    formats: [],
+    restore: () => {
+      return new Promise((resolve) => setTimeout(resolve, 2000));
+    },
   },
 };
