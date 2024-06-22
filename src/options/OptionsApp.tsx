@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ReactComponent as Invertocat } from "../../public/github-mark.svg";
-import { ReactComponent as Logo } from "../../public/icon.svg";
+import Invertocat from "../../public/github-mark.svg?react";
+import Logo from "../../public/icon.svg?react";
 import { FormatItem, newStyledTextFormatItem, newTextFormatItem } from "../FormatItem.js";
 import { AddFormatButton } from "./AddFormatButton.js";
 import { FormatListItem } from "./FormatListItem.js";
